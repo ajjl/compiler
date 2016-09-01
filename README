@@ -1,1 +1,9 @@
-This file is ==BUG== needs content!!!
+This directory holds code that has been discussed in the notes.
+All of this code is written by Douglas W. Jones
+
+Files (as of Lecture 4):
+
+lexical.h -- the lexical analyzer interface specification
+lexical.c -- the lexical analyzer implementation
+testlex.c -- a test framework for the lexical analyzer
+Makefile  -- the make file describing how to build code
