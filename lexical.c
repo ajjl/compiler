@@ -130,12 +130,6 @@ static const punct_type punct_class[256] = {
 	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
 };
 
-/* get rid of short definitions */
-#undef OTH
-#undef WIT
-#undef LET
-#undef DIG
-
 /******
  * global variables for the lexical analyzer
  ******/
