@@ -170,6 +170,7 @@ void lex_advance() {
 			ch = getc( infile );
 			/* =BUG= what if this hits the end of file? */
 		} while (ISCLASS(ch,DIGIT));
+		/* =BUG= what if a # leads into an odd number base? */
 	} else if (ISCLASS(ch,PUNCTUATION)) {
 		lex_next.type = PUNCT;
 		lex_next.value = punct_class[ch];
