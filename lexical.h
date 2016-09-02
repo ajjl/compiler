@@ -10,7 +10,7 @@
 	#define EXTERN extern
 #endif
 
-enum lex_types { IDENT, KEYWORD, NUMBER, STRING, PUNCT, ENDFILE };
+typedef enum { IDENT, KEYWORD, NUMBER, STRING, PUNCT, ENDFILE } lex_types;
 
 typedef struct lexeme {
 	lex_types type;

@@ -64,6 +64,79 @@ static const char_type char_class[256] = {
 #define ISCLASS(ch,class) (char_class[ch]&(class))
 
 /******
+ * the punctuation classifier
+ ******/
+
+/* names for specific punctuation marks */
+typedef enum {
+    PTX       /* not a punctuation mark */,
+    PT_SEMI   /* ; */,   PT_EQUALS /* = */,   PT_COLON  /* : */, 
+    PT_LPAREN /* ( */,   PT_LBRAKT /* [ */,   PT_LBRACE /* { */,
+    PT_RPAREN /* ) */,   PT_RBRAKT /* ] */,   PT_RBRACE /* } */, 
+    PT_COMMA  /* , */,   PT_ATSIGN /* @ */,   PT_ELIPS  /* .. */,
+    PT_NOTEQL /* /= */,  PT_GT     /* > */,   PT_GE     /* >= */, 
+    PT_LT     /* < */,   PT_LE     /* <= */,  PT_PLUS   /* + */,
+    PT_MINUS  /* - */,   PT_TIMES  /* * */,   PT_DIV    /* / */, 
+    PT_MOD    /* % */,   PT_AND    /* & */,   PT_OR     /* | */, 
+    PT_NOT    /* ~ */,   PT_DOT    /* . */
+} punct_type;
+
+/* table mapping from characters to punctuation names */
+static const punct_type punct_class[256] = {
+     /* NUL SOH STX ETX EOT ENQ ACK BEL BS  HT  LF  VT  FF  CR  SO  SI  */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+     /* DLE DC1 DC2 DC3 DC4 NAK SYN ETB CAN EM  SUB ESC FS  GS  RS  US  */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+     /*      !   "   #   $   %   &   '   (   )   *   +   ,   -   .   /  */
+        PTX,PTX,PTX,PTX,PTX,PT_MOD,
+			        PT_AND,
+        			    PTX,PT_LPAREN,
+        				    PT_RPAREN,
+        					PT_TIMES,
+        					    PT_PLUS,
+							PT_COMMA,
+							    PT_MINUS,
+								PT_DOT,
+								    PT_DIV,
+     /*  0   1   2   3   4   5   6   7   8   9   :   ;   <   =   >   ?  */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PT_COLON,
+						    PT_SEMI,
+							PT_LT,
+							    PT_EQUALS,
+								PT_GT,
+								    PTX,
+     /*  @   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O  */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+     /*  P   Q   R   S   T   U   V   W   X   Y   Z   [   \   ]   ^   _  */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PT_LBRAKT,
+        						PTX,PT_RBRAKT,
+								PTX,PTX,
+     /*  `   a   b   c   d   e   f   g   h   i   j   k   l   m   n   o  */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+     /*  p   q   r   s   t   u   v   w   x   y   z   {   |   }   ~  DEL */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PT_LBRACE,
+        						PT_OR,
+							    PT_RBRACE,
+								PT_NOT,
+								    PTX,
+     /* beyond ascii */
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+};
+
+/* get rid of short definitions */
+#undef OTH
+#undef WIT
+#undef LET
+#undef DIG
+
+/******
  * global variables for the lexical analyzer
  ******/
 
@@ -92,14 +165,23 @@ void lex_advance() {
 		lex_next.type = NUMBER;
 		lex_next.value = 0;
 		do {
-			/* accumulate value of digit */
-			lex_next.value = (lex_next.value * 10)+(ch - '0');
-			/* =BUG= what if there's an overflow? */
+			if ( lex_next.value > ((UINT32_MAX - (ch - '0'))/10) ) {
+				/* =BUG= report number out of bounds */
+			} else {
+				/* accumulate value of digit */
+				lex_next.value = (lex_next.value*10)+(ch - '0');
+			}
 
 			/* get the next digit */
 			ch = getc( infile );
 			/* =BUG= what if this hits the end of file? */
 		} while (ISCLASS(ch,DIGIT));
+	} else if (ISCLASS(ch,PUNCTUATION)) {
+		lex_next.type = PUNCT;
+		lex_next.value = punct_class[ch];
+		ch = getc( infile );
+		/* =BUG= what if this hits the end of file? */
+		/* =BUG= what about 2-character punctuation marks? */
 	} else {
 		/* =BUG= what about identifiers, strings, punctuation */
 	}
