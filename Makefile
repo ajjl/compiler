@@ -24,8 +24,11 @@ kestrel: main.o lexical.o
 main.o: main.c lexical.h
 	$(COMPILER) -c main.c
 
-lexical.o: lexical.c lexical.h
+lexical.o: lexical.c lexical.h errors.h
 	$(COMPILER) -c lexical.c
+
+errors.o: errors.c errors.h
+	$(COMPILER) -c errors.c
 
 #######
 # secondary make target:  testlex for testing lexical.o

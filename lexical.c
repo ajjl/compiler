@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include "errors.h"
+
 #define EXTERN
 #include "lexical.h"
 
@@ -134,33 +136,52 @@ static const punct_type punct_class[256] = {
  * global variables for the lexical analyzer
  ******/
 
-static FILE * infile; /* the input file */
-static char ch;       /* the most recent character */
+static FILE * infile;  /* the input file */
+static int ch;         /* the most recent character */
+static int line_number;/* the line number in infile */
 
 /******
  * implementation
  ******/
 
-/* =BUG= lex_open needs writing, initializes infile, ch, lex_this, lex_next */
+void lex_open( char * f ) {
+	/* open file f for input, or use stdin if f is null */
+	if (f != null) {
+		infile = fopen( f, "r" );
+		if (infile == NULL) error_fatal( ER_BADFILE, 0 );
+	} else {
+		infile = stdin;
+	}
+
+	/* initialize the sliding window */
+	ch = fgetc( infile );
+	line_number = 1;
+	lex_advance();
+	lex_advance();
+}
 
 void lex_advance() {
 
 	/* slide the lexical analysis window forward */
 	lex_this = lex_next;
 	
-	while (ISCLASS(ch,WHITESPACE)) {
+	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
 		/* skip whitespace */
 		ch = getc( infile );
+		if (ch == '\n') line_number = line_number + 1;
 		/* =BUG= what if this hits the end of file? */
 		/* =BUG= how do we handle comments? */
 	}
-	if (ISCLASS(ch,DIGIT)) {
+	if (ch == EOF) {
+		lex_next.type = ENDFILE;
+		lex_next.value = 0; /* irrelevant */
+	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
 		lex_next.type = NUMBER;
 		lex_next.value = 0;
 		do {
 			if ( lex_next.value > ((UINT32_MAX - (ch - '0'))/10) ) {
-				/* =BUG= report number out of bounds */
+				error_warn( ER_TOOBIG, line_number );
 			} else {
 				/* accumulate value of digit */
 				lex_next.value = (lex_next.value*10)+(ch - '0');
@@ -168,16 +189,24 @@ void lex_advance() {
 
 			/* get the next digit */
 			ch = getc( infile );
-			/* =BUG= what if this hits the end of file? */
-		} while (ISCLASS(ch,DIGIT));
+		} while ((ch != EOF) && ISCLASS(ch,DIGIT));
 		/* =BUG= what if a # leads into an odd number base? */
 	} else if (ISCLASS(ch,PUNCTUATION)) {
 		lex_next.type = PUNCT;
 		lex_next.value = punct_class[ch];
 		ch = getc( infile );
-		/* =BUG= what if this hits the end of file? */
 		/* =BUG= what about 2-character punctuation marks? */
 	} else {
-		/* =BUG= what about identifiers, strings, punctuation */
+		/* =BUG= what about identifiers, strings */
+	}
+}
+
+void lex_put( lexeme * lex, FILE * f ) {
+	/* reconstruct the text of the lexeme */
+	switch (lex->type) {
+	case NUMBER:
+		fprintf( f, "%" PRId32, lex->value );
+		break;
+	/* =BUG= all the other cases!!!! */
 	}
 }
