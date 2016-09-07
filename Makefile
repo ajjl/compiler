@@ -34,7 +34,7 @@ errors.o: errors.c errors.h
 # secondary make target:  testlex for testing lexical.o
 
 testlex: testlex.o lexical.o
-	$(COMPILER) -o testlex testlex.o lexical.o
+	$(COMPILER) -o testlex testlex.o lexical.o errors.o
 
 testlex.o: testlex.c lexical.h
 	$(COMPILER) -c testlex.c

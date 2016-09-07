@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <inttypes.h>
 
 #include "errors.h"
 
@@ -69,20 +70,6 @@ static const char_type char_class[256] = {
  * the punctuation classifier
  ******/
 
-/* names for specific punctuation marks */
-typedef enum {
-    PTX       /* not a punctuation mark */,
-    PT_SEMI   /* ; */,   PT_EQUALS /* = */,   PT_COLON  /* : */, 
-    PT_LPAREN /* ( */,   PT_LBRAKT /* [ */,   PT_LBRACE /* { */,
-    PT_RPAREN /* ) */,   PT_RBRAKT /* ] */,   PT_RBRACE /* } */, 
-    PT_COMMA  /* , */,   PT_ATSIGN /* @ */,   PT_ELIPS  /* .. */,
-    PT_NOTEQL /* /= */,  PT_GT     /* > */,   PT_GE     /* >= */, 
-    PT_LT     /* < */,   PT_LE     /* <= */,  PT_PLUS   /* + */,
-    PT_MINUS  /* - */,   PT_TIMES  /* * */,   PT_DIV    /* / */, 
-    PT_MOD    /* % */,   PT_AND    /* & */,   PT_OR     /* | */, 
-    PT_NOT    /* ~ */,   PT_DOT    /* . */
-} punct_type;
-
 /* table mapping from characters to punctuation names */
 static const punct_type punct_class[256] = {
      /* NUL SOH STX ETX EOT ENQ ACK BEL BS  HT  LF  VT  FF  CR  SO  SI  */
@@ -132,6 +119,21 @@ static const punct_type punct_class[256] = {
 	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
 };
 
+/* table mapping from punctuation names to text strings for lex_put */
+/* WARNING:  strings must be given in the order enumerated in punct_type */
+static const char * punct_name[] = {
+    /* PTX */ "?WHAT?", /* this should never happen */
+    /* "PT_SEMI   */ ";", /* PT_EQUALS */ "=", /* PT_COLON  */ ":",
+    /* "PT_LPAREN */ "(", /* PT_LBRAKT */ "[", /* PT_LBRACE */ "{",
+    /* "PT_RPAREN */ ")", /* PT_RBRAKT */ "]", /* PT_RBRACE */ "}",
+    /* "PT_COMMA  */ ",", /* PT_ATSIGN */ "@", /* PT_ELIPS  */ "..",
+    /* "PT_NOTEQL */ "/=", /*PT_GT     */ ">", /* PT_GE     */ ">=",
+    /* "PT_LT     */ "<", /* PT_LE     */ "<=", /*PT_PLUS   */ "+",
+    /* "PT_MINUS  */ "-", /* PT_TIMES  */ "*", /* PT_DIV    */ "/",
+    /* "PT_MOD    */ "%", /* PT_AND    */ "&", /* PT_OR     */ "|",
+    /* "PT_NOT    */ "~", /* PT_DOT    */ "."
+};
+
 /******
  * global variables for the lexical analyzer
  ******/
@@ -146,7 +148,7 @@ static int line_number;/* the line number in infile */
 
 void lex_open( char * f ) {
 	/* open file f for input, or use stdin if f is null */
-	if (f != null) {
+	if (f != NULL) {
 		infile = fopen( f, "r" );
 		if (infile == NULL) error_fatal( ER_BADFILE, 0 );
 	} else {
@@ -204,9 +206,19 @@ void lex_advance() {
 void lex_put( lexeme * lex, FILE * f ) {
 	/* reconstruct the text of the lexeme */
 	switch (lex->type) {
+	case IDENT:
+	case KEYWORD:
+		/* =BUG= how to print an identifier or keyword? */
+		break;
 	case NUMBER:
 		fprintf( f, "%" PRId32, lex->value );
 		break;
-	/* =BUG= all the other cases!!!! */
+	case PUNCT:
+		fputs( punct_name[lex->value], f );
+		break;
+	case STRING:
+	case ENDFILE:
+		/* =BUG= missing code for these lexeme types */
+		break;
 	}
 }
