@@ -171,12 +171,24 @@ void lex_advance() {
 		/* skip whitespace */
 		ch = getc( infile );
 		if (ch == '\n') line_number = line_number + 1;
-		/* =BUG= what if this hits the end of file? */
 		/* =BUG= how do we handle comments? */
 	}
 	if (ch == EOF) {
 		lex_next.type = ENDFILE;
 		lex_next.value = 0; /* irrelevant */
+	} else if (ISCLASS(ch,LETTER)) {
+		/* identifier or possibly a keyword */
+		lex_next.type = IDENT;
+		string_handle str = string_start( line_number ); /* =BUG= ? */
+		do {
+			/* save the character */
+			string_append( ch ); /* =BUG= ? */
+			/* get the next character */
+			ch = getc( infile );
+		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
+		string_done() /* =BUG= ? */
+		/* =BUG= must call either string_accept() or _reject() */
+		/* =BUG= lex_next.value must be must be set to something */
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
 		lex_next.type = NUMBER;
