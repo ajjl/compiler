@@ -1,6 +1,7 @@
 /* stringpool.h -- string pool interface specification */
 
-/* Author: Douglas W. Jones, 9/9/2016 -- initial version
+/* Author: Douglas W. Jones
+ * Date: 9/9/2016 -- initial version of interface
  */
 
 /* users of this file must first include
@@ -34,7 +35,7 @@ string_handle string_start( int line );
 void string_append( char ch );
 /* add one character to the string */
 
-void string_done()
+void string_done();
 /* mark the end of the string */
 
 void string_accept();
@@ -56,3 +57,5 @@ void string_put( string_handle h, FILE * f );
 
 bool string_eq( string_handle h1, string_handle h2 );
 /* compare the strings h1 and h2 for textual equality */
+
+#undef EXTERN

@@ -2,13 +2,16 @@
 
 /* Author: Douglas W. Jones
  * Date 8/13/2016 -- existence of file inferred from Lecture 4
+ * Date 9/9/2016  -- code for identifiers and strings from Lecture 8
  */
 
 #include <stdio.h>
 #include <stdint.h>
 #include <inttypes.h>
+#include <stdbool.h>
 
 #include "errors.h"
+#include "stringpool.h"
 
 #define EXTERN
 #include "lexical.h"
@@ -186,7 +189,7 @@ void lex_advance() {
 			/* get the next character */
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
-		string_done() /* =BUG= ? */
+		string_done(); /* =BUG= ? */
 		/* =BUG= must call either string_accept() or _reject() */
 		/* =BUG= lex_next.value must be must be set to something */
 	} else if (ISCLASS(ch,DIGIT)) {
@@ -205,6 +208,26 @@ void lex_advance() {
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,DIGIT));
 		/* =BUG= what if a # leads into an odd number base? */
+	} else if ((ch == '"') || (ch == '\'')) {
+		/* string */
+	       	unsigned char quote = ch; /* remember what quote mark to use */
+		lex_next.type = STRING;
+		string_handle str = string_start( line_number ); /* =BUG= ? */
+		ch = getc( infile );
+		while ((ch != EOF) && (ch != '\n') && (ch != quote)) {
+			string_append( ch ); /* =BUG= ? */
+			/* get the next letter of the string */
+			ch = getc( infile );
+		}
+		string_done(); /* =BUG= ? */
+		/* =BUG= must call either string_accept() or _reject() */
+		/* =BUG= lex_next.value must be must be set to something */
+		if (ch == quote) {
+			/* get the next character after the closing quote */
+			ch = getc( infile );
+		} else {
+			error_warn( ER_BADSTR, line_number );
+		}
 	} else if (ISCLASS(ch,PUNCTUATION)) {
 		lex_next.type = PUNCT;
 		lex_next.value = punct_class[ch];

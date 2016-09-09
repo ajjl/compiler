@@ -2,7 +2,10 @@
 
 ################################################################
 # File dependencies for the Kestrel compiler                   #
-# Author:  Author's Names                                      #
+# Author:  Douglas Jones                                       #
+# Date:    8/29/2016 -- created                                #
+# Date:    9/9/2016  -- incorporate stringpool & related       #
+#                                                              #
 # Instructions:                                                #
 #          make         -- will build compiler someday         #
 #          make testlex -- build lexical analysis test program #
@@ -24,8 +27,11 @@ kestrel: main.o lexical.o
 main.o: main.c lexical.h
 	$(COMPILER) -c main.c
 
-lexical.o: lexical.c lexical.h errors.h
+lexical.o: lexical.c lexical.h errors.h stringpool.h config.h
 	$(COMPILER) -c lexical.c
+
+stringpool.o: stringpool.c stringpool.h errors.h config.h
+	$(COMPILER) -c stringpool.c
 
 errors.o: errors.c errors.h
 	$(COMPILER) -c errors.c
@@ -33,8 +39,8 @@ errors.o: errors.c errors.h
 #######
 # secondary make target:  testlex for testing lexical.o
 
-testlex: testlex.o lexical.o errors.o
-	$(COMPILER) -o testlex testlex.o lexical.o errors.o
+testlex: testlex.o lexical.o stringpool.o errors.o
+	$(COMPILER) -o testlex testlex.o lexical.o stringpool.o errors.o
 
 testlex.o: testlex.c lexical.h
 	$(COMPILER) -c testlex.c

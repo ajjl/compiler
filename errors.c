@@ -2,6 +2,7 @@
 
 /* Author: Douglas W. Jones
  * Date 9/7/2016 -- pasted from Lecture 7 with pro-forma improved comments
+ * Date 9/9/2016 -- added errors raised by string pool
  */
 
 #include <stdio.h>
@@ -17,8 +18,11 @@
 static const char * message[] = {
 	/* intended for use in calls to error_fatal */
 	/* ER_BADFILE */ "Cannot open input file.",
+	/* ER_POOLOVF */ "String pool overflow.",
 	/* intended for use in calls to error_warn */
-	/* ER_TOOBIG  */ "Value too large."
+	/* ER_TOOBIG  */ "Value too large.",
+	/* ER_BADSTR  */ "Unclosed string.",
+	/* ER_TOOLONG */ "Identifier or string too long."
 };
 
 void error_fatal( error_message er, int line ) {
