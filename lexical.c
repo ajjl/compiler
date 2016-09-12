@@ -237,13 +237,16 @@ void lex_advance() {
 		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
 			if (lex_next.value == PT_GT) {	/* greater than or equal */
 				lex_next.value = PT_GE;
+				ch = getc( infile );
 			} else if (lex_next.value == PT_LT) {	/* less than or equal */
 				lex_next.value = PT_LE;
+				ch = getc( infile );
 			} else if (lex_next.value == PT_DIV) {	/* not equal */
 				lex_next.value = PT_NOTEQL;
+				ch = getc( infile );
 			}
 		}
-		ch = getc( infile );
+
 		/* end test -DanK */
 	} else {
 		/* =BUG= what about identifiers, strings */
