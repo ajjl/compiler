@@ -1,7 +1,8 @@
 /* stringpool.c -- string pool implementation */
 
 /* Author: Douglas W. Jones
- * Date: 9/9/2016 -- initial version of implementation inferred from .h file
+ * Date: 9/9/2016  -- initial version of implementation inferred from .h file
+ * Date: 9/12/2016 -- supports fast interface from Lecture 9
  */
 
 #include <stdio.h>

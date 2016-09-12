@@ -1,7 +1,8 @@
 /* stringpool.h -- string pool interface specification */
 
 /* Author: Douglas W. Jones
- * Date: 9/9/2016 -- initial version of interface
+ * Date: 9/9/2016  -- initial version of interface
+ * Date: 9/12/2016 -- supports fast interface from Lecture 9
  */
 
 /* users of this file must first include
