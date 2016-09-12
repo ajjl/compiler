@@ -232,8 +232,6 @@ void lex_advance() {
 		lex_next.type = PUNCT;
 		lex_next.value = punct_class[ch];
 		ch = getc( infile );
-		/* =BUG= what about 2-character punctuation marks? */
-		/* testing this solution - DanK */
 		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
 			if (lex_next.value == PT_GT) {	/* greater than or equal */
 				lex_next.value = PT_GE;
@@ -246,8 +244,6 @@ void lex_advance() {
 				ch = getc( infile );
 			}
 		}
-
-		/* end test -DanK */
 	} else {
 		/* =BUG= what about identifiers, strings */
 	}
