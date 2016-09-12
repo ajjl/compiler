@@ -10,6 +10,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+#include "config.h"
 #include "errors.h"
 #include "stringpool.h"
 
