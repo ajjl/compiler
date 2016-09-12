@@ -169,7 +169,7 @@ void lex_advance() {
 
 	/* slide the lexical analysis window forward */
 	lex_this = lex_next;
-	
+
 	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
 		/* skip whitespace */
 		ch = getc( infile );
@@ -233,6 +233,18 @@ void lex_advance() {
 		lex_next.value = punct_class[ch];
 		ch = getc( infile );
 		/* =BUG= what about 2-character punctuation marks? */
+		/* testing this solution - DanK */
+		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
+			if (lex_next.value == PT_GT) {	/* greater than or equal */
+				lex_next.value = PT_GE;
+			} else if (lex_next.value == PT_LT) {	/* less than or equal */
+				lex_next.value = PT_LE;
+			} else if (lex_next.value == PT_DIV) {	/* not equal */
+				lex_next.value = PT_NOTEQL;
+			}
+		}
+		ch = getc( infile );
+		/* end test -DanK */
 	} else {
 		/* =BUG= what about identifiers, strings */
 	}
