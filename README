@@ -9,6 +9,11 @@ Group C
 Github repo available at:
 https://github.com/ajjl/compiler
 
+This repo should update automatically with new svn commits. So you could just
+commit on svn and see the results on github.
+
+Below is how you could setup your own git svn repo
+
 Detailed info on git svn at: google it.
 
 Basic git svn instrucitons -- works on mac (probably linux too)
@@ -31,9 +36,9 @@ You now have a git-svn hybred repository!!
 ....
 
 3. Add the github remote, and update the github repo:
-"git remote add github https://github.com/ajjl/compiler"
+"git remote add github https://github.com/path/to/your/remote"
 "git fetch github"
-"git push github master" (you wont be able to do this until I give you write access. email me or you can use your own remote)
+"git push github master"
 
 4. Make a change and commit it:
 "echo 'something' >> groupc/testFile"
