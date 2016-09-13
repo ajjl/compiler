@@ -8,3 +8,46 @@ Group C
 
 Github repo available at:
 https://github.com/ajjl/compiler
+
+Detailed info on git svn at: google it.
+
+Basic git svn instrucitons -- works on mac (probably linux too)
+you dont have to do this, you can just use svn if you want ...
+
+1. Creating Repository
+make a home for your new git svn repo on you computer:
+
+"mkdir compilerStuff"
+"cd compilerStuff"
+
+use git svn to clone your repo:
+"git svn clone https://svn.divms.uiowa.edu/repos/cs4980"
+
+You now have a git-svn hybred repository!!
+
+2. Go into your repository and check stuff out:
+"cd cs4980"
+"git log"
+....
+
+3. Add the github remote, and update the github repo:
+"git remote add github https://github.com/ajjl/compiler"
+"git fetch github"
+"git push github master" (you wont be able to do this until I give you write access. email me or you can use your own remote)
+
+4. Make a change and commit it:
+"echo 'something' >> groupc/testFile"
+
+You need to commit in git first, then svn <------IMPORTANT
+"git add groupc/testFile"
+"git commit -m"Testing stuff"
+"git svn dcommit"
+
+5. Push your changes to github
+"git push github master"
+
+6. Probably more
+git svn rebase ??
+
+7. Notes:
+you need to make your commits on svn yourself or the author wont show up.
