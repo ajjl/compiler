@@ -10,7 +10,7 @@
 
 #include "lexical.h"
 
-main() {
+int main() {
 	/* the main program for testlex */
 
 	/* =BUG= this should open argv[1] if present so we can read files */
@@ -20,4 +20,5 @@ main() {
 		putchar( '\n' ); /* output each lexeme on a new line */
 		lex_advance();
 	} while (lex_this.type != ENDFILE);
+	return 0;
 }
