@@ -2,6 +2,7 @@
 
 /* Author: Douglas W. Jones
  * Date: 9/9/2016 -- initial version of implementation inferred from .h file
+ * Date: 9/12/2016 -- supports fast interface from Lecture 9
  */
 
 #include <stdio.h>
@@ -14,66 +15,42 @@
 #define EXTERN
 #include "stringpool.h"
 
-static unsigned char string_pool[POOL_SIZE];
-/* the actual location where the text of strings is stored */
+/* static unsigned char string_pool[POOL_SIZE]; */
+/* declaration moved to stringpool.h */
 
-static string_handle string_limit;
-/* index of the first unused location in string_pool */
+/* static string_handle string_limit; */
+/* declaration moved to stringpool.h */
 
-static string_handle string_pos;
-/* position to store new characters added to string_pool */
+/* static string_handle string_pos; */
+/* declaration moved to stringpool.h */
 
-static int string_line;
-/* line number on which the string started, for error reporting */
+/* static int string_line; */
+/* declaration moved to stringpool.h */
 
-void string_init() {
-	/* initializer */
-	string_limit = 1;
-	/* initial value 1 guarantees that STRING_NULL won't be used */
-}
+/* void string_init() { */
+/* code moved to stringpool.h */
 
-string_handle string_start( int line ) {
-	/* setup to accumulate a new string and return its handle */
-	string_line = line;
-	string_pos = string_limit + 2; /* reserve 2 bytes for string length */
-	return string_limit;
-}
+/* string_handle string_start( int line ) { */
+/* code moved to stringpool.h */
 
-void string_append( char ch ) {
-	/* add one character to the string */
-	if (string_pos > (POOL_SIZE - 1)) {
-		error_fatal( ER_POOLOVF, string_line );
-	}
-	string_pool[string_pos] = ch;
-	string_pos++;
-}
+/* void string_append( char ch ) { */
+/* code moved to stringpool.h */
 
-void string_done() {
-	/* mark the end of the string */
-	int length = string_pos - (string_limit + 2);
-	if (length > 65535) {
-		error_warn( ER_TOOLONG, string_line );
-		length = 65535;
-	}
-	string_pool[string_limit] = length & 0xFF;
-	string_pool[string_limit + 1] = length >> 8;
-}
+/* void string_done() { */
+/* code moved to stringpool.h */
 
-void string_accept() {
-	/* accept the string */
-	string_limit = string_pos;
-}
+/* void string_accept() { */
+/* code moved to stringpool.h */
 
-void string_reject() {
-	/* reject the string, it will not be included in the string pool */
-}
+/* void string_reject() { */
+/* code moved to stringpool.h */
 
 void string_put( string_handle h, FILE * f ) {
 	/* output the string to the human-readable file */
-	int limit = h + 2 + string_pool[h] + (string_pool[h + 1] << 8);
+	int limit = h + 2 + _string_pool[h] + (_string_pool[h + 1] << 8);
 	h = h + 2;
 	while (h < limit) {
-		putc( string_pool[h], f );
+		putc( _string_pool[h], f );
 		h = h + 1;
 	}
 }
@@ -82,9 +59,9 @@ void string_put( string_handle h, FILE * f ) {
 
 bool string_eq( string_handle h1, string_handle h2 ) {
 	/* compare the strings h1 and h2 for textual equality */
-	int limit = h1 + 2 + string_pool[h1] + (string_pool[h1 + 1] << 8);
+	int limit = h1 + 2 + _string_pool[h1] + (_string_pool[h1 + 1] << 8);
 	while (h1 < limit) {
-		if (string_pool[h1] != string_pool[h2]) return false;
+		if (_string_pool[h1] != _string_pool[h2]) return false;
 		h1 = h1 + 1;
 		h2 = h2 + 1;
 	}

@@ -2,6 +2,7 @@
 
 /* Author: Douglas W. Jones
  * Date: 9/9/2016 -- initial version of interface
+ * Date: 9/12/2016 -- supports fast interface from Lecture 9
  */
 
 /* users of this file must first include
@@ -26,21 +27,59 @@ typedef uint32_t string_handle;
 #define STRING_NULL 0
 /* the null string handle, refers to no string */
 
-void string_init();
+EXTERN unsigned char _string_pool[POOL_SIZE];
+/* private, the actual location where the text of strings is stored */
+
+EXTERN string_handle _string_limit;
+/* private, the address of the next unused location in the pool */
+
+EXTERN string_handle _string_pos;
+/* private, used in accumulating a new string (provisionally) */
+
+EXTERN int _string_line;
+/* private, used for error reporting, the line from which the string came */
+
+/* void string_init(); */
+#define string_init() { _string_limit = 1; }
 /* initializer */
 
-string_handle string_start( int line );
+/* string_handle string_start( int line ); */
+#define string_start(line) (				\
+	_string_line = line,				\
+	_string_pos = _string_limit + 2,		\
+	_string_limit					\
+)
 /* setup to accumulate a new string, from given line (for error reporting) */
 
-void string_append( char ch );
+/* void string_append( char ch ); */
+#define string_append(ch) {				\
+	if (_string_pos > (POOL_SIZE - 1)) {		\
+		error_fatal( ER_POOLOVF, _string_line );\
+	}						\
+	_string_pool[_string_pos] = ch;			\
+	_string_pos++;					\
+}
 /* add one character to the string */
 
-void string_done();
+/* void string_done(); */
+#define string_done() {					\
+	int length = _string_pos - (_string_limit + 2);	\
+	if (length > 65535) {				\
+		error_warn( ER_TOOLONG, _string_line );	\
+		length = 65535;				\
+	}						\
+	_string_pool[_string_limit] = length & 0xFF;	\ /* %256 */
+	_string_pool[_string_limit + 1] = length >> 8;	\ /* /256 */
+}
 /* mark the end of the string */
 
-void string_accept();
-void string_reject();
-/* accept or reject the string.  If rejected, it is not stored */
+/* void string_accept(); */
+#define string_accept() { _string_limit = _string_pos; }
+/* accept the new string, it is permanently in the string pool */
+
+/* void string_reject(); */
+#define string_reject()
+/* reject the new string, recover the space in the stirng pool */
 
 /* note:
  * to add a string to the pool
