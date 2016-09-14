@@ -1,5 +1,10 @@
 # git ignore file for those using svn-git
 
-*.o # makefile output
-testlex # target of make testlex
-kestral # target of make
+# makefile output
+*.o
+
+# target of make testlex
+testlex
+
+# target of make
+kestral
