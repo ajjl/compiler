@@ -174,7 +174,6 @@ void lex_advance() {
 		/* skip whitespace */
 		ch = getc( infile );
 		if (ch == '\n') line_number = line_number + 1;
-		/* =BUG= how do we handle comments? */
 	}
 	if (ch == EOF) {
 		lex_next.type = ENDFILE;
@@ -232,6 +231,11 @@ void lex_advance() {
 		lex_next.type = PUNCT;
 		lex_next.value = punct_class[ch];
 		ch = getc( infile );
+		if ((lex_next.value == PT_MINUS) && (punct_class[ch] == PT_MINUS)) { // begin comment
+			while ((ch != EOF) && (ch != '\n')) {
+				ch = getc( infile );
+			}
+		}
 		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
 			if (lex_next.value == PT_GT) {	/* greater than or equal */
 				lex_next.value = PT_GE;
