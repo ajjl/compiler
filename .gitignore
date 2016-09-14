@@ -8,3 +8,6 @@ testlex
 
 # target of make
 kestral
+
+# ctags: for vim
+tags
