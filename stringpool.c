@@ -47,7 +47,7 @@
 
 void string_put( string_handle h, FILE * f ) {
 	/* output the string to the human-readable file */
-	int limit = h + 2 + _string_pool[h] + (_string_pool[h + 1] << 8);
+	string_handle limit = h + 2 + _string_pool[h] + (_string_pool[h + 1] << 8);
 	h = h + 2;
 	while (h < limit) {
 		putc( _string_pool[h], f );
@@ -59,7 +59,7 @@ void string_put( string_handle h, FILE * f ) {
 
 bool string_eq( string_handle h1, string_handle h2 ) {
 	/* compare the strings h1 and h2 for textual equality */
-	int limit = h1 + 2 + _string_pool[h1] + (_string_pool[h1 + 1] << 8);
+	string_handle limit = h1 + 2 + _string_pool[h1] + (_string_pool[h1 + 1] << 8);
 	while (h1 < limit) {
 		if (_string_pool[h1] != _string_pool[h2]) return false;
 		h1 = h1 + 1;
