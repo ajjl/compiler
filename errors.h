@@ -13,6 +13,7 @@ typedef enum {
 	/* intended for use in calls to error_fatal */
 	ER_BADFILE,
 	ER_POOLOVF,
+	ER_SYMTAB,
 	/* intended for use in calls to error_warn */
 	ER_TOOBIG,
 	ER_BADSTR,

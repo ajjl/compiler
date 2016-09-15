@@ -8,3 +8,7 @@
 /* the size of the string pool where all the text of identifiers and strings
  * is stored.  This constant is used in strings.h and strings.c
  */
+
+#define SYMBOL_SIZE 100
+
+#define SYMBOL_HASH 7

@@ -5,6 +5,10 @@
  * Date: 9/12/2016 -- supports fast interface from Lecture 9
  */
 
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "config.h"
 /* users of this file must first include
  *   <stdio.h>
  *   <stdint.h>
@@ -68,8 +72,8 @@ EXTERN int _string_line;
 		error_warn( ER_TOOLONG, _string_line );	\
 		length = 65535;				\
 	}						\
-	_string_pool[_string_limit] = length & 0xFF;	\ /* %256 */
-	_string_pool[_string_limit + 1] = length >> 8;	\ /* /256 */
+	_string_pool[_string_limit] = length & 0xFF;	\
+	_string_pool[_string_limit + 1] = length >> 8;	\
 }
 /* mark the end of the string */
 

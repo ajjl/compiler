@@ -12,6 +12,8 @@
 
 #include "errors.h"
 #include "stringpool.h"
+#include "config.h"
+#include "symboltable.h"
 
 #define EXTERN
 #include "lexical.h"
@@ -181,14 +183,14 @@ void lex_advance() {
 	} else if (ISCLASS(ch,LETTER)) {
 		/* identifier or possibly a keyword */
 		lex_next.type = IDENT;
-		string_handle str = string_start( line_number ); /* =BUG= ? */
+		symbol_start( line_number ); /* =BUG= ? */
 		do {
 			/* save the character */
-			string_append( ch ); /* =BUG= ? */
+			symbol_append( ch ); /* =BUG= ? */
 			/* get the next character */
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
-		string_done(); /* =BUG= ? */
+		lex_next.value = symbol_lookup();
 		/* =BUG= must call either string_accept() or _reject() */
 		/* =BUG= lex_next.value must be must be set to something */
 	} else if (ISCLASS(ch,DIGIT)) {
@@ -211,14 +213,14 @@ void lex_advance() {
 		/* string */
 	       	unsigned char quote = ch; /* remember what quote mark to use */
 		lex_next.type = STRING;
-		string_handle str = string_start( line_number ); /* =BUG= ? */
+		symbol_start( line_number ); /* =BUG= ? */
 		ch = getc( infile );
 		while ((ch != EOF) && (ch != '\n') && (ch != quote)) {
-			string_append( ch ); /* =BUG= ? */
+			symbol_append( ch ); /* =BUG= ? */
 			/* get the next letter of the string */
 			ch = getc( infile );
 		}
-		string_done(); /* =BUG= ? */
+		lex_next.value = symbol_lookup();
 		/* =BUG= must call either string_accept() or _reject() */
 		/* =BUG= lex_next.value must be must be set to something */
 		if (ch == quote) {
@@ -258,6 +260,7 @@ void lex_put( lexeme * lex, FILE * f ) {
 	switch (lex->type) {
 	case IDENT:
 	case KEYWORD:
+		symbol_put( lex->value, f );
 		/* =BUG= how to print an identifier or keyword? */
 		break;
 	case NUMBER:
@@ -268,7 +271,8 @@ void lex_put( lexeme * lex, FILE * f ) {
 		break;
 	case STRING:
 	case ENDFILE:
-		/* =BUG= missing code for these lexeme types */
+		fputs( "EOF", f );
+			/* =BUG= missing code for these lexeme types */
 		break;
 	}
 }

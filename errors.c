@@ -19,6 +19,7 @@ static const char * message[] = {
 	/* intended for use in calls to error_fatal */
 	/* ER_BADFILE */ "Cannot open input file.",
 	/* ER_POOLOVF */ "String pool overflow.",
+    /* ER_SYMTAB */ "Symbol table overflow",
 	/* intended for use in calls to error_warn */
 	/* ER_TOOBIG  */ "Value too large.",
 	/* ER_BADSTR  */ "Unclosed string.",
