@@ -16,37 +16,47 @@
 # configuration options
 
 # compiler to use, may give global compiler options here
-COMPILER = c++
+COMPILER = C++
+
+# compiler flags:
+# -g  adds debuggin information
+# -Wall turns on most warnings
+# other warnings help dentify bugs. It is important to get rid of them or at least understand why they are there
+CFLAGS = -g -Wall -Wextra -Wparentheses -Wshadow -Wdouble-promotion -Wlogical-not-parentheses
+
+# set the default target to testlex. Kestral doesnt build yet
+default_target: testlex
+all: kestrel testlex
 
 #######
 # primary make target:  the Kestrel compiler
 
 kestrel: main.o lexical.o
-	$(COMPILER) -o kestrel main.o lexical.o
+	$(COMPILER) $(CFLAGS) -o kestrel main.o lexical.o
 
 main.o: main.c lexical.h
-	$(COMPILER) -c main.c
+	$(COMPILER) $(CFLAGS)  -c main.c
 
 lexical.o: lexical.c lexical.h errors.h stringpool.h config.h symboltable.h
-	$(COMPILER) -c lexical.c
+	$(COMPILER) $(CFLAGS)  -c lexical.c
 
 symboltable.o: symboltable.c symboltable.h stringpool.h errors.h config.h
-	$(COMPILER) -c symboltable.c
+	$(COMPILER) $(CFLAGS)  -c symboltable.c
 
 stringpool.o: stringpool.c stringpool.h errors.h config.h
-	$(COMPILER) -c stringpool.c
+	$(COMPILER) $(CFLAGS)  -c stringpool.c
 
 errors.o: errors.c errors.h
-	$(COMPILER) -c errors.c
+	$(COMPILER) $(CFLAGS)  -c errors.c
 
 #######
 # secondary make target:  testlex for testing lexical.o
 
 testlex: testlex.o lexical.o stringpool.o errors.o symboltable.o
-	$(COMPILER) -o testlex testlex.o lexical.o stringpool.o errors.o symboltable.o
+	$(COMPILER) $(CFLAGS)  -o testlex testlex.o lexical.o stringpool.o errors.o symboltable.o
 
 testlex.o: testlex.c lexical.h
-	$(COMPILER) -c testlex.c
+	$(COMPILER) $(CFLAGS)  -c testlex.c
 
 #######
 # secondary make target:  clean for cleaning up the project
