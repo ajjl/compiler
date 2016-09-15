@@ -10,11 +10,14 @@
 
 #include "lexical.h"
 
-int main() {
+int main(int argc, char** argv) {
 	/* the main program for testlex */
 
-	/* =BUG= this should open argv[1] if present so we can read files */
-	lex_open( NULL ); /* default to stdin if argv[1] not present */
+	printf("argc is: %d\n", argc);
+	for(int i = 0; i < argc; ++i) {
+		printf("argv[%d]:\t%s\n", i, argv[i]);
+	}
+	lex_open( argv[1] ); /* default to stdin if argv[1] not present */
 	do {
 		lex_put( &lex_this, stdout );
 		putchar( '\n' ); /* output each lexeme on a new line */
