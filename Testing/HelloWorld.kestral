@@ -1,0 +1,3 @@
+--Hello world program for kestral
+--
+putstring( "Hello world" LF, output );
