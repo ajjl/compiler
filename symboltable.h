@@ -4,10 +4,13 @@
  * Date: 9/12/2016 -- initial version of interface, from Lecture 9
  */
 
-/* users of this file must first include
- *   <stdio.h>
- *   <stdint.h>
- *   <stdbool.h>
+#ifndef SYMBOLTABLE_H
+#define SYMBOLTABLE_H
+
+#include <stdio.h>
+#include <stdbool.h>
+/*
+ * users of this file must first include
  * users should define (probably from a global config file)
  *   SYMBOL_SIZE -- how many distinct symbols are allowed
  *   SYMBOL_HASH -- used in the hash function, relatively prime to SYMBOL_SIZE
@@ -72,3 +75,4 @@ symbol_handle symbol_lookup();
 /* =BUG= the code generator may need a different way to put out the symbol */
 
 #undef EXTERN
+#endif

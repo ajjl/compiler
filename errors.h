@@ -4,6 +4,8 @@
  * Date 9/7/2016 -- pasted from Lecture 7 with pro-forma improved comments
  * Date 9/9/2016 -- added errors raised by string pool
  */
+#ifndef ERRORS_H
+#define ERRORS_H
 
 #ifndef EXTERN
 	#define EXTERN extern
@@ -24,3 +26,4 @@ void error_fatal( error_message er, int line );
 void error_warn( error_message er, int line );
 
 #undef EXTERN
+#endif

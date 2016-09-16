@@ -5,6 +5,8 @@
  *
  * Note, the user must include <stdint.h> before including this file
  */
+#ifndef LEXICAL_H
+#define LEXICAL_H
 
 #ifndef EXTERN
 	#define EXTERN extern
@@ -39,3 +41,4 @@ void lex_advance();
 void lex_put( lexeme * lex, FILE * f );
 
 #undef EXTERN
+#endif

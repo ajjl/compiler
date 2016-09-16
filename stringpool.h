@@ -5,14 +5,15 @@
  * Date: 9/12/2016 -- supports fast interface from Lecture 9
  */
 
+#ifndef STRINGPOOL_H
+#define STRINGPOOL_H
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include "config.h"
-/* users of this file must first include
- *   <stdio.h>
- *   <stdint.h>
- *   <stdbool.h>
+
+/*
  * users should define (probably from a global config file)
  *   POOL_SIZE -- how much space should be set aside for text of strings
  * when used from stringpool.c (but nowhere else)
@@ -102,3 +103,4 @@ bool string_eq( string_handle h1, string_handle h2 );
 /* compare the strings h1 and h2 for textual equality */
 
 #undef EXTERN
+#endif
