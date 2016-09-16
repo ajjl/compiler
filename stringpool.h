@@ -47,33 +47,33 @@ EXTERN int _string_line;
 #define string_init() { _string_limit = 1; }
 /* initializer */
 
-/* string_handle string_start( int line ); */
-#define string_start(line) (				\
-	_string_line = line,				\
-	_string_pos = _string_limit + 2,		\
-	_string_limit					\
-)
+inline
+string_handle string_start(int line) {
+	_string_line = line;
+	_string_pos = _string_limit + 2;
+	return _string_limit;
+}
 /* setup to accumulate a new string, from given line (for error reporting) */
 
-/* void string_append( char ch ); */
-#define string_append(ch) {				\
-	if (_string_pos > (POOL_SIZE - 1)) {		\
-		error_fatal( ER_POOLOVF, _string_line );\
-	}						\
-	_string_pool[_string_pos] = ch;			\
-	_string_pos++;					\
+inline
+void string_append( char ch ) {
+	if (_string_pos > (POOL_SIZE - 1)) {
+		error_fatal( ER_POOLOVF, _string_line );
+	}
+	_string_pool[_string_pos] = ch;
+	_string_pos++;
 }
 /* add one character to the string */
 
-/* void string_done(); */
-#define string_done() {					\
-	int length = _string_pos - (_string_limit + 2);	\
-	if (length > 65535) {				\
-		error_warn( ER_TOOLONG, _string_line );	\
-		length = 65535;				\
-	}						\
-	_string_pool[_string_limit] = length & 0xFF;	\
-	_string_pool[_string_limit + 1] = length >> 8;	\
+inline
+void string_done() {
+	int length = _string_pos - (_string_limit + 2);
+	if (length > 65535) {
+		error_warn( ER_TOOLONG, _string_line );
+		length = 65535;
+	}
+	_string_pool[_string_limit] = length & 0xFF;
+	_string_pool[_string_limit + 1] = length >> 8;
 }
 /* mark the end of the string */
 
