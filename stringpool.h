@@ -51,7 +51,7 @@ EXTERN int _string_line;
 )
 /* setup to accumulate a new string, from given line (for error reporting) */
 
-/* void string_append( char ch ); */
+/* void string_append( unsigned char ch ); */
 #define string_append(ch) {				\
 	if (_string_pos > (POOL_SIZE - 1)) {		\
 		error_fatal( ER_POOLOVF, _string_line );\

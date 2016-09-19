@@ -47,7 +47,7 @@ void symbol_init();
 }
 /* setup to accumulate a new symbol, from given line (for error reporting) */
 
-/* void symbol_append( char ch ); */
+/* void symbol_append( unsigned char ch ); */
 #define symbol_append(ch) {				\
 	_symbol_hash = ((_symbol_hash * SYMBOL_HASH )	\
 			+ (ch)) % SYMBOL_SIZE;		\

@@ -33,7 +33,7 @@
 /* string_handle string_start( int line ) { */
 /* code moved to stringpool.h */
 
-/* void string_append( char ch ) { */
+/* void string_append( unsigned char ch ) { */
 /* code moved to stringpool.h */
 
 /* void string_done() { */

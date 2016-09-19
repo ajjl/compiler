@@ -40,7 +40,7 @@ void symbol_init() {
 /* string_handle symbol_start( int line ); */
 /* implemented in symboltable.h */
 
-/* void symbol_append( char ch ); */
+/* void symbol_append( unsigned char ch ); */
 /* implemented in symboltable.h */
 
 symbol_handle symbol_lookup() {
