@@ -16,13 +16,14 @@
 # configuration options
 
 # compiler to use, may give global compiler options here
-COMPILER = C++
+COMPILER = c++
 
 # compiler flags:
 # -g  adds debuggin information
 # -Wall turns on most warnings
 # other warnings help dentify bugs. It is important to get rid of them or at least understand why they are there
-CFLAGS = -g -Wall -Wextra -Wparentheses -Wshadow -Wdouble-promotion -Wlogical-not-parentheses
+CFLAGS = -g -Wall -Wextra -Wparentheses -Wshadow -Wdouble-promotion
+#-Wlogical-not-parentheses
 
 # set the default target to testlex. Kestral doesnt build yet
 default_target: testlex
