@@ -30,7 +30,7 @@ void error_warn( error_message er, int line );
 /*how to detect an error once a error loop inside another, and which one comes first. */
 void error_order_check(error_message er, int line);
 
-#how to detect error message once fixed but still error
+/*how to detect error message once fixed but still error*/
 void error_re_check(error_message er, int line);
 
 #endif
