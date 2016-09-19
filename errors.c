@@ -29,11 +29,15 @@ static const char * message[] = {
 void error_fatal( error_message er, int line ) {
 	/* output the message er and exit the program indicating failure */
 	fprintf( stderr, "Fatal error on line %d: %s\n", line, message[er] );
+
+	error_count++;
+	fprintf( stderr, "Total error count: %d\n", error_count );
+
 	exit( EXIT_FAILURE );
 }
 
 void error_warn( error_message er, int line ) {
 	/* output the message er and continue */
 	fprintf( stderr, "Error on line %d: %s\n", line, message[er] );
-	/* =BUG= count the number of errors so program can know at end? */
+	error_count++;
 }

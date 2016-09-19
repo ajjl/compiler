@@ -22,6 +22,8 @@ typedef enum {
 	ER_TOOLONG
 } error_message;
 
+EXTERN int error_count;
+
 void error_fatal( error_message er, int line );
 void error_warn( error_message er, int line );
 
