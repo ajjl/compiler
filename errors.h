@@ -1,4 +1,4 @@
-/* errors.h -- error reporting mechanism interface specificaton */
+* errors.h -- error reporting mechanism interface specificaton */
 
 /* Author: Douglas W. Jones
  * Date 9/7/2016 -- pasted from Lecture 7 with pro-forma improved comments
@@ -26,4 +26,11 @@ void error_fatal( error_message er, int line );
 void error_warn( error_message er, int line );
 
 #undef EXTERN
-#endif
+#endi
+
+#how to detect an error once a error loop inside another, and which one comes first. 
+void error_order_check(error_message er, int line);
+
+#how to detect error message once fixed but still error
+void error_re_check(error_message er, int line);
+
