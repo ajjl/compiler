@@ -270,6 +270,10 @@ void lex_put( lexeme * lex, FILE * f ) {
 		fputs( punct_name[lex->value], f );
 		break;
 	case STRING:
+		fputc( '"', f );
+		symbol_put( lex->value, f );
+		fputc( '"', f);
+		/* =BUG= this sometimes uses the wrong type of quotes */
 	case ENDFILE:
 		fputs( "EOF", f );
 			/* =BUG= missing code for these lexeme types */
