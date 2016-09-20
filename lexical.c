@@ -221,8 +221,6 @@ void lex_advance() {
 			ch = getc( infile );
 		}
 		lex_next.value = symbol_lookup();
-		/* =BUG= must call either string_accept() or _reject() */
-		/* =BUG= lex_next.value must be must be set to something */
 		if (ch == quote) {
 			/* get the next character after the closing quote */
 			ch = getc( infile );
@@ -273,6 +271,7 @@ void lex_put( lexeme * lex, FILE * f ) {
 		fputc( '"', f );
 		symbol_put( lex->value, f );
 		fputc( '"', f);
+		break;
 		/* =BUG= this sometimes uses the wrong type of quotes */
 	case ENDFILE:
 		fputs( "EOF", f );
