@@ -255,6 +255,7 @@ void lex_put( lexeme * lex, FILE * f ) {
 		symbol_put( lex->value, f );
 		fputc( '"', f );
 		/* =BUG= this sometimes uses the wrong type of quotes */
+		break;
 	case ENDFILE:
 		fputs( "EOF", f );
 		break;
