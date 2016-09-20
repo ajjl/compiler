@@ -86,7 +86,7 @@ I think It'd be cool to use a feature/branch workflow. Svn branches are complica
 
 "git checkout -b myNewBranchThatIsCool"
 
-2. Make your changes than commit them:
+2. Make your changes than commit them
 "echo 'somethingNew' >> myNewFile"
 "git add myNewFile"
 "git commit -m'commiting my new file'"
@@ -110,3 +110,5 @@ I think It'd be cool to use a feature/branch workflow. Svn branches are complica
 "git svn rebase"
 "git branch -D myNewBranchThatIsCool"
 
+
+##.It does create some complicated qualifications among the git-svn version control process, according to the grade polices, we can check the necessary workability among ourselves, although it is always nice to have the version work every time, maybe we can consider comment out the unworkable progress if necessary and continue to manage our work among the subversion. 
