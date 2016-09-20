@@ -191,8 +191,6 @@ void lex_advance() {
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
 		lex_next.value = symbol_lookup();
-		/* =BUG= must call either string_accept() or _reject() */
-		/* =BUG= lex_next.value must be must be set to something */
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
 		lex_next.type = NUMBER;
