@@ -18,7 +18,6 @@ int main(int argc, char** argv) {
 		printf("argv[%d]:\t%s\n", i, argv[i]);
 	}
 
-	lex_open( argv[1] );
 	lex_open( argv[1] ); /* default to stdin if argv[1] not present */
 
 	do {
