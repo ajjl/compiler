@@ -17,8 +17,7 @@
 
 /* static unsigned char string_pool[POOL_SIZE]; */
 /* declaration moved to stringpool.h */
-static unsigned_char()
-void string_pool[POOL_SIZE]
+
 /* static string_handle string_limit; */
 /* declaration moved to stringpool.h */
 

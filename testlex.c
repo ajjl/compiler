@@ -17,11 +17,10 @@ int main(int argc, char** argv) {
 	for(int i = 0; i < argc; ++i) {
 		printf("argv[%d]:\t%s\n", i, argv[i]);
 	}
-        do {
-           argv[1]=["this is empty string notation"]}
-        while (argv == [])
+
 	lex_open( argv[1] );
 	lex_open( argv[1] ); /* default to stdin if argv[1] not present */
+
 	do {
 		lex_put( &lex_this, stdout );
 		putchar( '\n' ); /* output each lexeme on a new line */
