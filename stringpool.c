@@ -18,7 +18,7 @@
 /* static unsigned char string_pool[POOL_SIZE]; */
 /* declaration moved to stringpool.h */
 static unsigned_char()
-void string_pool[POOL_SIZ)]
+void string_pool[POOL_SIZE]
 /* static string_handle string_limit; */
 /* declaration moved to stringpool.h */
 
@@ -49,12 +49,12 @@ void string_pool[POOL_SIZ)]
 void string_put( string_handle h, FILE * f ) {
 	/* output the string to the human-readable file */
 	string_handle limit = h + 2 + _string_pool[h] + (_string_pool[h + 1] << 8);
-	h =(h+1);
-        h = (h+1);
-	while (h < limit)
- {
+
+	h = h + 2;
+
+	while (h < limit) {
 		putc( _string_pool[h], f );
-		h = (h + )1;
+		h = h + 1;
 	}
 }
 
