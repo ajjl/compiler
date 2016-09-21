@@ -101,7 +101,8 @@ static const punct_type punct_class[256] = {
 								PT_GT,
 								    PTX,
      /*  @   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O  */
-	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
+	PT_ATSIGN,
+	    PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,
      /*  P   Q   R   S   T   U   V   W   X   Y   Z   [   \   ]   ^   _  */
 	PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PTX,PT_LBRAKT,
         						PTX,PT_RBRAKT,
