@@ -24,4 +24,5 @@ bool lex_forcepunc( punct_type t ) {
 	} else {
 		/* =BUG= must report that we found lex_this where t expected */
 	}
+	printf("This function in: %s, line: %d, is not yet fully implemented.", __FILE__, __LINE__);
 }
