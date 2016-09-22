@@ -56,8 +56,8 @@ lexsupport.o: lexsupport.c lexsupport.h lexical.h sets.h
 #######
 # secondary make target:  testlex for testing lexical.o
 
-testlex: testlex.o lexical.o stringpool.o errors.o symboltable.o
-	$(COMPILER) $(CFLAGS)  -o testlex testlex.o lexical.o stringpool.o errors.o symboltable.o
+testlex: testlex.o lexical.o stringpool.o errors.o symboltable.o lexsupport.o
+	$(COMPILER) $(CFLAGS)  -o testlex testlex.o lexical.o stringpool.o errors.o symboltable.o lexsupport.o
 
 testlex.o: testlex.c lexical.h
 	$(COMPILER) $(CFLAGS)  -c testlex.c
