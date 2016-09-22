@@ -8,6 +8,8 @@
  *    "lexical.h"
  *    "sets.h"
  */
+#ifndef LEXSUPPORT_H
+#define LEXSUPPORT_H
 
 #ifndef EXTERN
 	#define EXTERN extern
@@ -29,3 +31,4 @@ bool lex_forcepunc( punct_type t );
 /* force lex_this to be the punctuation mark t and advance over it */
 
 #undef EXTERN
+#endif
