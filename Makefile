@@ -50,6 +50,9 @@ stringpool.o: stringpool.c stringpool.h errors.h config.h
 errors.o: errors.c errors.h
 	$(COMPILER) $(CFLAGS)  -c errors.c
 
+lexsupport.o: lexsupport.c lexsupport.h lexical.h sets.h
+	$(COMPILER) $(CFLAGS)  -c lexsupport.c
+
 #######
 # secondary make target:  testlex for testing lexical.o
 
@@ -63,6 +66,6 @@ testlex.o: testlex.c lexical.h
 # secondary make target:  clean for cleaning up the project
 
 clean:
-	rm *.o
-	rm testlex
-	rm kestrel
+	rm -f *.o
+	rm -f testlex
+	rm -f kestrel
