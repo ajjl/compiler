@@ -12,7 +12,7 @@
 #include "errors.h"
 
 /* the error messages
- * NOTE:  this array must have one entry for each
+ * NOTE:  this array must have one entry for every
  * member of the error_message enumeration, in exactly the same order
  */
 static const char * message[] = {
