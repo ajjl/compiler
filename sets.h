@@ -17,7 +17,7 @@ r*    a & b - the intersection of sets a and b
  * This implementation is entirely in the header file, there is no .c file
  */
 
-typedef uint32_t set32_t
+typedef uint32_t set32_t;
 /* the type of sets over domains containing up to 32 elements */
 
 /* set32_t to_set32( int i ) */
