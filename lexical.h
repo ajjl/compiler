@@ -8,6 +8,8 @@
 #ifndef LEXICAL_H
 #define LEXICAL_H
 
+#include <stdio.h>
+
 #ifndef EXTERN
 	#define EXTERN extern
 #endif
