@@ -4,6 +4,7 @@
  * Date 8/13/2016 -- existence of file inferred from Lecture 4
  * Date 9/9/2016  -- code for identifiers and strings from Lecture 8
  * Date 9/13/2016 -- works for strings and identifers through Lecture 9
+ * Date 9/23/2016 -- works for keywords through Lecture 14
  */
 
 #include <stdio.h>
@@ -15,6 +16,7 @@
 #include "errors.h"
 #include "stringpool.h"
 #include "symboltable.h"
+#include "keywords.h"
 
 #define EXTERN
 #include "lexical.h"
@@ -162,6 +164,8 @@ void lex_open( char * f ) {
 		infile = stdin;
 	}
 
+	key_init(); /* initialize the keyword package */
+
 	/* initialize the sliding window */
 	ch = fgetc( infile );
 	line_number = 1;
@@ -194,6 +198,14 @@ void lex_advance() {
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
 		lex_next.value = symbol_lookup();
+		{
+			/* check to see if it is a keyword */
+			key_handle key = key_lookup( lex_next.value );
+			if (key != KEY_INVALID) {
+				lex_next.type = KEYWORD;
+				lex_next.value = key;
+			}
+		}
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
 		lex_next.type = NUMBER;
@@ -242,8 +254,10 @@ void lex_put( lexeme * lex, FILE * f ) {
 	/* reconstruct the text of the lexeme */
 	switch (lex->type) {
 	case IDENT:
+		symbol_put( (symbol_handle) lex->value, f );
+		break;
 	case KEYWORD:
-		symbol_put( lex->value, f );
+		key_put( (key_handle) lex->value, f );
 		break;
 	case NUMBER:
 		fprintf( f, "%" PRId32, lex->value );

@@ -65,6 +65,11 @@ symbol_handle symbol_lookup();
  *   handle = symbol_lookup()
  */
 
+symbol_handle symbol_add( const char * s );
+/* add the null terminated character string s to the symbol table,
+ * returning its handle.  This is used during initialization only.
+ */
+
 /* void symbol_put( symbol_handle h, FILE * f ); */
 #define symbol_put(h,f) string_put( _symbol_table[h], f )
 /* output the text of the symbol to the human-readable file */

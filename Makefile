@@ -5,6 +5,7 @@
 # Author:  Douglas Jones                                       #
 # Date:    8/29/2016 -- created                                #
 # Date:    9/9/2016  -- incorporate stringpool & related       #
+# Date:    9/23/2016 -- incorporate keywords & related         #
 #                                                              #
 # Instructions:                                                #
 #          make         -- will build compiler someday         #
@@ -27,8 +28,12 @@ kestrel: main.o lexical.o
 main.o: main.c lexical.h
 	$(COMPILER) -c main.c
 
-lexical.o: lexical.c lexical.h errors.h symboltable.h stringpool.h config.h
+lexical.o: lexical.c lexical.h errors.h keywords.h symboltable.h \
+	   stringpool.h config.h
 	$(COMPILER) -c lexical.c
+
+keywords.o: keywords.c keywords.h errors.h symboltable.h stringpool.h config.h
+	$(COMPILER) -c keywords.c
 
 symboltable.o: symboltable.c symboltable.h stringpool.h errors.h config.h
 	$(COMPILER) -c symboltable.c
@@ -42,8 +47,9 @@ errors.o: errors.c errors.h
 #######
 # secondary make target:  testlex for testing lexical.o
 
-testlex: testlex.o lexical.o symboltable.o stringpool.o errors.o
-	$(COMPILER) -o testlex testlex.o lexical.o symboltable.o stringpool.o errors.o
+testlex: testlex.o lexical.o keywords.o symboltable.o stringpool.o errors.o
+	$(COMPILER) -o testlex testlex.o lexical.o keywords.o \
+			symboltable.o stringpool.o errors.o
 
 testlex.o: testlex.c lexical.h
 	$(COMPILER) -c testlex.c

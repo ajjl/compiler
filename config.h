@@ -5,7 +5,7 @@
  * Date 9/12/2016 -- extended to support the symbol table
  */
 
-#define POOL_SIZE 100
+#define POOL_SIZE 300
 /* the size of the string pool where all the text of identifiers and strings
  * is stored.  This constant is used in stringpool.h and stringpool.c
  */
