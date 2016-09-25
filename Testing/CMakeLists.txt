@@ -26,9 +26,9 @@ add_executable(firstGTest FirstGoogleTest.cpp)
 target_link_libraries(firstGTest ${GTEST_LIBRARIES} ${GTEST_BOTH_LIBRARIES})
 
 # Error tests
-#add_executable(errorTest ErrorTester.cpp ${CMAKE_SOURCE_DIR}/errors.h ${CMAKE_SOURCE_DIR}/errors.cpp)
-#target_link_libraries(errorTest ${GTEST_LIBRARIES})
+add_executable(errorTest ErrorTester.cpp ${CMAKE_SOURCE_DIR}/errors.h ${CMAKE_SOURCE_DIR}/errors.cpp)
+target_link_libraries(errorTest ${GTEST_LIBRARIES})
 
 # add each google test as a ctest
-GTEST_ADD_TESTS(firstGTest ARGN FirstGoogleTest.cpp)
-#GTEST_ADD_TESTS(errorTest ARGN ErrorTester.cpp)
+#GTEST_ADD_TESTS(firstGTest ARGN FirstGoogleTest.cpp)
+GTEST_ADD_TESTS(errorTest ARGN ErrorTester.cpp)
