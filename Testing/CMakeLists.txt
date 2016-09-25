@@ -25,6 +25,9 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(firstGTest FirstGoogleTest.cpp)
 target_link_libraries(firstGTest ${GTEST_LIBRARIES} ${GTEST_BOTH_LIBRARIES})
 
+# blah
+add_executable(DansTest DansTest.cpp)
+
 # Error tests
 add_executable(errorTest ErrorTester.cpp ${CMAKE_SOURCE_DIR}/errors.h ${CMAKE_SOURCE_DIR}/errors.cpp)
 target_link_libraries(errorTest ${GTEST_LIBRARIES})
@@ -32,3 +35,5 @@ target_link_libraries(errorTest ${GTEST_LIBRARIES})
 # add each google test as a ctest
 #GTEST_ADD_TESTS(firstGTest ARGN FirstGoogleTest.cpp)
 GTEST_ADD_TESTS(errorTest ARGN ErrorTester.cpp)
+
+add_test(NAME DansTest COMMAND ./DansTest "blah blah")
