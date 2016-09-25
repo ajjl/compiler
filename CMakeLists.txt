@@ -22,6 +22,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CFLAGS}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CFLAGS}")
 
 # make and build the google-test framework
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 include(${CMAKE_SOURCE_DIR}/CMake/External_GTest.cmake)
 
 set( SOURCES
