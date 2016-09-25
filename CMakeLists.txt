@@ -13,20 +13,18 @@ project(kestrel)
 
 set( SOURCES
         config.h
-        errors.c
+        errors.cpp
         errors.h
-        lexical.c
+        lexical.cpp
         lexical.h
-        lexsupport.c
+        lexsupport.cpp
         lexsupport.h
         sets.h
-        stringpool.c
+        stringpool.cpp
         stringpool.h
-        symboltable.c
+        symboltable.cpp
         symboltable.h
-        testlex.c
+        testlex.cpp
         )
-
-set_source_files_properties(${SOURCES} PROPERTIES LANGUAGE CXX)
 
 add_executable(testlex ${SOURCES})
