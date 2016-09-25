@@ -11,6 +11,8 @@
 #ifndef LEXSUPPORT_H
 #define LEXSUPPORT_H
 
+#include "lexical.h" /* needed for punct_type identifier */
+
 #ifndef EXTERN
 	#define EXTERN extern
 #endif

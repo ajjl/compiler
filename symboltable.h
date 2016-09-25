@@ -8,7 +8,11 @@
 #define SYMBOLTABLE_H
 
 #include <stdio.h>
+#include <stdint.h>
 #include <stdbool.h>
+
+#include "config.h"
+#include "stringpool.h"
 /*
  * users of this file must first include
  * users should define (probably from a global config file)
