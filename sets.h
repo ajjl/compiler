@@ -2,8 +2,6 @@
 
 /* Author: Douglas W. Jones
  * Date 8/19/2016 -- pasted from Lecture 12 with pro-forma improved comments
- * 
- * Note, the user must include <stdint.h> before including this file 
  */
 
 /* This set implementation uses 32-bit integers as bit vectors to hold sets
@@ -18,6 +16,8 @@ r*    a & b - the intersection of sets a and b
  */
 #ifndef SETS_H
 #define SETS_H
+
+#include <stdint.h>
 
 typedef uint32_t set32_t;
 /* the type of sets over domains containing up to 32 elements */
