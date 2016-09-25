@@ -19,6 +19,42 @@
 ## Slack channel is:
 ### compiler-groupc.slack.com
 
+## Building With CMake
+CMake is a build environment generator. For larger projects it is easier than writing Makefiles by hand. We will try to have our Makefiles still work anyways. CMake also has good support for testing and building and linking to dependencies.
+
+### You probably need to install cmake:
+On linux: `sudo apt-get install cmake`
+On mac, install with homebrew: `brew install cmake`
+
+If you dont have homebrew, get it here: http://brew.sh/
+On Windows: ???
+
+### Git is also a pre-req
+`sudo apt-get install git`
+
+### Out of source build
+CMake requires an "out of source" build. That means that the directory that the compiled objects land in is completely separate from the directory of the source files. Here are instructions for building with cmake. You can also build the narmal way with plain ol make.
+
+### Instructions:
+Parallel to the groupc directory (at the same level) make a new directory called "groupc-build" and then change into it.
+`mkdir groupc-build`
+`cd groupc-build`
+Run cmake from the groupc-build filder, using the groupc directory as the argument.
+`cmake ../groupc`
+This generates the makefiles. Now just run make.
+`make`
+Now you can run your tests:
+`ctest`
+or 
+`make test`
+
+### You can also use cmake to build project files for many IDE's. Google it.
+
+### yup, we now have some tests.
+
+If you want to rebuild the project. Run `make clean` first.
+
+### Do NOT add the build directory to svn or git
 
 ## Git-svn
 This repo should update automatically with new svn commits. So you could just
