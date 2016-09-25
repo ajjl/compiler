@@ -26,6 +26,7 @@ ExternalProject_Add(
 	
 	CMAKE_CACHE_ARGS
 	  -DBUILD_GTEST:BOOL=ON
+          -DBUILD_SHARED_LIBS:BOOL=ON
 
 	# Disable install step
 	INSTALL_COMMAND ""
