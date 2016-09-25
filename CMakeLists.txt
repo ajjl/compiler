@@ -1,8 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
-# include ctest stuff
-include(CTest)
-
 # prevent in-source builds
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
 
@@ -12,6 +9,12 @@ if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
     message(FATAL_ERROR "Dont do in source builds")
 endif()
 
+# the main project
+project(kestrel)
+
+# include ctest stuff
+include(CTest)
+
 # set compiler flags
 set(CFLAGS "${CFLAGS} -g -Wall -Wextra -Wparentheses -Wshadow -Wdouble-promotion -Winline")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CFLAGS}")
@@ -19,9 +22,6 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CFLAGS}")
 
 # make and build the google-test framework
 include(${CMAKE_SOURCE_DIR}/CMake/External_GTest.cmake)
-
-# the main project
-project(kestrel)
 
 set( SOURCES
         config.h
