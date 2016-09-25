@@ -35,7 +35,7 @@ target_link_libraries(errorTest ${GTEST_LIBRARIES})
 # add each google test as a ctest
 #GTEST_ADD_TESTS(firstGTest ARGN FirstGoogleTest.cpp)
 GTEST_ADD_TESTS(errorTest ARGN ErrorTester.cpp)
-
+add_test(NAME DansTest COMMAND ./DansTest "blah blah")
 # add executable
 add_executable(hongxuFirstTest hongxuFirstTest.cpp)
 add_test(NAME hongxuFirstTest COMMAND ./hongxuFirstTest "ThisISArgument1")
