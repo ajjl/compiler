@@ -23,8 +23,14 @@ ExternalProject_Add(
 	GIT_TAG ${${proj}_GIT_TAG}
 	SOURCE_DIR ${proj}
 	BINARY_DIR ${proj}-build
+	
+	CMAKE_CACHE_ARGS
+	  -DBUILD_GTEST:BOOL=ON
 
 	# Disable install step
 	INSTALL_COMMAND ""
 )
 
+set(GTEST_ROOT ${CMAKE_BINARY_DIR}/${proj}-build/googlemock/gtest)
+set(GTEST_INCLUDE_DIR ${CMAKE_BINARY_DIR}/${proj}/googletest/include)
+message("GRoot: ${GTEST_ROOT}")
