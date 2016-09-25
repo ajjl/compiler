@@ -1,7 +1,22 @@
 sudo: required
 dist: trusty
 
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
+
 language: cpp
 
 script:
-  - make
+#  - make
+   - mkdir compiler-build
+   - cd compiler-build
+   - cmake ..
+   - make
+   - cmake .
+   - make
+   - ctest
