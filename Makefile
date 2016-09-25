@@ -69,3 +69,5 @@ clean:
 	rm -f *.o
 	rm -f testlex
 	rm -f kestrel
+	rm -rf CMakeFiles
+	rm -f CMakeCache.txt
