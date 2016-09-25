@@ -12,7 +12,7 @@ addons:
 language: cpp
 
 script:
-#  - make
+   - make
    - mkdir compiler-build
    - cd compiler-build
    - cmake .. || true
