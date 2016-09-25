@@ -15,8 +15,8 @@ script:
 #  - make
    - mkdir compiler-build
    - cd compiler-build
-   - cmake ..
-   - make
+   - cmake .. || true
+   - make || true
    - cmake .
    - make
    - ctest
