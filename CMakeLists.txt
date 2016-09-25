@@ -14,6 +14,7 @@ project(kestrel)
 
 # include ctest stuff
 include(CTest)
+enable_testing()
 
 # set compiler flags
 set(CFLAGS "${CFLAGS} -g -Wall -Wextra -Wparentheses -Wshadow -Wdouble-promotion -Winline")
