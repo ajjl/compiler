@@ -10,6 +10,12 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include "errors.h"
+#include "stringpool.h"
+#include "config.h"
+#include "symboltable.h"
+
+
 #ifndef EXTERN
 	#define EXTERN extern
 #endif
@@ -18,6 +24,8 @@ typedef enum {
          OTHER=0, WHITESPACE=1, LETTER=2, DIGIT=4, PUNCTUATION=8
 } char_type;
 
+int getCharType(char myChar);
+//char_type getCharType(char myChar);
 
 typedef enum { IDENT, KEYWORD, NUMBER, STRING, PUNCT, ENDFILE } lex_types;
 

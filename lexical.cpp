@@ -29,8 +29,10 @@
 #define DIG DIGIT
 #define PUN PUNCTUATION
 
+
 /* character classifier table */
-static const char_type char_class[256] = {
+//static const char_type char_class[256] = {
+static const int char_class[256] = {
      /* NUL SOH STX ETX EOT ENQ ACK BEL BS  HT  LF  VT  FF  CR  SO  SI  */
 	OTH,OTH,OTH,OTH,OTH,OTH,OTH,OTH,OTH,WIT,WIT,WIT,WIT,WIT,OTH,OTH,
      /* DLE DC1 DC2 DC3 DC4 NAK SYN ETB CAN EM  SUB ESC FS  GS  RS  US  */
@@ -66,6 +68,12 @@ static const char_type char_class[256] = {
 #undef PUN
 
 #define ISCLASS(ch,class) (char_class[ch]&(class))
+int getCharType(char myChar) {
+  if(myChar< 128 && myChar >0) {
+    return char_class[myChar];
+  }
+  return OTHER;
+}
 
 /******
  * the punctuation classifier
