@@ -14,6 +14,11 @@
 	#define EXTERN extern
 #endif
 
+typedef enum {
+         OTHER=0, WHITESPACE=1, LETTER=2, DIGIT=4, PUNCTUATION=8
+} char_type;
+
+
 typedef enum { IDENT, KEYWORD, NUMBER, STRING, PUNCT, ENDFILE } lex_types;
 
 /* names for specific punctuation marks */

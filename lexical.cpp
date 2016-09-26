@@ -22,10 +22,6 @@
  * the character classifier
  ******/
 
-typedef enum {
-	OTHER=0, WHITESPACE=1, LETTER=2, DIGIT=4, PUNCTUATION=8
-} char_type;
-
 /* short forms of character types used in the classifier table */
 #define OTH OTHER
 #define WIT WHITESPACE
