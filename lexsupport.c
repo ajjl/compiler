@@ -25,3 +25,9 @@ bool lex_forcepunc( punct_type t ) {
 		/* =BUG= must report that we found lex_this where t expected */
 	}
 }
+
+/* bool lex_iskey( lexeme lex, key_type t ) { */ /* =BUG= finish this */
+
+/* bool lex_iskeyset( lexeme lex, set32_t s ) { */ /* =BUG= finish this */
+
+/* bool lex_gotbutwant( lexeme lex, lex_type t ) { */ /* =BUG= finish this */
