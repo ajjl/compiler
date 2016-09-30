@@ -12,6 +12,10 @@
 
 typedef enum {
 	/* intended for use in calls to error_fatal */
+	ER_BADARG,
+	ER_EXTRAINFILE,
+	ER_EXTRAOUTFILE,
+	ER_MISSINGFILE,
 	ER_BADFILE,
 	ER_POOLOVF,
 	ER_SYMTAB,
@@ -20,6 +24,9 @@ typedef enum {
 	ER_BADSTR,
 	ER_TOOLONG
 } error_message;
+
+void er_help();
+/* output the help message and exit the program */
 
 void error_fatal( error_message er, int line );
 void error_warn( error_message er, int line );
