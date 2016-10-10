@@ -1,7 +1,8 @@
 /* symboltable.h -- symbol table interface specification */
 
 /* Author: Douglas W. Jones
- * Date: 9/12/2016 -- initial version of interface, from Lecture 9
+ * Date: 9/12/2016  -- initial version of interface, from Lecture 9
+ * Date: 10/10/2016 -- bug fix in declaration of _symbol_table
  */
 
 /* users of this file must first include
@@ -24,7 +25,7 @@ typedef uint32_t symbol_handle;
  * the value is between 0 and SYMBOL_SIZE-1, inclusive.
  */
 
-EXTERN unsigned char _symbol_table[SYMBOL_SIZE];
+EXTERN string_handle _symbol_table[SYMBOL_SIZE];
 /* private, the actual location where the text of strings is stored */
 
 EXTERN symbol_handle _symbol_hash;
