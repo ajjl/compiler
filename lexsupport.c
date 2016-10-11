@@ -5,6 +5,7 @@
  */
 
 #include <stdint.h>
+#include <stdio.h>
 #include "lexical.h"
 #include "sets.h"
 
@@ -28,6 +29,22 @@ bool lex_forcepunc( punct_type t ) {
 
 /* bool lex_iskey( lexeme lex, key_type t ) { */ /* =BUG= finish this */
 
-/* bool lex_iskeyset( lexeme lex, set32_t s ) { */ /* =BUG= finish this */
+/* bool lex_iskeyset( lexeme lex, set32_t s ) */
+/* implemented in header file */
 
-/* bool lex_gotbutwant( lexeme lex, lex_type t ) { */ /* =BUG= finish this */
+bool lex_gotbutwant( lexeme lex, error_message e ) {
+	/* error: this lexeme e, where e is typically found when x expected */
+	error_warnprefix( lex.line );
+	lex_put( lex, stderr ); 
+	error_warnsuffix( e );
+}
+
+void lex_wantinset( set32_t ps, set32_t ks, set32_t ls, error_message e ) {
+	/* force lex_this to be in one of the sets or gotbutwant e */
+	/* typically used to force lex_this into start set or follow set  */
+
+	if (lex_ispuncset( lex_this, ps )) return;
+	if (lex_iskeyset( lex_this, ks )) return;
+	if (in_set32( lex_this.type, ls )) return;
+	lex_gotbutwant( lex_this, e );
+}

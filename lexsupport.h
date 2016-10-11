@@ -23,9 +23,21 @@
 #define lex_ispuncset(lex,s) (					\
 	(lex.type == LEX_PUNC) && in_set32(lex.value, s)	\
 )
-/* returns true if lexeme lex is a punctuation mark in set t */
+/* returns true if lexeme lex is a punctuation mark in set s */
 
 bool lex_forcepunc( punct_type t );
 /* force lex_this to be the punctuation mark t and advance over it */
+
+/* bool lex_iskeyset( lexeme lex, set32_t s ); */
+#define lex_iskeyset(lex,s) (					\
+	(lex.type == LEX_KEYWORD) && in_set32(lex.value, s)	\
+)
+/* returns true if lexeme lex is a keyword mark in set s */
+
+bool lex_gotbutwant( lexeme lex, error_message e );
+/* error: this lexeme e, where e is typically found when x expected */
+
+void lex_wantinset( set32_t ps, set32_t ks, set32_t ls, error_message e ) {
+/* force lex_this to be in one of the sets or gotbutwant e */
 
 #undef EXTERN

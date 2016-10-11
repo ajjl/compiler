@@ -33,6 +33,9 @@ lexical.o: lexical.c lexical.h errors.h keywords.h symboltable.h \
 	   stringpool.h config.h
 	$(COMPILER) -c lexical.c
 
+lexsupport.o: lexsupport.o lexical.h errors.h
+	$(COMPILER) -c lexsupport.c
+
 keywords.o: keywords.c keywords.h errors.h symboltable.h stringpool.h config.h
 	$(COMPILER) -c keywords.c
 

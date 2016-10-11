@@ -22,13 +22,28 @@ typedef enum {
 	/* intended for use in calls to error_warn */
 	ER_TOOBIG,
 	ER_BADSTR,
-	ER_TOOLONG
+	ER_TOOLONG,
+	/* intended for as suffixes on got-but-want messages */
+	ER_WANT_ENDFILE,
+	ER_WANT_STATMNT,
 } error_message;
 
 void er_help();
 /* output the help message and exit the program */
 
 void error_fatal( error_message er, int line );
+/* output the message er and exit the program indicating failure */
+
+void error_warnprefix( int line );
+/* output the first half of a warning error for the given line */
+
+void error_warnsuffix( error_message er );
+/* output the second half of a warning error with the given message */
+
 void error_warn( error_message er, int line );
+/* output the message er for line number line
+ * note, this is just the prefix followed by the suffix
+ * these may be split to create "error x found but y expected" messages
+ */
 
 #undef EXTERN

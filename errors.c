@@ -23,13 +23,16 @@ static const char * message[] = {
 	/* ER_EXTRAINFILE  */ "Duplicate input file name",
 	/* ER_EXTRAOUTFILE */ "Duplicate output file name",
 	/* ER_MISSINGFILE  */ "Missing file name",
-	/* ER_BADFILE */ "Cannot open input file.",
-	/* ER_POOLOVF */ "String pool overflow.",
-	/* ER_SYMTAB  */ "Symbol table overflow.",
+	/* ER_BADFILE */      "Cannot open input file.",
+	/* ER_POOLOVF */      "String pool overflow.",
+	/* ER_SYMTAB  */      "Symbol table overflow.",
 	/* intended for use in calls to error_warn */
-	/* ER_TOOBIG  */ "Value too large.",
-	/* ER_BADSTR  */ "Unclosed string.",
-	/* ER_TOOLONG */ "Identifier or string too long."
+	/* ER_TOOBIG  */      "Value too large.",
+	/* ER_BADSTR  */      "Unclosed string.",
+	/* ER_TOOLONG */      "Identifier or string too long.",
+        /* intended for as suffixes on got-but-want messages */
+	/* ER_WANT_ENDFILE */ " found when end of file expected.",
+	/* ER_WANT_STATMNT */ " found when statement expected."
 };
 
 void er_help() {
@@ -47,12 +50,29 @@ void er_help() {
 
 void error_fatal( error_message er, int line ) {
 	/* output the message er and exit the program indicating failure */
-	fprintf( stderr, "Fatal error on line %d: %s\n", line, message[er] );
+	fprintf( stderr, "%s: Fatal error on line %d: %s\n",
+		     main_progname,              line, message[er]
+	);
 	exit( EXIT_FAILURE );
 }
 
-void error_warn( error_message er, int line ) {
-	/* output the message er and continue */
-	fprintf( stderr, "Error on line %d: %s\n", line, message[er] );
+void error_warnprefix( int line ) {
+	/* output the first half of a warning error for the given line */
+	fprintf( stderr, "%s: Error on line %d: ",
+	             main_progname,        line
+	);
+}
+
+void error_warnsuffix( error_message er ) {
+	/* output the second half of a warning error with the given message */
+	fprintf( stderr, "%s\n",
+	                  er
+	);
 	/* =BUG= count the number of errors so program can know at end? */
+}
+
+void error_warn( error_message er, int line ) {
+	/* output the message er for line number line */
+	error_warnprefix( line );
+	error_warnsuffix( er );
 }
