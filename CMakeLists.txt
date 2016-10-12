@@ -38,10 +38,12 @@ set( SOURCES
         stringpool.h
         symboltable.cpp
         symboltable.h
-        testlex.cpp
         )
 
-add_executable(testlex ${SOURCES})
+#add_executable(testlex ${SOURCES} testlex.cpp)
+add_library(LEXlib ${SOURCES})
+add_executable(testlex testlex.cpp)
+target_link_libraries(testlex LEXlib)
 
 # the Testing directory
 add_subdirectory(Testing)

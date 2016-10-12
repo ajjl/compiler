@@ -1,9 +1,9 @@
 # Run some tests with cmake
-message("###$ GTEST_ROOT: ${GTEST_ROOT}")
-message("bin: ${CMAKE_BINARY_DIR}")#This is the top level build directory
-message("src: ${CMAKE_SOURCE_DIR}")#This is the top level source directory
-message("Current bin: ${CMAKE_CURRENT_BINARY_DIR}")# this is the current build directory
-message("Current src: ${CMAKE_CURRENT_SOURCE_DIR}")# this is the current source directory
+# message("###$ GTEST_ROOT: ${GTEST_ROOT}")
+# message("bin: ${CMAKE_BINARY_DIR}")#This is the top level build directory
+# message("src: ${CMAKE_SOURCE_DIR}")#This is the top level source directory
+# message("Current bin: ${CMAKE_CURRENT_BINARY_DIR}")# this is the current build directory
+# message("Current src: ${CMAKE_CURRENT_SOURCE_DIR}")# this is the current source directory
 
 add_test(NAME testlex_parse_HelloWorld.kestrel COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorld.kestrel )
 
@@ -17,7 +17,8 @@ add_test(NAME testlex_parse_HelloWorld.kestrel COMMAND ${CMAKE_BINARY_DIR}/testl
 #message(WARNING "GTEST_MAIN_LIBRARIES: ${GTEST_MAIN_LIBRARIES}")
 #message(WARNING "GTEST_ROOT: ${GTEST_ROOT}")
 
-
+include_directories(../)
+link_libraries(LEXlib)
 
 #include_directories(${GTEST_INCLUDE_DIRS})
 
@@ -41,8 +42,7 @@ add_executable(hongxuFirstTest hongxuFirstTest.cpp)
 add_test(NAME hongxuFirstTest COMMAND ./hongxuFirstTest "ThisISArgument1")
 
 # add a test for testing our getclass method!!
-set(SOURCES_FROM_ABOVE  ${CMAKE_SOURCE_DIR}/lexical.h ${CMAKE_SOURCE_DIR}/lexical.cpp ${CMAKE_SOURCE_DIR}/symboltable.h ${CMAKE_SOURCE_DIR}/symboltable.cpp ${CMAKE_SOURCE_DIR}/stringpool.h ${CMAKE_SOURCE_DIR}/stringpool.cpp ${CMAKE_SOURCE_DIR}/config.h ${CMAKE_SOURCE_DIR}/errors.h ${CMAKE_SOURCE_DIR}/errors.cpp)
 
-
-add_executable(classiferForCharTypesTest lexicalISCLASSMacroTest.cpp ${SOURCES_FROM_ABOVE})
+add_executable(classiferForCharTypesTest lexicalISCLASSMacroTest.cpp )
+#target_link_libraries(classiferForCharTypesTest LEXlib)
 add_test(classifierForCharTypesTest classiferForCharTypesTest)
