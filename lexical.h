@@ -3,7 +3,8 @@
 /* Author: Douglas W. Jones
  * Date 8/13/2016 -- pasted from Lecture 4 with pro-forma improved comments
  * 
- * Note, the user must include <stdint.h> before including this file 
+ * Note, the user must include <stdint.h> and <stdio.h>
+ * before including this file 
  */
 
 #ifndef EXTERN

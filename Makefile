@@ -22,12 +22,17 @@ COMPILER = c++
 #######
 # primary make target:  the Kestrel compiler
 
-kestrel: main.o lexical.o keywords.o symboltable.o stringpool.o errors.o
+kestrel: main.o lexical.o keywords.o symboltable.o stringpool.o errors.o \
+	 program.o block.o
 	$(COMPILER) -o kestrel main.o lexical.o keywords.o \
-			symboltable.o stringpool.o errors.o
+			symboltable.o stringpool.o errors.o \
+			program.o block.o
 
-main.o: main.c main.h lexical.h errors.h config.h
-	$(COMPILER) -c main.c
+main.o: main.cpp main.h lexical.h errors.h program.h config.h
+	$(COMPILER) -c main.cpp
+
+####
+# primary make target:  the Kestrel compiler, lexical subsection
 
 lexical.o: lexical.c lexical.h errors.h keywords.h symboltable.h \
 	   stringpool.h config.h
@@ -47,6 +52,20 @@ stringpool.o: stringpool.c stringpool.h errors.h config.h
 
 errors.o: errors.c errors.h main.h config.h
 	$(COMPILER) -c errors.c
+
+####
+# primary make target:  the Kestrel compiler, parser subsection
+
+program.o: program.cpp program.h sets.h errors.h lexical.h lexsupport.h \
+	   block.h
+	$(COMPILER) -c program.cpp
+
+block.o: block.cpp block.h sets.h errors.h lexical.h lexsupport.h
+	$(COMPILER) -c block.cpp
+
+
+####
+# primary make target:  the Kestrel compiler, code generator subsection
 
 #######
 # secondary make target:  testlex for testing lexical.o

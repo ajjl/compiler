@@ -25,6 +25,8 @@ typedef enum {
 	ER_TOOLONG,
 	/* intended for as suffixes on got-but-want messages */
 	ER_WANT_ENDFILE,
+	ER_WANT_BLOCK,
+	ER_WANT_ENDBLOK,
 	ER_WANT_STATMNT,
 } error_message;
 

@@ -185,7 +185,7 @@ void lex_advance() {
 		/* =BUG= how do we handle comments? */
 	}
 
-	lex_next.line = line;
+	lex_next.line = line_number;
 	if (ch == EOF) {
 		lex_next.type = ENDFILE;
 		lex_next.value = 0; /* irrelevant */

@@ -10,15 +10,17 @@
  * as such, the domain must contain 32 or fewer elements
  *
  * the basic set operations are:
-r*    a & b - the intersection of sets a and b
+ *    a & b - the intersection of sets a and b
  *    a | b - the union of sets a and b
  *    ~ a   - the inverse of set a (that is a tilde, not a - sign)
  *
  * This implementation is entirely in the header file, there is no .c file
  */
 
-typedef uint32_t set32_t
+typedef uint32_t set32_t;
 /* the type of sets over domains containing up to 32 elements */
+
+#define SET32_EMPTY ((set32_t)0)
 
 /* set32_t to_set32( int i ) */
 #define to_set32(i)   (((set32_t)1)<<(i))

@@ -32,6 +32,8 @@ static const char * message[] = {
 	/* ER_TOOLONG */      "Identifier or string too long.",
         /* intended for as suffixes on got-but-want messages */
 	/* ER_WANT_ENDFILE */ " found when end of file expected.",
+	/* ER_WANT_BLOCK   */ " found when declaration or statement expected.",
+	/* ER_WANT_ENDBLOK */ " found when end of block expected.",
 	/* ER_WANT_STATMNT */ " found when statement expected."
 };
 
