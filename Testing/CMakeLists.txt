@@ -46,3 +46,7 @@ add_test(NAME hongxuFirstTest COMMAND ./hongxuFirstTest "ThisISArgument1")
 add_executable(classiferForCharTypesTest lexicalISCLASSMacroTest.cpp )
 #target_link_libraries(classiferForCharTypesTest LEXlib)
 add_test(classifierForCharTypesTest classiferForCharTypesTest)
+
+
+add_executable(LexIsPunc_TestOne LexIsPunctTestExample1.cpp)
+add_test(LexIsPuc_TestOneTEST LexIsPunc_TestOne)
