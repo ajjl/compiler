@@ -31,7 +31,7 @@ typedef uint32_t symbol_handle;
  * the value is between 0 and SYMBOL_SIZE-1, inclusive.
  */
 
-EXTERN unsigned char _symbol_table[SYMBOL_SIZE];
+EXTERN string_handle _symbol_table[SYMBOL_SIZE];
 /* private, the actual location where the text of strings is stored */
 
 EXTERN symbol_handle _symbol_hash;
@@ -54,7 +54,7 @@ void symbol_init();
 }
 /* setup to accumulate a new symbol, from given line (for error reporting) */
 
-/* void symbol_append( char ch ); */
+/* void symbol_append( unsigned char ch ); */
 #define symbol_append(ch) {				\
 	_symbol_hash = ((_symbol_hash * SYMBOL_HASH )	\
 			+ (ch)) % SYMBOL_SIZE;		\
@@ -72,6 +72,11 @@ symbol_handle symbol_lookup();
  *   handle = symbol_lookup()
  */
 
+symbol_handle symbol_add( const char * s );
+/*
+jones has comments here
+
+*/
 /* void symbol_put( symbol_handle h, FILE * f ); */
 #define symbol_put(h,f) string_put( _symbol_table[h], f )
 /* output the text of the symbol to the human-readable file */
