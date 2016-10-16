@@ -6,6 +6,7 @@
 # message("Current src: ${CMAKE_CURRENT_SOURCE_DIR}")# this is the current source directory
 
 add_test(NAME testlex_parse_HelloWorld.kestrel COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorld.kestrel )
+add_test(NAME testlex_parse_lextestfile COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/lextestfile )
 
 # try the google test
 
@@ -26,9 +27,6 @@ link_libraries(LEXlib)
 #add_executable(firstGTest FirstGoogleTest.cpp)
 #target_link_libraries(firstGTest ${GTEST_LIBRARIES} ${GTEST_BOTH_LIBRARIES})
 
-# blah
-add_executable(DansTest DansTest.cpp)
-
 # Error tests
 #add_executable(errorTest ErrorTester.cpp ${CMAKE_SOURCE_DIR}/errors.h ${CMAKE_SOURCE_DIR}/errors.cpp)
 #target_link_libraries(errorTest ${GTEST_LIBRARIES})
@@ -36,7 +34,7 @@ add_executable(DansTest DansTest.cpp)
 # add each google test as a ctest
 #GTEST_ADD_TESTS(firstGTest ARGN FirstGoogleTest.cpp)
 #GTEST_ADD_TESTS(errorTest ARGN ErrorTester.cpp)
-add_test(NAME DansTest COMMAND ./DansTest "blah blah")
+
 # add executable
 add_executable(hongxuFirstTest hongxuFirstTest.cpp)
 add_test(NAME hongxuFirstTest COMMAND ./hongxuFirstTest "ThisISArgument1")
