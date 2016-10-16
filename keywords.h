@@ -22,7 +22,8 @@ typedef enum {
         KEY_SET,        KEY_OF,         KEY_RECORD,     KEY_IF,
         KEY_THEN,       KEY_ELSE,       KEY_SELECT,     KEY_CASE,
         KEY_WHILE,      KEY_DO,         KEY_UNTIL,      KEY_FOR,
-        KEY_IN,         KEY_CATCH,      KEY_RAISE,      KEY_NULL
+        KEY_IN,         KEY_CATCH,      KEY_RAISE,      KEY_ENUM,
+	KEY_NULL
 } key_handle;
 /* the range of valid key_handle values is KEY_INVALID + 1 to KEY_NULL
  * always keep KEY_NULL at the end!
