@@ -48,7 +48,7 @@ void lex_gotbutwant( lexeme lex, error_message e ) {
 /* bool lex_isinset( set32_t ps, set32_t ks, set32_t ls ) */
 /* implemented in header file */
 
-void lex_isinset( set32_t ps, set32_t ks, set32_t ls, error_message e ) {
+void lex_wantinset( set32_t ps, set32_t ks, set32_t ls, error_message e ) {
 	/* force lex_this to be in one of the sets or gotbutwant e */
 	/* typically used to force lex_this into start set or follow set  */
 
