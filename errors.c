@@ -34,7 +34,7 @@ static const char * message[] = {
 	/* ER_WANT_ENDFILE */ " found when end of file expected.",
 	/* ER_WANT_BLOCK   */ " found when declaration or statement expected.",
 	/* ER_WANT_ENDBLOK */ " found when end of block expected.",
-	/* ER_WANT_STATMNT */ " found when statement expected."
+	/* ER_WANT_STATE   */ " found when statement expected."
 };
 
 void er_help() {

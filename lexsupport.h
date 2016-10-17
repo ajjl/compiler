@@ -46,7 +46,7 @@ bool lex_forcepunc( punct_type t );
 )
 /* returns true if lexeme lex is a keyword mark in set s */
 
-bool lex_gotbutwant( lexeme lex, error_message e );
+void lex_gotbutwant( lexeme * lex, error_message e );
 /* error: this lexeme e, where e is typically found when x expected */
 
 /* bool lex_isinset( set32_t ps, set32_t ks, set32_t ls ); */

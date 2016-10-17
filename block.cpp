@@ -19,6 +19,8 @@
 #include "lexsupport.h"
 
 #include "environment.h"
+#include "declaration.h"
+#include "statement.h"
 
 #define EXTERN
 #include "block.h"

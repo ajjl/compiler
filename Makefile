@@ -22,11 +22,12 @@ COMPILER = c++
 #######
 # primary make target:  the Kestrel compiler
 
-kestrel: main.o lexical.o keywords.o symboltable.o stringpool.o errors.o \
-	 program.o block.o
-	$(COMPILER) -o kestrel main.o lexical.o keywords.o \
+kestrel: main.o lexical.o lexsupport.o keywords.o symboltable.o stringpool.o \
+	 errors.o \
+	 program.o block.o declaration.o statement.o
+	$(COMPILER) -o kestrel main.o lexical.o lexsupport.o keywords.o \
 			symboltable.o stringpool.o errors.o \
-			program.o block.o
+			program.o block.o declaration.o statement.o
 
 main.o: main.cpp main.h lexical.h errors.h program.h config.h
 	$(COMPILER) -c main.cpp
@@ -38,7 +39,7 @@ lexical.o: lexical.c lexical.h errors.h keywords.h symboltable.h \
 	   stringpool.h config.h
 	$(COMPILER) -c lexical.c
 
-lexsupport.o: lexsupport.o lexical.h errors.h
+lexsupport.o: lexsupport.c lexsupport.h lexical.h errors.h
 	$(COMPILER) -c lexsupport.c
 
 keywords.o: keywords.c keywords.h errors.h symboltable.h stringpool.h config.h
@@ -56,13 +57,23 @@ errors.o: errors.c errors.h main.h config.h
 ####
 # primary make target:  the Kestrel compiler, parser subsection
 
-program.o: program.cpp program.h sets.h errors.h lexical.h lexsupport.h \
+program.o: program.cpp program.h \
+	   sets.h errors.h lexical.h lexsupport.h \
 	   block.h
 	$(COMPILER) -c program.cpp
 
-block.o: block.cpp block.h sets.h errors.h lexical.h lexsupport.h
+block.o: block.cpp block.h \
+	 sets.h errors.h lexical.h lexsupport.h \
+	 declaration.h statement.h
 	$(COMPILER) -c block.cpp
 
+declaration.o: declaration.cpp declaration.h \
+	       sets.h errors.h lexical.h lexsupport.h
+	$(COMPILER) -c declaration.cpp
+
+statement.o: statement.cpp statement.h \
+	     sets.h errors.h lexical.h lexsupport.h
+	$(COMPILER) -c statement.cpp
 
 ####
 # primary make target:  the Kestrel compiler, code generator subsection

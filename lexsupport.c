@@ -2,12 +2,14 @@
 
 /* Author: Douglas W. Jones
  * Date 8/19/2016 -- pasted from Lecture 12 with pro-forma improved comments
+ * Date 10/17/2016 -- support routines for testing set membership added
  */
 
 #include <stdint.h>
 #include <stdio.h>
 #include "lexical.h"
 #include "sets.h"
+#include "errors.h"
 
 #define EXTERN
 #include "lexsupport.h"
@@ -38,9 +40,9 @@ bool lex_forcepunc( punct_type t ) {
 /* bool lex_iskeyset( lexeme lex, set32_t s ) */
 /* implemented in header file */
 
-void lex_gotbutwant( lexeme lex, error_message e ) {
+void lex_gotbutwant( lexeme * lex, error_message e ) {
 	/* error: this lexeme e, where e is typically found when x expected */
-	error_warnprefix( lex.line );
+	error_warnprefix( lex->line );
 	lex_put( lex, stderr ); 
 	error_warnsuffix( e );
 }
@@ -53,5 +55,5 @@ void lex_wantinset( set32_t ps, set32_t ks, set32_t ls, error_message e ) {
 	/* typically used to force lex_this into start set or follow set  */
 
 	if (lex_isinset( ps, ks, ls )) return;
-	lex_gotbutwant( lex_this, e );
+	lex_gotbutwant( &lex_this, e );
 }

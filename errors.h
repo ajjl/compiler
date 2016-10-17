@@ -27,7 +27,7 @@ typedef enum {
 	ER_WANT_ENDFILE,
 	ER_WANT_BLOCK,
 	ER_WANT_ENDBLOK,
-	ER_WANT_STATMNT,
+	ER_WANT_STATE
 } error_message;
 
 void er_help();

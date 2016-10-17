@@ -3,7 +3,7 @@
 // Author: Douglas W. Jones
 // Date 10/13/2016 -- framework established
 //
-// Note, the user must include <stdint.h>, "sets.h" and "environment.h"
+// Note, the user must include "environment.h"
 // before including this file
 
 // BNF
