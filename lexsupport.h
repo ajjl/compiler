@@ -19,9 +19,9 @@
 )
 /* returns true if lexeme lex is of the type t */
 
-/* bool lex_isin( lexeme lex, set32_t s ); */
+/* bool lex_isset( lexeme lex, set32_t s ); */
 #define lex_isset(lex,s) (					\
-	in_set32(lex.value, s)					\
+	in_set32(lex.type, s)					\
 )
 /* returns true if lexeme lex is a punctuation mark in set s */
 

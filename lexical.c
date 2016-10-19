@@ -155,7 +155,7 @@ static int line_number;/* the line number in infile */
  * implementation
  ******/
 
-void lex_open( char * f ) {
+void lex_open( const char * f ) {
 	/* open file f for input, or use stdin if f is null */
 	if (f != NULL) {
 		infile = fopen( f, "r" );
@@ -180,8 +180,8 @@ void lex_advance() {
 	
 	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
 		/* skip whitespace */
-		ch = getc( infile );
 		if (ch == '\n') line_number = line_number + 1;
+		ch = getc( infile );
 		/* =BUG= how do we handle comments? */
 	}
 

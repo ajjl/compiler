@@ -36,7 +36,7 @@ typedef struct lexeme {
 EXTERN lexeme lex_this; /* the current lexeme */
 EXTERN lexeme lex_next; /* the next lexeme */
 
-void lex_open( char * f );
+void lex_open( const char * f );
 void lex_advance();
 void lex_put( lexeme * lex, FILE * f );
 

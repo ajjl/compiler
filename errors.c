@@ -67,9 +67,7 @@ void error_warnprefix( int line ) {
 
 void error_warnsuffix( error_message er ) {
 	/* output the second half of a warning error with the given message */
-	fprintf( stderr, "%s\n",
-	                  er
-	);
+	fprintf( stderr, "%s\n", message[er] );
 	/* =BUG= count the number of errors so program can know at end? */
 }
 
