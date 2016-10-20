@@ -9,7 +9,7 @@
 
 #define EXTERN
 #include "statement.h"
-
+/*statement.cpp is the file copied from jones, maybe borrow the idea from professor and delete the file*/
 // =BUG= code to compile <if> <case> <for loop> <while loop> <do loop>
 // =   =                 <exception handler> <raise> <procedure call>
 // =   =                 <assignment>
