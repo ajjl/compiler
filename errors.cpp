@@ -15,6 +15,7 @@
  * NOTE:  this array must have one entry for every
  * member of the error_message enumeration, in exactly the same order
  */
+/* missing error messages like Bad command line argument, Duplicate input file name, Duplicate output file name, missing file name; and found when end of file expected, found when declaration or statement expected, found when end of block expected, found when statement expected. See exact file or error handling code through jones errors.c file in the" static const char * message[]"part, if this is something we should be worried about now. */
 static const char * message[] = {
 	/* intended for use in calls to error_fatal */
 	/* ER_BADFILE */ "Cannot open input file.",
