@@ -11,20 +11,16 @@
 // <block> ::= { <block element> [ ; ] }
 // <block element> ::= <declaration> | <statement>
 
-
-
-
-
-
-
 #ifndef EXTERN
-#define EXTERN extern
+	#define EXTERN extern
 #endif
 
 class Block {
 public:
 	static Block * compile( Environment * e );
-	// factory methid 
+	// factory method 
+
 	// =BUG= blocks certainly have attributes, they are missing here
 };
+
 #undef EXTERN
