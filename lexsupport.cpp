@@ -23,6 +23,11 @@ bool lex_forcepunc( punct_type t ) {
 		lex_advance();
 	} else {
 		/* =BUG= must report that we found lex_this where t expected */
+		/* =BUG= does anything else need to be done here? */
+		printf("Found %c where %c was expected.", (char)lex_this.value, (char)t);
+		return false;
 	}
 	printf("This function in: %s, line: %d, is not yet fully implemented.", __FILE__, __LINE__);
+	
+	return true;
 }

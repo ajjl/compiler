@@ -69,8 +69,8 @@ static const int char_class[256] = {
 
 #define ISCLASS(ch,class) (char_class[ch]&(class))
 int getCharType(char myChar) {
-  if(myChar< 128 && myChar >0) {
-    return char_class[myChar];
+  if (myChar > 0) {
+    return char_class[(int)myChar];
   }
   return OTHER;
 }
