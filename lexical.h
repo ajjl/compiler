@@ -44,8 +44,9 @@ typedef enum {
 } punct_type;
 
 typedef struct lexeme {
-	lex_types type;
-	uint32_t value;
+	lex_types type; /* type of this lexeme */
+	uint32_t value; /* value of this lexeme, meaning depends on type */
+	int line;	/* line number from which this lexeme came */
 } lexeme;
 
 EXTERN lexeme lex_this; /* the current lexeme */
