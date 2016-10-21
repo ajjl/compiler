@@ -119,13 +119,13 @@ int main( int argc, char * argv[] ) {
 
 	if ((!isoutfile) && (main_infile != NULL)) { /* compute main_outfile */
 
-		int i = 0;
+		int j = 0;
 		int dot = -1;
-		while (main_infile[i] != '\0') {
-			if (main_infile[i] == '.') dot = i;
-			i++;
+		while (main_infile[j] != '\0') {
+			if (main_infile[j] == '.') dot = j;
+			j++;
 		}
-		if (dot == -1) dot = i;
+		if (dot == -1) dot = j;
 		// dot is index of last dot in infile name or end of name
 
 		// main_outfile = xxx.S from main.infile = xxx.anything

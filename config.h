@@ -7,7 +7,13 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define POOL_SIZE 100
+#define DASH '-'
+/* the filename path delimeter on this system, - for Unix, / for Windows */
+
+#define DEFAULT_NAME "Kestrel"
+/* the default name for this program if no name is given on the command line */
+
+#define POOL_SIZE 300
 /* the size of the string pool where all the text of identifiers and strings
  * is stored.  This constant is used in strings.h and strings.c
  */

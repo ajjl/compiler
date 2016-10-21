@@ -22,9 +22,9 @@
 #endif
 
 class Block {
-punlic:
-      static Block * compile( Environment * e );
-// factory methid 
-// =BUG= blocks certainly have attributes, they are missing here
+public:
+	static Block * compile( Environment * e );
+	// factory methid 
+	// =BUG= blocks certainly have attributes, they are missing here
 };
 #undef EXTERN

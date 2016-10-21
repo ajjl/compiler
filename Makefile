@@ -26,19 +26,24 @@ CFLAGS = -g -Wall -Wextra -Wparentheses -Wshadow -Wdouble-promotion -Winline
 #-Wlogical-not-parentheses
 
 # set the default target to testlex. Kestral doesnt build yet
-default_target: testlex
+default_target: kestrel 
 all: kestrel testlex
 
 #######
 # primary make target:  the Kestrel compiler
 
-kestrel: main.o lexical.o
-	$(COMPILER) $(CFLAGS) -o kestrel main.o lexical.o
+kestrel: main.o lexical.o lexsupport.o keywords.o symboltable.o stringpool.o \
+	 errors.o \
+	 program.o block.o declaration.o statement.o
+	$(COMPILER) $(CFLAGS) -o kestrel main.o lexical.o lexsupport.o keywords.o \
+				symboltable.o stringpool.o errors.o \
+				program.o block.o declaration.o statement.o
 
-main.o: main.cpp lexical.h
+main.o: main.cpp main.h lexical.h errors.h program.h config.h
 	$(COMPILER) $(CFLAGS)  -c main.cpp
 
-lexical.o: lexical.cpp lexical.h errors.h stringpool.h config.h symboltable.h
+lexical.o: lexical.cpp lexical.h errors.h stringpool.h config.h symboltable.h \
+	   keywords.h
 	$(COMPILER) $(CFLAGS)  -c lexical.cpp
 
 symboltable.o: symboltable.cpp symboltable.h stringpool.h errors.h config.h
@@ -50,8 +55,11 @@ stringpool.o: stringpool.cpp stringpool.h errors.h config.h
 errors.o: errors.cpp errors.h
 	$(COMPILER) $(CFLAGS)  -c errors.cpp
 
-lexsupport.o: lexsupport.cpp lexsupport.h lexical.h sets.h
+lexsupport.o: lexsupport.cpp lexsupport.h lexical.h sets.h errors.h
 	$(COMPILER) $(CFLAGS)  -c lexsupport.cpp
+
+keywords.o: keywords.cpp keywords.h errors.h symboltable.h stringpool.h config.h
+	$(COMPILER) $(CFLAGS)  -c keywords.cpp
 
 #######
 # secondary make target:  testlex for testing lexical.o

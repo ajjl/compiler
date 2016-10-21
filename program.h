@@ -17,6 +17,6 @@ public:
 
 	// it may well be that programs have no attributes
 	// but we'll follow the standard pattern here
-}
+};
 
 #undef EXTERN

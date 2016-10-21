@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 
 	do {
 		lex_put( &lex_this, stdout );
-		putchar( '\n' ); /* output each lexeme on a new line */
+		putchar( '\n' );  /* output each lexeme on a new line */
 		lex_advance();
 	} while (lex_this.type != ENDFILE);
 	return 0; 
