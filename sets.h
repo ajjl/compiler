@@ -22,6 +22,8 @@ r*    a & b - the intersection of sets a and b
 typedef uint32_t set32_t;
 /* the type of sets over domains containing up to 32 elements */
 
+#define SET32_EMPTY ((set32_t)0)
+
 /* set32_t to_set32( int i ) */
 #define to_set32(i)   (((set32_t)1)<<(i))
 /* construct a single-member set32_t value from one integer or enumeration */

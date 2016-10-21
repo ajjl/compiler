@@ -43,6 +43,3 @@ Statement * Statement::compile( Environment * e ) {
         // =BUG= do statements need to return any attributes?
         return NULL;
 }
-~                                                                               
-
-

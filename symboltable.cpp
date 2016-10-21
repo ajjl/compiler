@@ -70,6 +70,11 @@ symbol_handle symbol_lookup() {
 	}
 }
 
+symbol_handle symbol_add( const char * s ) {
+	/* =BUG= this needs to be implemented */
+
+	return _symbol_hash; //placeholder so it returns something
+}
 /* note:
  * to add a symbol
  *   symbol_start( current_line )

@@ -32,7 +32,7 @@ Program * Program::compile() {
 
 	// =BUG= must call code generator to putput standard prefix
 
-	Block b = Block::compile( e );
+	Block * b = Block::compile( e );
 
 	// =BUG= must call code generator to output standard suffix
 
