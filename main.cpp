@@ -1,3 +1,4 @@
+//I think we should not just copy and paste all the file from jones, it definitly will not work, and dude, I think Alexander is right, if things does not compile or will break the existing program, we should comment it out, untill fixed, otherwise it is not helpful.
 // main.cpp -- main program for a Kestrel compiler */
 
 // Author: Douglas W. Jones
