@@ -26,7 +26,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 #include(${CMAKE_SOURCE_DIR}/CMake/External_GTest.cmake)
 
 if(1)
-    message(WARNING "SOURCES: ${SOURCES}")
+    #message(WARNING "SOURCES: ${SOURCES}")
 
     file(GLOB SOURCES
             *.cpp
@@ -35,7 +35,7 @@ if(1)
     list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/testlex.cpp" )
     list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/main.cpp" )
 
-    message(WARNING "SOURCES: ${SOURCES}")
+    #message(WARNING "SOURCES: ${SOURCES}")
 endif()
 #add_executable(testlex ${SOURCES} testlex.cpp)
 add_library(LEXlib ${SOURCES})
