@@ -71,6 +71,7 @@ void error_warnprefix( int line ) {
 void error_warnsuffix( error_message er ) {
 	/* output the second half of a warning error with the given message */
 	fprintf( stderr, "%s\n", message[er] );
+	/*Maybe using error_count should be able to produce the number*/
 	/* =BUG= count the number of errors, can we do this with the way already implemented? */
 }
 
