@@ -5,6 +5,8 @@
 # message("Current bin: ${CMAKE_CURRENT_BINARY_DIR}")# this is the current build directory
 # message("Current src: ${CMAKE_CURRENT_SOURCE_DIR}")# this is the current source directory
 
+add_test(DOES_IT_RUN ${CMAKE_BINARY_DIR}/kestrel ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorld.kestrel)
+
 add_test(NAME testlex_parse_HelloWorld.kestrel COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorld.kestrel )
 add_test(NAME testlex_parse_lextestfile COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/lextestfile )
 
