@@ -25,23 +25,22 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CFLAGS}")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 #include(${CMAKE_SOURCE_DIR}/CMake/External_GTest.cmake)
 
-set( SOURCES
-        config.h
-        errors.cpp
-        errors.h
-        lexical.cpp
-        lexical.h
-        lexsupport.cpp
-        lexsupport.h
-        sets.h
-        stringpool.cpp
-        stringpool.h
-        symboltable.cpp
-        symboltable.h
-        )
+if(1)
+    message(WARNING "SOURCES: ${SOURCES}")
 
+    file(GLOB SOURCES
+            *.cpp
+            *.h
+            )
+    list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/testlex.cpp" )
+    list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/main.cpp" )
+
+    message(WARNING "SOURCES: ${SOURCES}")
+endif()
 #add_executable(testlex ${SOURCES} testlex.cpp)
 add_library(LEXlib ${SOURCES})
+add_executable(main main.cpp main.h)
+target_link_libraries(main LEXlib)
 add_executable(testlex testlex.cpp)
 target_link_libraries(testlex LEXlib)
 

@@ -1,6 +1,10 @@
 #include <iostream>
 #include "../lexical.h"
 
+// BUG //Global variables are bad but we are using them because we copy the professor
+#define EXTERN
+#include "main.h"
+
 /*
  * by Alex Dan and hongxu.
  * we want to excersize the ISCLASS macro from lexical.cpp

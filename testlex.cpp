@@ -10,6 +10,11 @@
 
 #include "lexical.h"
 
+//this is a bad kludge, we should get rid of all global variables
+// and all instances of extern
+#define EXTERN
+#include "main.h" //global variable definitions
+
 int main(int argc, char** argv) {
 	/* the main program for testlex */
 
