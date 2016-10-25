@@ -252,6 +252,7 @@ void lex_advance() {
 			}
 		}
 	} else {
+                /*need some execution or return*/
 		/* =BUG= what about identifiers, strings */
 	}
 }
