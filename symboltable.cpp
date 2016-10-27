@@ -62,6 +62,7 @@ symbol_handle symbol_lookup() {
 		/* circular increment */
 		place = place + 1;
 		if (place == SYMBOL_SIZE) place = 0;
+                /*should we be exit the program in a proper way if gets into the starting point*/
 
 		/* if we get back to our starting point, trouble */
 		if (place == _symbol_hash) {
