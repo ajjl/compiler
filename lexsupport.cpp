@@ -35,7 +35,7 @@ bool lex_forcepunc( punct_type t ) {
 	/* force lex_this to be the punctuation mark t and advance over it */
 	if (lex_ispunc( lex_this, t )) {
 		lex_advance();
-	} else {/
+	} else {
 		/* =BUG= does anything else need to be done here? */
 		printf("Found %c where %c was expected.", (char)lex_this.value, (char)t);
 		return false;
