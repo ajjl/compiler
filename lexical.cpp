@@ -191,7 +191,8 @@ void lex_advance() {
 		symbol_start( line_number ); /* =BUG= ? */
 		do {
 			/* save the character */
-			symbol_append( ch ); /* =BUG= ? */
+			symbol_append( ch ); /* =BUG= ?I do not think apped is enough, maybe add another symbol for that? */
+                        
 			/* get the next character */
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
