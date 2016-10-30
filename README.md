@@ -55,7 +55,7 @@ or
 If you want to rebuild the project. Run `make clean` first.
 
 ### Do NOT add the build directory to svn or git
-
+## does anyone know where is the code of identifiers recognization>? Its not in the string pool
 ## Git-svn
 This repo should update automatically with new svn commits. So you could just
 commit on svn and see the results on github.
