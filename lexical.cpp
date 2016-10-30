@@ -195,7 +195,8 @@ void lex_advance() {
 			/* get the next character */
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
-		lex_next.value = symbol_lookup();
+		 /*This step is link lex_next to a unique number*/
+                 lex_next.value = symbol_lookup();
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
 		lex_next.type = NUMBER;
