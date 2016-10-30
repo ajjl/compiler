@@ -192,7 +192,7 @@ void lex_advance() {
 		do {
 			/* save the character */
 			symbol_append( ch ); /* =BUG= ?I do not think apped is enough, maybe add another symbol for that? */
-                        
+                       /*where is the symbol_append function? Thankyou.*/ 
 			/* get the next character */
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
