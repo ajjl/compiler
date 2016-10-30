@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "lexical.h"
-#include "sets."
+#include "sets.h"
 #include "errors.h"
 
 #define EXTERN
