@@ -1,4 +1,4 @@
-cmake#include "errors.h"
+#include "errors.h"
 #include "stringpool.h"
 #include "symboltable.h"
 #include "keywords.h"
