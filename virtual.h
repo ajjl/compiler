@@ -76,3 +76,6 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define unlink() (__sp = (reg *)__fp), (__fp = (reg *)((__sp++)->pp))
 /*subroutine linkage directices*/
 
+#define 1rs(x,n)  (((x) = ((unsigned long)(x) >> (n)))
+/*the logical right shift directives*/
+
