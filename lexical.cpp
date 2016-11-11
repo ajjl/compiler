@@ -188,7 +188,7 @@ void lex_advance() {
 	} else if (ISCLASS(ch,LETTER)) {
 		/* identifier or possibly a keyword */
 		lex_next.type = IDENT;
-		symbol_start( line_number ); 
+		symbol_start( line_number ); /* =BUG= ? */
 		do {
 			/* save the character */
 			symbol_append( ch ); 
