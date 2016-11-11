@@ -87,5 +87,7 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define EQ(a,b)  if ( (long) (a) == (long)(b) )
 #define NE(a,b)  if ( (long) (a) != (long)(b) )
 #define LT(a,b)  if ( (long) (a) <  (long)(b) )
-#define LE(A,B)  IF ( (long) (a) <= (long)(b) )
-
+#define LE(A,B)  if ( (long) (a) <= (long)(b) )
+#define GT(A,B)  if ( (long) (a) >  (long)(b) )
+#define GE(a,b)  if ( (long) (a) >= (long)(b) )
+/*LONG*/
