@@ -13,3 +13,6 @@
 #define SWIDTH  LWORD_WIDTH  /* STACK WIDTH (IN BYTES).  */
 
 #define SDEPTH   1024     /* Number of elements in stack. */
+
+#define ALIGN_WORST  LWORD_WIDTH  /* lONG WORD IS WORST CASE ALIGNMENT. */
+
