@@ -63,4 +63,9 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define push(n)  (--sp) -> 1 = (1word) (n)
 #define pop(t)  (t)( (sp++)->1 )
 /*pushing and popping*/
+#define PROC(name, clas) cls name(){
+#define ENDP(name)  ret();}/*NAME IS IGNORED*/
 
+#define call(name) (--__sp) ->pp = #name, (*(void  (*)()) (name))()
+
+#define ret ()   __sp++; return
