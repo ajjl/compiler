@@ -1,4 +1,4 @@
-//This is a base version of code generation file, continued work is required for matching previous files
+/*continued work is required for matching previous files  */
 
 #include <tools/c-code.h>
 /*BASIC TYPES*/
