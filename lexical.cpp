@@ -181,6 +181,7 @@ void lex_advance() {
 		/* skip whitespace */
 		if (ch == '\n') line_number = line_number + 1;
 		ch = getc( infile );
+    /* =BUG= how do we handle comments? */
 	}
 	if (ch == EOF) {
 		lex_next.type = ENDFILE;
