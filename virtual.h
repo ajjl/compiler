@@ -40,3 +40,6 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define fp   ((char *) __fp)
 
 #define sp   ((char *) __sp) 
+
+
+#define SEG(segment)   /* empty */
