@@ -48,3 +48,7 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define private  static
 #define external extern
 /* storage classes*/
+
+# define ALIGH (type)  /*empty*/
+
+
