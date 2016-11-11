@@ -49,6 +49,6 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define external extern
 /* storage classes*/
 
-# define ALIGH (type)  /*empty*/
+# define ALIGN (type)  /*empty*/
 
 
