@@ -197,7 +197,18 @@ void lex_advance() {
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
 		 /*This step is link lex_next to a unique number*/
-                 lex_next.value = symbol_lookup();
+    lex_next.value = symbol_lookup();
+
+    /* Jones has this in a bracket block for seemingly no reason... */
+    //{ Start of Jones' erroneous block
+    key_handle key = key_lookup( lex_next.value );
+    if (key != KEY_INVALID) {
+      lex_next.type = KEYWORD;
+      lex_next.value = key;
+    }
+    //} End of Jones' erroneous block
+
+
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
 		lex_next.type = NUMBER;
