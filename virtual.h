@@ -69,3 +69,6 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define call(name) (--__sp) ->pp = #name, (*(void  (*)()) (name))()
 
 #define ret ()   __sp++; return
+
+/*subroutine definition, calls and returns*/
+
