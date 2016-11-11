@@ -41,5 +41,10 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 
 #define sp   ((char *) __sp) 
 
-
 #define SEG(segment)   /* empty */
+
+#define public   /* empty*/
+#define common   /* empty*/
+#define private  static
+#define external extern
+/* storage classes*/
