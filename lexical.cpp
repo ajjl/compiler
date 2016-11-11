@@ -262,6 +262,8 @@ void lex_put( lexeme * lex, FILE * f ) {
 	/* reconstruct the text of the lexeme */
 	switch (lex->type) {
 	case IDENT:
+    symbol_put( (symbol_handle) lex->value, f );
+    break;
 	case KEYWORD:
 		symbol_put( lex->value, f );
 		/* =BUG= how to print an identifier or keyword? */
