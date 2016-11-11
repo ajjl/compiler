@@ -86,19 +86,19 @@ int main( int argc, char * argv[] ) {
 					main_outfile = argv[i];
 					isoutfile = true;
 				} else { // -ofilename or -o=filename
-					if (ch == '=') {
-						arg++; // strip off the =
-						ch = *arg;
-					}
-                			if (ch == '\0') {
-						error_fatal( ER_MISSINGFILE,0 );
-					}
+            if (ch == '=') {
+              arg++; // strip off the =
+              ch = *arg;
+            }
+                        if (ch == '\0') {
+              error_fatal( ER_MISSINGFILE,0 );
+            }
 
-					// =BUG= what about -o- and -o=-
+            // =BUG= what about -o- and -o=-
 
-					main_outfile = arg;
-					isoutfile = true;
-        			}
+            main_outfile = arg;
+            isoutfile = true;
+        }
 
 			// put code to parse other options here
 
@@ -110,9 +110,9 @@ int main( int argc, char * argv[] ) {
 
 			} else {
 				error_fatal( ER_BADARG, 0 );
-
 			}
-		}      
+		}    
+
 		i++; // advance to the next argument
 	}
 
