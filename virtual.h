@@ -71,4 +71,8 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define ret ()   __sp++; return
 
 /*subroutine definition, calls and returns*/
+#define link(n)  ((--__sp)->pp = (char *)__fp), (__fp = __sp), (__sp -= (n))
+
+#define unlink() (__sp = (reg *)__fp), (__fp = (reg *)((__sp++)->pp))
+/*subroutine linkage directices*/
 
