@@ -14,6 +14,7 @@
 #include "stringpool.h"
 #include "config.h"
 #include "symboltable.h"
+#include "keywords.h"
 
 #define EXTERN
 #include "lexical.h"
