@@ -241,7 +241,8 @@ void lex_advance() {
 				ch = getc( infile );
 			}
 		}
-		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
+		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || 
+        lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
 			if (lex_next.value == PT_GT) {	/* greater than or equal */
 				lex_next.value = PT_GE;
 				ch = getc( infile );
