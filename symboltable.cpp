@@ -71,7 +71,17 @@ symbol_handle symbol_lookup() {
 	}
 }
 
+/* note:
+ * to add a symbol
+ *   symbol_start( current_line )
+ *   for each character ch in symbol { symbol_append( ch ) }
+ *   handle = symbol_lookup()
+ */
+
 symbol_handle symbol_add( const char * s ) {
+  /* add the null terminated character string s to the symbol table,
+   * returning its handle.  This is used during initialization only.
+   */
   symbol_start( 0 );
   while ( *s != '\0' ) {
     symbol_append( *s );
@@ -80,12 +90,6 @@ symbol_handle symbol_add( const char * s ) {
 
 	return symbol_lookup();
 }
-/* note:
- * to add a symbol
- *   symbol_start( current_line )
- *   for each character ch in symbol { symbol_append( ch ) }
- *   handle = symbol_lookup()
- */
 
 /* void symbol_put( symbol_handle h, FILE * f ); */
 /* implemented in symboltable.h */
