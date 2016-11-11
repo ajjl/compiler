@@ -84,4 +84,7 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define ext_high(reg) (reg.w.high = (word ).reg.b.b2)
 #define ext_word(reg) (reg.1  = (1word)reg.w.low )
 /*Sign-Extension Directives*/
+#define EQ(a,b)  if ( (long) (a) == (long)(b) )
+#define NE(a,b)  if ( (long) (a) != (long)(b) )
+#define LT(a,b)  if ( (long) < (long)(b) )
 
