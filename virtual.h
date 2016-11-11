@@ -79,3 +79,9 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define 1rs(x,n)  (((x) = ((unsigned long)(x) >> (n)))
 /*the logical right shift directives*/
 
+
+#define ext_low(reg)  (reg.w.low = (word )reg.b.b0 )
+#define ext_high(reg) (reg.w.high = (word ).reg.b.b2)
+#define ext_word(reg) (reg.1  = (1word)reg.w.low )
+/*Sign-Extension Directives*/
+
