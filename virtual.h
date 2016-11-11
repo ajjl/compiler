@@ -60,5 +60,7 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define LP  *(1word **)
 #define PP  *(ptr   **)
 /* direct stack access directives*/
-
+#define push(n)  (--sp) -> 1 = (1word) (n)
+#define pop(t)  (t)( (sp++)->1 )
+/*pushing and poping*/
 
