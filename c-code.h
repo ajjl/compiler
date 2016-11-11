@@ -15,4 +15,12 @@
 #define SDEPTH   1024     /* Number of elements in stack. */
 
 #define ALIGN_WORST  LWORD_WIDTH  /* lONG WORD IS WORST CASE ALIGNMENT. */
-
+/*INFIRECT MODE PREFIXES*/
+#define BYTE_PREFIX      "B"
+#define WORD_PREFIX      "W"
+#define LWORD_PREFIX     "L"
+#define PTR_PTRFIX       "P"
+#define BYTEPTR_PREFIX   "BP"
+#define WORDPTR_PREFIX   "WP"
+#define LWORDPTR_PREFIX  "LP"
+#define PTRPTR_PREFIX    "PP"  
