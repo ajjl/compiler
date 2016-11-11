@@ -188,7 +188,7 @@ void lex_advance() {
 	} else if (ISCLASS(ch,LETTER)) {
 		/* identifier or possibly a keyword */
 		lex_next.type = IDENT;
-		symbol_start( line_number ); /* =BUG= ? */
+		symbol_start( line_number ); 
 		do {
 			/* save the character */
 			symbol_append( ch ); 
@@ -217,10 +217,10 @@ void lex_advance() {
 		/* string */
 	       	unsigned char quote = ch; /* remember what quote mark to use */
 		lex_next.type = STRING;
-		symbol_start( line_number ); /* =BUG= ? */
+		symbol_start( line_number ); 
 		ch = getc( infile );
 		while ((ch != EOF) && (ch != '\n') && (ch != quote)) {
-			symbol_append( ch ); /* =BUG= ? */
+			symbol_append( ch );
 			/* get the next letter of the string */
 			ch = getc( infile );
 		}
