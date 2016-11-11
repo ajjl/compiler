@@ -91,3 +91,15 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 #define GT(a,b)  if ( (long) (a) >  (long)(b) )
 #define GE(a,b)  if ( (long) (a) >= (long)(b) )
 /*LONG*/
+
+#define U_LT(a,b) if( (unsigned long) (a) < (unsigned long) (b) )
+#define U_GT(a,b) if( (unsigned long) (a) > (unsigned long) (b) )
+#define U_LE(a,b) if( (unsigned long) (a) <=(unsigned long) (b) )
+#define U_GE(a,b) if( (unsigned long) (a) >=(unsigned long) (b) )
+/*UNSIGNED LONG*/
+
+#define BIT(b,a)  if( (s) & (1 << (b)) )
+
+/*COMPARISON DIRECTIVES*/
+
+
