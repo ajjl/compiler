@@ -265,8 +265,7 @@ void lex_put( lexeme * lex, FILE * f ) {
     symbol_put( (symbol_handle) lex->value, f );
     break;
 	case KEYWORD:
-		symbol_put( lex->value, f );
-		/* =BUG= how to print an identifier or keyword? */
+    key_put( (key_handle) lex->value, f );
 		break;
 	case NUMBER:
 		fprintf( f, "%" PRId32, lex->value );
@@ -282,7 +281,6 @@ void lex_put( lexeme * lex, FILE * f ) {
 		/* =BUG= this sometimes uses the wrong type of quotes */
 	case ENDFILE:
 		fputs( "EOF", f );
-			/* =BUG= missing code for these lexeme types */
 		break;
 	}
 }
