@@ -51,4 +51,14 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 
 # define ALIGN (type)  /*empty*/
 
+#define W   *(word *)
+#define B   *(byte *)
+#define L   *(1word *)
+#define P   *(ptr  *)
+#define WP  *(word **)
+#define BP  *(byte **)
+#define LP  *(1word **)
+#define PP  *(ptr   **)
+/* direct stack access directives*/
+
 
