@@ -72,9 +72,13 @@ symbol_handle symbol_lookup() {
 }
 
 symbol_handle symbol_add( const char * s ) {
-	/* =BUG= this needs to be implemented */
+  symbol_start( 0 );
+  while ( *s != '\0' ) {
+    symbol_append( *s );
+    s++;
+  }
 
-	return _symbol_hash; //placeholder so it returns something
+	return symbol_lookup();
 }
 /* note:
  * to add a symbol
