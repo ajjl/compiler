@@ -84,4 +84,17 @@ typedef struct declarator
 
 
 
+/*OUTPUT C-CODE STORAGE CLASS*/
+#define NO_OCLASS 0
+/*no, output class(var is auto).  */
+#define PUB  1
+/*PUBLIC*/
+#define PRI 2
+/*PRIVATE*/
+#define EXT 3
+/* extern */
+#define COM 4
+/*common*/
+
+
 
