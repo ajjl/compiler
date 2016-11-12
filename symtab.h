@@ -131,4 +131,7 @@ struct structdef *v_struct;
 } specifier;
 
 
+/*SPECIFIER COMPLETE*/
+
+
  
