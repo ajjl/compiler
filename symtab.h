@@ -34,4 +34,16 @@ typedef struct symbol
 
    struct  link  *type;
    /*First link in declarator chain*/
+   struct  link  *etype;
+   /*Last link in declarator chain*/
+   struct symbol  *args;
+   /*IF A FUNCTION DECL, THE ARG LIST. */
+   /*IF A VAR, THE INITIALIZER.  */
+   struct  symbol *next;  
+   /*current nesting level*/
+ } symbol;
+
+ ALLOC_CLS HASH_TAB  *Symbol_tab;
+ /*The actual table.  */
+
  
