@@ -17,3 +17,21 @@
 #define LABLE_MAX  32
 /*MAX OUTPUT LABLE LENGTH*/
 
+typedef struct symbol
+/*symbol-table entry.  */
+{
+   unsigned char   name [NAME_MAX+1];
+   /*INPUT VARIABLE NAME*/
+   unsigned char rname [NAME_MAX+1];
+   /*ACTUAL VARIABLE NAME*/
+   
+   unsigned level  :13;
+   /*DECLARATION LEVEL, FIELD OFFSET*/
+   unsigned implicit  : 1 ; 
+   /*DECLARATION CREATED IMPLICITLY*/
+   unsigned duplicate  : 1 ;
+   /*DUPLICATE DECLARATION. */
+
+   struct  link  *type;
+   /*First link in declarator chain*/
+ 
