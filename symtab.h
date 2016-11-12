@@ -60,4 +60,28 @@ typedef struct declarator
 } declarator;
 
 
- 
+#define INT 0
+#define CHAR 1
+#define VOID 2
+#define STRUCTURE 3
+#define LABLE 4
+/* specifier.noun. INT has the value 0 so that an uninitialized structure defaults to int, same goes for EXTERN BELOW.  */
+
+
+
+
+/*SPECIFIER.SCLASS  */
+#define FIXED 0 
+/*at a foxed address*/
+#define REGISTER 1
+/*IN A REGISTER */
+#define AUTO 2
+/*ON THE RUN-TIME STACK*/
+#define TYPEDEF 3
+/*TYPEDEF*/
+#define CONSTANT 4
+/*tHIS IS A CONSTANT*/
+
+
+
+
