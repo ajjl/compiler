@@ -102,4 +102,46 @@ Class reg  *__fp I (= &stack [SDEPTH]); /* frame pointer*/
 
 /*COMPARISON DIRECTIVES*/
 
+#define _main   main
+
+#ifdef ALLOC
+pm()
+{
+   reg *p;
+   int i;
+   
+  /*PRINT THE VIRTUAL MACHINE( REGISTERS AND TOP 16 STACK ELEMENTS). */
+  
+  printf("r0= %081x  r1= %081x r2=%081x r3=%081x\n",  
+          r0.1,       r1.1,      r2.1,     r3.1,      );
+  printf("r4= %081x  r5= %081x r6=%081x r7=%081x\n",  
+          r4.1,       r5.1,      r6.1,     r7.1,      );
+  printf("r8= %081x  r9= %081x rA=%081x rB=%081x\n",  
+          r8.1,       r9.1,      rA.1,     rB.1,      );
+  printf("rC= %081x  rD= %081x rE=%081x rF=%081x\n",  
+          rC.1,       rD.1,      rE.1,     rF.1,      );
+
+  if( __sp >= &stack[SDEPTH] )
+       printf("Stack is empty\n");
+  else 
+       printf("\nitem byte real addr   b3 b2 b1 b0    hi  lo     1\n");
+
+  for( p = __sp, i=16; p< &stack[SDEPTH]  &&  --i>=0  ++p  )
+  {
+     printf("%04d %04d %9p  [%02x|%02x|%02x|%02x] = [%04x|%04x] = [%081x]",
+       p-__sp,      (p-__sp)*4,    (void far *)p,
+       p->b.b3 & 0xff,    p->b.b2 & 0xff,  p->b.b1 & 0xff,  p->b.b0 & 0xff,
+       p->w.high & 0xffff,  p->w.lowp->w.low & 0xffff,
+       p->1
+     );
+
+     if( p == __sp )  printf("<-SP");
+     if( p == __fp )  printf("<-FP");
+     printf("\n")
+  }
+}
+
+#endif
+
+
 
