@@ -97,4 +97,38 @@ typedef struct declarator
 /*common*/
 
 
+typedef struct specifier
+{
+  unsigned noun :3;
+/* CHAR INT STRUCTURE LABLE */
+  unsigned sclass :3;
+/*REGISTER AUTO FIXED CONSTANT TYPEDEF*/
+  unsigned oclass :3;
+/*OUTPUT STORAGE CLASSES, PUB PRI COM EXT*/
+  unsigned _long :1;
+/*1= long; 0 = short*/
+  unsigned _unsigned :1;
+/*1=unsigned , 0-signed;*/
+  unsigned _static :1;
+/*1=static keyword found in declarations. */
+  unsigned _extern :1;
+/*1=extern keyword found in declarations. */
 
+union
+{
+/*value if constant*/
+int v_int;
+/* INT &CHAR VALUES. IF A STRING CONST IS NUMERIC COMPONENT OF THE LABLE*/
+unsigned int v_unit; 
+/*UNSIGNED INT CONSTANT VALUES*/
+long v_long;
+/*signed long constant value.*/
+unsigned long v_ulong; 
+/* UNSIGNED LONG CONSTANT VALUE*/
+struct structdef *v_struct;
+/*IF THIS IS A STRUCT, POINTS AT A STRUCTURE TABLE ELEMENT.*/
+} const_val;
+} specifier;
+
+
+ 
