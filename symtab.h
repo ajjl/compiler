@@ -46,4 +46,18 @@ typedef struct symbol
  ALLOC_CLS HASH_TAB  *Symbol_tab;
  /*The actual table.  */
 
+#define POINTER   0
+#define ARRAY     1
+#define FUNCTION  2
+/*VALUES FOR DECLARATOR.TYPE*/
+
+typedef struct declarator
+{
+  int dcl_type;
+  /* POINTER, ARRAY, OR FUNCTION  */
+  int num_ele;
+  /* If class==ARRAY, NUMBER OF ELEMENTS  */
+} declarator;
+
+
  
