@@ -231,6 +231,30 @@ typedef struct structdef
 ALLOC_CLS HASH_TAB *Struct_tab;
 /*The actual table LOL */
 
+/*SIZE OF VARIES TYPES START*/
+
+#define CSIZE BYTE_WIDTH  /* char */
+#define CTYPE "byte"
+
+#define ISIZE WORD_WIDTH  /*int*/
+#define ITYPE "word"
+
+#define LSIZE LWORD_WIDTH  /*long*/
+#define LTYPE  "1word"
+
+#define PSIZE PTR_WIDTH
+/*pointer: 32bit, 8086 large model*/
+#define PTYPE "ptr"
+
+#define STYPE "record"
+/* structure, size undefined */
+#define ATYPE "array"
+/* array, size undefined*/
+
+/*SIZE OF VARIOUS TYPES END*/
+
+
+
 
 
 
