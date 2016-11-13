@@ -186,4 +186,33 @@ if ( sdef_p )
 
 
 
-`
+/*THE MAINTENANCE LAYER, DECLARATOR MANIPULATION*/
+
+PUBLIC void add_declarator( sym, type )
+symbol *sym;
+int type;
+{
+link *link_p;
+if( type == FUNCTION && IS_ARRAY(sym-> etype) )
+{
+yyerror("Array of function is illegal, assuming function pointer\n");
+add_declarator( sym, POINTER );
+}
+
+link_p   = new_link();
+/*THE DEFAULT CLASS IS DECLARATOR*/
+link_p->DCL_TYPE = type;
+
+if ( !sym->type)
+   sym->type = sym->etypr = link_p;
+else
+{
+  sym->etype->next = link_p;
+  sym->etype = link_p;
+}
+}
+
+/*DECLARATOR MANIPULATION CODE FINISH LINE*/
+
+
+
