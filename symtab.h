@@ -205,5 +205,12 @@ struct link *next;
 #define IS_INT_CONSTANT(p)  (IS_CONSTANT(p) && (p)->NOUN == INT  )
 
 
+/*DECLARATION LINK CHAIN 1 FINISHED LINE*/
+
+
+
+
+
+
 
 
