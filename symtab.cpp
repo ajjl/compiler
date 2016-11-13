@@ -215,4 +215,29 @@ else
 /*DECLARATOR MANIPULATION CODE FINISH LINE*/
 
 
+/*THE MAINTENANCE LAYER: SOECIFIER MANIPULATION*/
+PUBLIC spec_cpy( dst, src )
+/*COPY ALL INITIALIZED FFIELDS IN SRC TO DSC. */
+link *dst, *src;
+{
+  if( src->NOUN  ) dst->NOUN =src->NOUN ;
+  if( src->SCLASS  ) dst->SCLASS =src->SCLASS ;
+  if( src->LONG  ) dst->LONG =src->LONG ;
+  if( src->UNSIGNED  ) dst->UNSIGNED =src->UNSIGNED ;
+  if( src->STATIC  ) dst->STATIC =src->STATIC ;
+  if( src->EXTERN  ) dst->EXTERN =src->EXTERN ;
+  if( src->tdef  ) dst->tdef =src->tdef ;
+
+  if(src->SCLASS == CONSTANT || src->NOUN == STRUCTURE)
+     MEMCPY( &DST->value, &SRC->VALUE, sizeof(src->VALUE) );
+}
+
+
+
+/*THE END OF SPECIFIER MANIPULATION CODE*/
+/*-----------------------------------------------------------------*/
+
+
+
+
 
