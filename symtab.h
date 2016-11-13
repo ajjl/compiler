@@ -134,4 +134,76 @@ struct structdef *v_struct;
 /*SPECIFIER COMPLETE*/
 
 
- 
+/*A LINK IN THE DECLARATION CHAIN*/
+#define DECLARATOR  0
+#define SPECIFIER   1
+
+typedef struct link
+{
+  unsigned class : 1;
+/*DECLARATOR OR SPECIFIER*/
+  unsigned tdef :1;
+/*FOR TYPEDEFS, IF SET, CURRENT LINK CHAIN WAS CREATED BY A TYPEDEF*/
+  union
+  {
+  specifier  s;
+/*IF CLASS == DECLARATOR*/
+  declarator d;
+/*IF CLASS == SPECIFIER*/
+}
+select;
+struct link *next;
+/*next element of the chaiin*/
+} link;
+/*use p->XXX where p is a pointer to a link structure*/
+#define NOUN   selct.s.noun
+#define SCLASS  select.s.sclass
+#define LONG   select.s._long
+#define UNSIGNED  select..s._unsigned
+#define EXTERN   select.s._extern
+#define STATIC   select.s._static
+#define OCLASS   select.s.oclass
+
+
+#define DCL_TYPE   select.d.dcl_type
+#define NUM_ELE    select.d.num_ele
+
+
+#define VALUE   select..s.const_val
+#define V_INT   VALUE.v_int
+#define V_UNIT  VALUE.v_unit
+#define V_LONG  VALUE.v_long
+#define V_ULONG VALUE.v_ulong
+#define V_STRUCT  VALUE.v_struct
+
+/*USE XXX(p) where p us a pointer to a link structure.*/
+
+#define IS_SPECIFIER(p)  ( (p)->class == SPECIFIER )
+#define IS_DECLARATOR(p)  ( (p)->class == DECLARATOR)
+#define IS_ARRAY(p)  ( (p)->class == DECLARATOR && (p)->DCL_TYPE==ARRAY  )
+#define IS_POINTER(p)  ( (p)->class == DECLARATOR && (p)->DCL_TYPE==POINTER )
+#define IS_FUNCT(p)  ( (p)->class == DECLARATOR && (p)->DCL_TYPE==FUNCTION)
+#define IS_STRUCT(p)  ( (p)->class == SPECIFIER && (p)->NOUN == STRUCTURE )
+#define IS_LABLE(p)  ( (p)->class ==SPECIFIER && (p)->NOUN == LABLE  )
+
+
+
+#define IS_CHAR(p)   ( (p)->class == SPECIFIER && (p)->NOUN == CHAR )
+#define IS_INT(p)   ( (p)->class ==SPECIFIER && (p)->NOUN == INT  )
+#define IS_UNIT(p)  ( IS_INT(p) && (p)->UNSIGNED  )
+#define IS_LONG(p)  ( IS_INT(p) && (p)->LONG  )
+#define IS_ULONG(p)  ( IS_INT(p) && (p)->LONG && (p)->UNSIGNED  )
+#define IS_UNSIGNED(p)  ( (p)->UNSIGNED  )
+
+
+#define IS_AGGREGATE(p)  ( IS_ARRAY(p) || IS_STRUCT(p)   )
+#define IS_PTR_TYPE(p)  (IS_ARRAY(p) || IS_POINTER(p) )
+
+
+#define IS_CONSTANT(p)  (IS_SPECIFIER(p) && (p)->SCLASS == CONSTANT  )
+#define IS_TYPEDEF(p)  (IS_SPECIFIER(p) && (p)->SCLASS == TYPEDEF  )
+#define IS_INT_CONSTANT(p)  (IS_CONSTANT(p) && (p)->NOUN == INT  )
+
+
+
+
