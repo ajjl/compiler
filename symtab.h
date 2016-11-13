@@ -213,4 +213,24 @@ struct link *next;
 
 
 
+/*REPRESENTING STRUCTURES*/
+
+
+typedef struct structdef
+{
+  char  tag[NAME_MAX+1];
+/*TAG PART OF STRUCTURE DEFINITION.  */
+  unsigned char level;
+/*NESTING LEVEL AT WHICH STRUCT DECLARED. */
+  symbol  *fields;
+/*LINKED LIST OF FIELD DECLARATIONS. */
+  unsigned size;
+/*size of the structure in bytes*/
+} structdef;
+
+ALLOC_CLS HASH_TAB *Struct_tab;
+/*The actual table LOL */
+
+
+
 
