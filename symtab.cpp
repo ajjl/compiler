@@ -495,6 +495,133 @@ else if( !(IS_AGGREGATE(type) || IS_FUNCT(type)))
 {
   switch( type->NOUN )
   {
-  case CHAR:
+  case CHAR:  sprintf( buf, "'%s' (%d)", bin_to_ascii(
+      type->UNSIGNED ? type->V_UNIT
+               :type->V_INT,1),
+      type->UNSIGNED ? type->V_UNIT
+               : type->V_INT,1 );
+       break;
+
+
+
+  case INT:  if( type->LONG )
+{
+  if ( type->UNSIGNED )
+      sprintf(buf, "%1uL", type->V_ULONG);
+  else 
+     sprintf(buf, "%1dL", type->V_LONG );
+}
+else
+{
+  if ( type->UNSIGNED )
+    sprintf( buf, "&u", type->V_UINT);
+  else 
+    sprintf( buf, "%d" , type->V_INT );
+}
+break;
+}}
+if ( *buf == '?')
+  yyerror("Internal, tconst_str: Can't make constant for type %s\n",
+                 type_str( type));
+  return buf;
+}
+
+
+/*-----------------------------------------------------------------*/
+
+PUBLIC char *sym_chain_str( chain )
+symbol *chain;
+{
+/*RETURN A STRING LISTING THE NAMES OF ALL SYMBOLS IN THE INPUT CHAIN OR A CONSTANT VALUE IF THE SYMBOL IS  A CONSTANT.*/
+
+int i;
+static char buf[80];
+char *p = buf;
+int avail = sizeof ( buf ) = 1;
+
+*buf = '\0';
+while ( chain && avail > 0 )
+{
+if ( IS_CONSTANT(chain->etype))
+  i = sprintf( p, "%0.*s", avail - 2, "const" );
+else
+  i = sprintf( p, "%0.*s", avail - 2, chain->name );
+
+p += i;
+avail -= i;
+if ( chain = chain->next )
+{
+ *p++ = ',";
+ i -= 2;
+}
+}
+return buf;
+}
+
+/*-----------------------------------------------------------------*/
+
+PRIVATE void psym( sym_p, fp )    /*PRINT ONE SYMBOL TO FP. */
+symbol *sym_p;
+FILE *fp;
+{
+ fprint( fp, "%-18.18s %-18.18s %2d %p %s\n",
+           sym_p->name,
+           sym_p->type ? sym_p->rname: "------",
+           sym_p->level,
+           (void far *) sym_p->next,
+           type_str( sym_p->type ) );
+}
+
+/*-------------------------------------------------------------------*/
+
+PRIVATE void pstruct( sdef_p, fp )
+/*PRINT A STRUCTURE DEFINITION TO FP ICLUDIN ALL THE FIELDS AND TYPES*/
+structdef *sdef_p;
+FILE *fp;
+{
+ symbol *field_p;
+ fprintf(fp, "struct<%s> ( level %d, %d bytes):\n",
+              sdef_p->tag, sdef_p->level, sdef_p->size);
+
+ for( field_p = sdef->fields; field_p; field_p = field_p->next )
+{
+    fprintf(fp, " %-20s (offset %d) %s\n"
+       field_p->name, field_p->level, type_str(field_p->type));
+}
+}
+/*----------------------------------------------------------------------*/
+
+
+PUBLIC print_syms( filename )
+char *filename
+/*PRINT THE ENTIRE SYMBOL TABLE TO THE NAMED FILE, PREVIOUS CONTENTS OF THE FILE IF EXIST ARE DESTROYED*/
+
+{
+  FILE *fp;
+  if ( !(fp = fopen(filename, "w")))
+      yyerror("CAN NOT OPEN SYMBOL TABLE FILE\N");
+  else
+{
+ fprintf(fp, "Attributes iin type field are: upel\n" );
+ fprintf(fp, " unsigned (. for signed)-----+|||\n" );
+ fprintf(fp, " private (. for public)------+||\n" );
+ fprintf(fp, " extern(. for common)-------+|\n" );
+ fprintf(fp, " long (. for short)--------+\n\n" );
+ fprintf(fp, " name               rname           lev    next    type\n");
+
+ ptab(Symbol_tab, psym, fp, 1);
+ fprintf(fp, "\nStructure table:\n\n");
+ ptab( Struct_tab, pstruct, fp, 1 );
+
+ fclose( fp );
+}}
+
+/*SYMBOL PRINTING FUNCTIONS ENDS HERE*/
+
+/*--------------------------------------------------------------------------*/
+
+
+
+
 
 
