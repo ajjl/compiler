@@ -240,4 +240,129 @@ link *dst, *src;
 
 
 
+/*THE MAINTENANCE LAYER: TYPE MANIPULATION*/
+
+PUBLIC link *clone_type( tchain, endp )
+link *tchain;
+/*input; TYPE CHAIN TO DUPLICATE.*/
+link **endp;
+/*output: POINTER TO LAST NODE IN CLONED CHAIN. */
+{
+ /*mANUFACTURE A CLONE OF THE TYPE CHAIN IN THE INPUT SYMBOL.  RETURN A POINTER TO THE CLONED CHAIN, NUL IF THERE WERE NO DECLARATORS TO CLONE. TDEF BIT IN THE COPY IS ALWAYS CLEARED.*/
+
+link *last, *head = NULL;
+for(; tchain; tchain = tchain->next )
+{
+if( !head )
+/*first node in chain*/
+  head = last= new_link();
+else  /*Subsequent node*/
+{
+ last->next = new_link();
+last = last->next;
+}
+memcpy( last, tchain, sizeof (*last));
+last->next = NULL;
+last->tdef = 0;
+}
+*endp = last;
+return head;
+}
+
+
+PUBLIC int the_same_type( p1, p2, relax )
+link *p1, *p2;
+int relax;
+{
+/*return 1 if the types match, 0 if they do not, ignore the storage class, if "relax" is true and the array declarator is the first link in the chain, then a pointer is considered equivalent to an array.*/
+
+if ( relax && IS_PTR_TYPE(pl) && IS_PTR_TYPE(p2))
+{
+  p1 = p1-> next;
+  p2 = p2->next;
+}
+for(; p1 && p2 ; p1 =p1->next, p2=p2->next)
+{
+  if ( p1->class != p2->class)
+    return 0;
+  if( p1->class == DECLARATOR )
+{
+  if ( (p1->DCL_TYPE != P2->dcl_type) ||
+         (p1->DCL_TYPE==ARRAY && (p1->NUM_ELE != p1->NUM_ELE)))
+    return 0;
+}
+else /*THIS IS DONE LAST*/
+{
+if( (p1->NOUN == p2->NOUN )  && (p1->LONG == p2->LONG ) && (p1->UNSIGNED==p2->UNSIGNED))
+{
+return ( p1->NOUN ==STRUCTURE) ? p1->V_STRUCT == p2->V_STRUCT:1;
+}
+return 0;
+}
+}
+yyerror("INTERNAL the_same_type: unknown link class\n");
+return 0;
+}
+
+/*----------------------------------------------------------------------*/
+
+
+
+
+PUBLIC int get_sizeof(p)
+link *p;
+{
+/*RETURN THE SIZE OF BYTES OF AN OBJECT OF THE TYPE POINTED TO BY P.  functions are considered to be a pointer sized because that is how they are represented internally*/
+
+int size;
+
+if ( p->class == DECLARATOR )
+   size = (p->DCL_TYPE == ARRAY) ? p->NUM_ELE *get_sizeof(p->next) : PSIZE;
+
+else
+{
+ switch( p->NOUN )
+{
+case CHAR: size = CSIZE; break;
+case INT: size = p->LONG ? LSIZE : ISIZE; break;
+case STRUCTURE: size = p->V_STRUCT->size; break;
+case VOID: size = 0;  break;
+case LABLE: size = 0; break;
+}
+}
+return size;
+}
+
+/*---------------------------------------------------------------------*/
+
+
+PUBLIC symbol *reverse_links ( sym )
+symbol *sym;
+{
+/*GO THROUGH THE CROSS LINKED CHAIN OF SYMBOLS, REVERSING THE DIRECTION OF THE CROSS POINTERS, RETURN A POINTER TO THE NEW HEAD OF CHAIN WHICH IS FORMERLY THE END OF THE CHAIN OR NULL IF THE CHAIN STARTED OUT EMPTY.*/
+
+symbol *previous, *current, *next;
+
+if( !sym )
+   return NULL;
+
+previous = sym;
+current = sym->next;
+
+while ( current )
+{
+next  = current->next;
+current->next = previous;
+previous = current;
+current = next;
+}
+
+sym->next = NULL;
+return previous;
+}
+
+
+/*END OF TYPE MANIPULATION*/
+
+
 
