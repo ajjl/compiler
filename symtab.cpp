@@ -365,4 +365,136 @@ return previous;
 /*END OF TYPE MANIPULATION*/
 
 
+/*THE MAINTENANCE LAYER: SYMBOL PRINTING FUNCTIONS*/
+
+PUBLIC char *sclass_str( class )
+/* RETURN A STRING REPRESENTING THE INDICATED STORAGE CLASS.*/
+int class;
+{
+ return class == CONSTANT ?"CON":
+        class == REGISTER ?"REG":
+        class == TYPEDEF  ?"TYP":
+        class == AUTO     ?"AUT":
+        class == FIXED    ?"FIX": "BAD SCLASS";
+}
+
+/*--------------------------------------------------------------------*/
+
+PUBLIC char *oclass_str( class )
+/*RETURN A STRING REPRESENTING THE INDICATED OUTPUT STORAGE CLASS*/
+int class;
+{
+  return class == PUB ? "PUB" :
+         class == PRI ? "PRI" :
+         class == COM ? "COM" :
+         class == EXT ? "EXT" : "(NO OCLS)";
+}
+/*----------------------------------------------------------------------*/
+
+
+PUBLIC char *noun_str(noun)
+/* Return a string representing the indicated noun.*/
+int noun;
+{
+  return noun==INT  ?"int" :
+         noun==CHAR ?"CHAR" :
+         noun==VOID ?"void" :
+         noun==LABLE ?"lable" :
+         noun == STRUCTURE ?"struct" : "BAD NOUN";
+}
+/*-------------------------------------------------------------------------*/
+
+PUBLIC char *attr_str(spec_p )
+/*RETURN A STRING REPRESENTING ALL*/
+specifier *spec_p;
+/*attributes in a specifier other than the noun and storage class.*/
+{
+ static char str[5]:
+ str[0] = ( spec_p->_unsigned ) ? 'u' : '.' ;
+ str[1] = ( spec_p->_static ) ? 's' : '.' ;
+ str[2] = ( spec_p->_extern ) ? 'e' : '.' ;
+ str[3] = ( spec_p->_long ) ? '1' : '.' ;
+ str[4] = '\0';
+}
+
+/*---------------------------------------------------------------------------*/
+
+PUBLIC char *type_str ( link_p )
+link *link_p;
+/*return a string representing the type represented by the link chain*/
+{
+ int i;
+ static char target [80];
+ static char buf [64 ];
+ int available = sizeof(target) =1;
+
+ *buf = '\0';
+ *target = '\0';
+
+ if ( !link_p )
+  return "(NULL)";
+ if(link_p-> tdef )
+{
+ strcpy( target, "tdef " );
+ available -= 5;
+}
+
+for(; link_p: link_p = link_p->next )
+{ 
+  if ( IS_DECLARATOR(link_p) )
+  {
+   switch( link_p->DCL_TYPE )
+{
+case POINTER: i = sprintf(buf, "*"); break;
+case ARRAY:  i = sprintf(buf, "[%d]", link_p->NUM_ELE); break;
+case FUNCTION: i = sprintf(buf, "()"); break;
+default: i = sprintf(buf, "BAD DECL"); break;
+}
+}
+else /* it is a specifier */
+{
+ i = sprintf( buf, "%s %s %s %s", noun_str ( link_p->NOUN ),
+                                  sclass_str ( link_p->SCLASS ),
+                                  oclass_str ( link_p->OCLASS ),
+                                  attr_str (&link_p->select.s ));
+ if ( link_p->NOUN == STRUCTURE || link_p->SCLASS == CONSTANT )
+{
+   strncat( target, buf, available );
+   available -= i ;
+   
+  if ( link_p->NOUN != STRUCTURE )
+   continue;
+  else
+{
+    i = sprintf(buf, " %s", link_p->V_STRUCT->tag ?
+                            link_p->V_STRUCT->tag : "untagged");
+}
+}
+
+ strncat( target, bufm available );
+ available -= i ;
+}
+return target;}
+
+/*----------------------------------------------------------*/
+
+PUBLIC char *tconst_str (type )
+link *type;
+/* RETURN A STRING REPRESENTING THE VALUE FIELD AT THE END OF THE SPECIFIED TYPE WHICH MUST BE CHAR POINTER , CHAR, INT, LONG, UNSIGNED INT, OR UNSIGNED LONG. RETURN "?" IF THE TYPE IS NOT ANY OF THESE. */
+
+{
+ static char buf[80];
+ buf[0] = '?';
+ buf[1] = '\0';
+ 
+if (IS_POINTER(type) && IS_CHAR(type->next))
+{
+ sprintf( buf, "%s%d", L_STRING, type->next->V_INT );
+}
+else if( !(IS_AGGREGATE(type) || IS_FUNCT(type)))
+{
+  switch( type->NOUN )
+  {
+  case CHAR:
+
 
