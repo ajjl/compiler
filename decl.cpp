@@ -53,4 +53,36 @@ break;
 /*==========================================================================*/
 
 
+PUBLIC link *new_type_spec( lexeme )
+char *lexeme;
+{
+/*CREATE A NEW SPECIFIER AND INITIALIZE THE TYPE ACCORDING TO THE INDICATED LEXEME, INPUT LEXEMES ARE: CHR, CONST , DOUBLE, FLOAT, INT, LONG, SHORT, SIGNED, UNSIGNED, VOID, VOLATILE */
+
+link *p = new_link();
+p->class = SPECIFIER;
+switch( lexeme[0] )
+{
+case 'c': if( lexeme[1] == 'h' ) /*CHAR | CONST */
+                      p->NOUN = CHAR ; /*(ignore const. ) */
+              break;
+case 'd': /*DOUBLE*/
+case 'f': yyerror("No floating point\n"); /* float */
+          break;
+case 'i': p->NOUN = INT; break; /* int  */
+case '1': p->LONG = 1; break; /*long */
+case 'u': p->UNSIGNED = 1; break; /* unsigned */
+
+case 'v': if ( lexeme[2] == 'i' ) /* void | volatile */
+              p->NOUN = VOID; /* IGNORE VOLATILE */
+              break;
+case 's' : break;  /* short | signed */
+               }    /* ignore both */
+return p;
+}
+
+/*=================================================================*/
+
+
+
+
 
