@@ -1,7 +1,6 @@
 /* incomplete code*/
 
-unsigned hash_pjw( name )
-unsigned char  *name;
+unsigned hash_pjw( unsigned char  *name )
 {
    unsigned hash_val =0;
    unsigned i;
