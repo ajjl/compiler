@@ -85,4 +85,35 @@ return p;
 
 
 
+void add_spec_to_decl( p_spec, decl_chain )
+link *p_spec;
+symbol *decl_chain;
+{
+link *clone_start, *clone_end ;
+link **p;
+
+for  (; decl_chain; decl_chain = decl_chain->next )
+{
+ if( !(clone_start = clone_type(p_spec, &clone_end)))
+   { yyerror( "INTERNAL, add_typedef_: Malformed chain ( no specifier)\n");
+   exit (1);
+}
+else
+{
+if ( !decl_chain->type)  /* NO DECLARATORS. */
+     decl_chain->type = clone_start;
+else
+    decl_chain->etype->next = clone_start;
+decl_chain->etype = clone_end;
+
+if( IS_TYPEDEF(clone_end))
+{
+ set_class_bit( 0, clone_end );
+ decl_chain->type->tdef = 1;
+}}}}
+
+/* ADD A SPECIFIER TO DECLARATION */
+
+/*=====================================================================*/
+
 
