@@ -252,6 +252,7 @@ void lex_advance() {
 			while ((ch != EOF) && (ch != '\n')) {
 				ch = getc( infile );
 			}
+            lex_advance();
 		}
 		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || 
         lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
