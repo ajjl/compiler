@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include <stdbool.h>
+#include <iostream>
 
 #include "errors.h"
 #include "stringpool.h"
@@ -18,6 +19,9 @@
 
 #define EXTERN
 #include "lexical.h"
+
+
+#define DEBUGGING 1
 
 /******
  * the character classifier
@@ -193,7 +197,7 @@ void lex_advance() {
 		symbol_start( line_number ); /* =BUG= ? */
 		do {
 			/* save the character */
-			symbol_append( ch ); 
+			symbol_append( ch );
 			/* get the next character */
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
@@ -212,6 +216,9 @@ void lex_advance() {
 
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
+    #if DEBUGGING
+      std::cout << "in digit case of lexical.cpp" << std::endl;
+    #endif
 		lex_next.type = NUMBER;
 		lex_next.value = 0;
 		do {
@@ -224,13 +231,19 @@ void lex_advance() {
 
 			/* get the next digit */
 			ch = getc( infile );
+#if DEBUGGING
+      std::cout << ch ;
+      #endif
 		} while ((ch != EOF) && ISCLASS(ch,DIGIT));
+    #if DEBUGGING
+    std::cout << "end of digit thing?? what about other stuff??" << std::endl;
+    #endif
 		/* =BUG= what if a # leads into an odd number base? */
 	} else if ((ch == '"') || (ch == '\'')) {
 		/* string */
 	       	unsigned char quote = ch; /* remember what quote mark to use */
 		lex_next.type = STRING;
-		symbol_start( line_number ); 
+		symbol_start( line_number );
 		ch = getc( infile );
 		while ((ch != EOF) && (ch != '\n') && (ch != quote)) {
 			symbol_append( ch );
@@ -254,7 +267,7 @@ void lex_advance() {
 			}
             lex_advance();
 		}
-		if ((lex_next.value == PT_GT || lex_next.value == PT_LT || 
+		if ((lex_next.value == PT_GT || lex_next.value == PT_LT ||
         lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
 			if (lex_next.value == PT_GT) {	/* greater than or equal */
 				lex_next.value = PT_GE;
