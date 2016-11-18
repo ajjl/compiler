@@ -9,6 +9,10 @@
 #include <stdint.h>
 
 #include "lexical.h"
+#include <iostream>
+
+
+#define DEBUGGING_Testlex_cpp 0
 
 //this is a bad kludge, we should get rid of all global variables
 // and all instances of extern
@@ -26,6 +30,9 @@ int main(int argc, char** argv) {
 	lex_open( argv[1] ); /* default to stdin if argv[1] not present */
 
 	do {
+#if DEBUGGING_Testlex_cpp
+		std::cout << "in a testlex loop iteration" << std::endl;
+#endif
 		lex_put( &lex_this, stdout );
 		putchar( '\n' );  /* output each lexeme on a new line */
 		lex_advance();
