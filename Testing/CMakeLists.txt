@@ -38,10 +38,6 @@ link_libraries(LEXlib)
 #GTEST_ADD_TESTS(firstGTest ARGN FirstGoogleTest.cpp)
 #GTEST_ADD_TESTS(errorTest ARGN ErrorTester.cpp)
 
-# add executable
-add_executable(hongxuFirstTest hongxuFirstTest.cpp)
-add_test(NAME hongxuFirstTest COMMAND ./hongxuFirstTest "ThisISArgument1")
-
 # add a test for testing our getclass method!!
 
 add_executable(classiferForCharTypesTest lexicalISCLASSMacroTest.cpp )
