@@ -8,7 +8,6 @@
 ## Contributors
 ###	kntsn - Dan Knutson, kntsn@uiowa.edu
 ###	aleinoff - Alexander Leinoff, alexander-leinoff@uiowa.edu
-###	hongxli - hongxu li, hongxu-li@uiowa.edu
 ###	bziolko - Brad Ziolko, bradley-ziolko@uiowa.edu
 ###	xzhu16 - Xi Zhu, xi-zhu-1@uiowa.edu
 
@@ -55,7 +54,6 @@ or
 If you want to rebuild the project. Run `make clean` first.
 
 ### Do NOT add the build directory to svn or git
-## does anyone know where is the code of identifiers recognization>? Its not in the string pool
 ## Git-svn
 This repo should update automatically with new svn commits. So you could just
 commit on svn and see the results on github.
@@ -147,4 +145,3 @@ I think It'd be cool to use a feature/branch workflow. Svn branches are complica
 "git branch -D myNewBranchThatIsCool"
 
 
-##.It does create some complicated qualifications among the git-svn version control process, according to the grade polices, we can check the necessary workability among ourselves, although it is always nice to have the version work every time, maybe we can consider comment out the unworkable progress if necessary and continue to manage our work among the subversion. 
