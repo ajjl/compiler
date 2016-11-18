@@ -21,7 +21,7 @@
 #include "lexical.h"
 
 
-#define DEBUGGING 1
+#define DEBUGGING_lexical_c 0
 
 /******
  * the character classifier
@@ -33,6 +33,7 @@
 #define LET LETTER
 #define DIG DIGIT
 #define PUN PUNCTUATION
+
 
 
 /* character classifier table */
@@ -179,10 +180,14 @@ void lex_open( const char * f ) {
 
 void lex_advance() {
 
+	int base = 10;
 	/* slide the lexical analysis window forward */
 	lex_this = lex_next;
 
 	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
+#if DEBUGGING
+        std::cout << "in lex_advance() loop" << std::endl;
+#endif
 		/* skip whitespace */
 		if (ch == '\n') line_number = line_number + 1;
 		ch = getc( infile );
@@ -222,18 +227,35 @@ void lex_advance() {
 		lex_next.type = NUMBER;
 		lex_next.value = 0;
 		do {
-			if ( lex_next.value > ((UINT32_MAX - (ch - '0'))/10) ) {
+            //we might be getting wrong base and wrong number vals but at least we're parsing stuff
+			//maybe numbers are all positive and then the negative thing is an extra lexime we should figure it out?? =BUG=
+			if ( lex_next.value > ((UINT32_MAX - (ch - '0'))/base) ) {
 				error_warn( ER_TOOBIG, line_number );
 			} else {
 				/* accumulate value of digit */
-				lex_next.value = (lex_next.value*10)+(ch - '0');
+				lex_next.value = (lex_next.value*base)+(ch - '0');
+			}
+			ch = getc( infile );
+			if(ch == '#'){
+
+				std::cout << ch << "~" << std::endl;
+				std::cout << ISCLASS(ch,DIGIT) << std::endl;
+				std::cout << "got the # thing?" << std::endl;
+                base =  lex_next.value;
+				lex_next.value = 0;
+
+				ch = getc( infile );
+				continue;
+
+				//exit(0);
 			}
 
 			/* get the next digit */
-			ch = getc( infile );
 #if DEBUGGING
-      std::cout << ch ;
-      #endif
+      std::cout << ch << "~" ;
+#endif
+
+
 		} while ((ch != EOF) && ISCLASS(ch,DIGIT));
     #if DEBUGGING
     std::cout << "end of digit thing?? what about other stuff??" << std::endl;

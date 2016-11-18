@@ -9,6 +9,7 @@ add_test(DOES_IT_RUN ${CMAKE_BINARY_DIR}/kestrel ${CMAKE_CURRENT_SOURCE_DIR}/Hel
 
 add_test(NAME testlex_parse_HelloWorld.kestrel COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/HelloWorld.kestrel )
 add_test(NAME testlex_parse_lextestfile COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/lextestfile )
+add_test(NAME testlex_parse_prolog COMMAND ${CMAKE_BINARY_DIR}/testlex ${CMAKE_CURRENT_SOURCE_DIR}/Prologue.kestrel)
 
 # try the google test
 
