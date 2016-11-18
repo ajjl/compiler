@@ -1,0 +1,58 @@
+exception range;
+
+boolean: type enum( false, true );
+
+NUL:  const "@"-64; -- for these, character in quotes is
+SOH:  const "A"-64; -- the control code used to type it.
+STX:  const "B"-64;
+ETX:  const "C"-64;
+EOT:  const "D"-64;
+ENQ:  const "E"-64;
+ACK:  const "F"-64;
+BEL:  const "G"-64;
+BS :  const "H"-64;
+TAB:  const "I"-64;
+LF :  const "J"-64;
+VT :  const "K"-64;
+FF :  const "L"-64;
+CR :  const "M"-64;
+SO :  const "N"-64;
+SI :  const "O"-64;
+DLE:  const "P"-64;
+DC1:  const "Q"-64;
+DC2:  const "R"-64;
+DC3:  const "S"-64;
+DC4:  const "T"-64;
+NAK:  const "U"-64;
+SYN:  const "V"-64;
+ETB:  const "W"-64;
+CAN:  const "X"-64;
+EM :  const "Y"-64;
+SUB:  const "Z"-64;
+ESC:  const "["-64;
+FS :  const "\"-64;
+GS :  const "]"-64;
+RS :  const "^"-64;
+US :  const "_"-64;
+DEL:  const NUL+127;
+
+char: type NUL .. NUL+255;
+
+int8:   type -128 .. 127;
+uint8:  type 0 .. 255;
+int16:  type -32768 .. 32767;
+uint16: type 0 .. 65535;
+int32:  type -16#80000000 .. 16#7FFFFFFF;
+uint32: type 0 .. 16#FFFFFFFF;
+
+file: type @ record end;
+
+input:  var file;
+output: var file;
+errors: var file;
+
+putchar:   procedure( c:char, f:file ) external;
+getchar:   function char ( f:file ) external;
+eof:       function boolean ( f:file ) external;
+putstring: procedure( ref s:array of char, f:file ) external;
+getstring: procedure( ref s:array of char, f:file ) external;
