@@ -107,8 +107,11 @@ int main( int argc, char * argv[] ) {
 
       } else if (!strcmp( arg, "?" )) { // -? means help
         er_help();
-
-      } else {
+      
+      } else if (!strcmp( arg, "question" )) { //-question means help
+        er_help();
+        
+      }   else {
         error_fatal( ER_BADARG, 0 );
       }
     }    
@@ -146,5 +149,8 @@ int main( int argc, char * argv[] ) {
 
   // and finally, compile the program
   Program * p = Program::compile();
+  return 0;
+ /*since the int main, we better have return 0; if it does not break anything*/
   // =BUG= we don't seem to need the return value
+
 }
