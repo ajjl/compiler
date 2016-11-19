@@ -17,3 +17,7 @@ tags
 
 # swap files
 *.swp
+
+# add folder for builds to git
+build
+build/*
