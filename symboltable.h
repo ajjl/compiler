@@ -82,6 +82,7 @@ jones has comments here
 /* output the text of the symbol to the human-readable file */
 
 /* =BUG= the code generator may need a different way to put out the symbol */
+/* In which case the "add symbols to table" like function should apply here. */
 
 #undef EXTERN
 #endif
