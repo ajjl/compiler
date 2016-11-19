@@ -52,6 +52,7 @@ bool lex_forcepunc( punct_type t ) {
 
 void lex_gotbutwant( lexeme * lex, error_message e) {
 	/* error: this lexeme e, where e is typically found when x expected */
+  //This is like, where the goddamn quoted lexeme would go if it worked that way
 	error_warnprefix( lex -> line );
 	lex_put( lex, stderr );
 	error_warnsuffix( e );
