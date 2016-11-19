@@ -13,37 +13,7 @@
 #include "errors.h"
 
 #define EXTERN
-#include "stringpool.h"
-
-/* static unsigned char string_pool[POOL_SIZE]; */
-/* declaration moved to stringpool.h */
-
-/* static string_handle string_limit; */
-/* declaration moved to stringpool.h */
-
-/* static string_handle string_pos; */
-/* declaration moved to stringpool.h */
-
-/* static int string_line; */
-/* declaration moved to stringpool.h */
-
-/* void string_init() { */
-/* code moved to stringpool.h */
-
-/* string_handle string_start( int line ) { */
-/* code moved to stringpool.h */
-
-/* void string_append( char ch ) { */
-/* code moved to stringpool.h */
-
-/* void string_done() { */
-/* code moved to stringpool.h */
-
-/* void string_accept() { */
-/* code moved to stringpool.h */
-
-/* void string_reject() { */
-/* code moved to stringpool.h */
+#include "stringpool.h"/
 
 void string_put( string_handle h, FILE * f ) {
 	/* output the string to the human-readable file */
