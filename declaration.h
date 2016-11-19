@@ -22,6 +22,10 @@ public:
 	// =BUG= do declarations have any attributes?  they are missing here
         // =BUG= should we use private statement in this case to add functionality?
 
+
+private:
+       //=BUG= nothing lives here yet
+
 };
 
 #undef EXTERN
