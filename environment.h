@@ -16,6 +16,10 @@
 class Environment {
 public:
 	// =BUG= nothing lives here yet
+
+private:
+
+  //=BUG= nothing lives here yet
 };
 
 #undef EXTERN
