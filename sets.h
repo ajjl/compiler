@@ -21,6 +21,8 @@ r*    a & b - the intersection of sets a and b
 
 typedef uint32_t set32_t;
 /* the type of sets over domains containing up to 32 elements */
+/* the #ifndef #define #endif structure is for the accuracy of the compiler in case the functions were defined multiple times, should not break the building, ifany thing goes wrong because of this matter, feel free to change it.*/
+
 #ifndef SET32_EMPTY
 #define SET32_EMPTY ((set32_t)0)
 #endif
