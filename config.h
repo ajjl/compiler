@@ -4,6 +4,9 @@
  * Date 9/9/2016 -- added errors raised by string pool
  */
 
+/* should not define the same thing twice based on the effeciency of the program*/
+
+
 #ifndef CONFIG_H
 #define CONFIG_H
 
