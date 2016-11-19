@@ -20,6 +20,8 @@ public:
 	// =BUG= perhaps Declaration could be a subclass of Environment?
 
 	// =BUG= do declarations have any attributes?  they are missing here
+        // =BUG= should we use private statement in this case to add functionality?
+
 };
 
 #undef EXTERN
