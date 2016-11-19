@@ -11,8 +11,8 @@
 // <block> ::= { <block element> [ ; ] }
 // <block element> ::= <declaration> | <statement>
 
-#ifndef EXTERN
-	#define EXTERN extern
+#ifndef EXTERN 
+#define EXTERN extern
 #endif
 
 class Block {
