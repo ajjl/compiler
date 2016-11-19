@@ -13,7 +13,9 @@
 #include "declaration.h"
 #include "statement.h"
 
-#define EXTERN
+//#define EXTERN8
+/*Why do we need to define EXTERN in this part, which has already defined in the header file*/
+
 #include "block.h"
 
 // start sets
