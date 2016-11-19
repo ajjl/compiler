@@ -1,5 +1,5 @@
 
-// block.h -- interface specificatio for parser/compiler for blocks
+// block.h -- interface specification for parser/compiler for blocks
 
 // Author: Douglas W. Jones
 // Date 10/13/2016 -- framework established
@@ -20,7 +20,9 @@ public:
 	static Block * compile( Environment * e );
 	// factory method 
 
-	// =BUG= blocks certainly have attributes, they are missing here
+	// =BUG= blocks certainly have attributes in public section, they are missing here
+private:
+        //=BUG= blocks certainly have attributes in private section, they are missing here
 };
 
 #undef EXTERN
