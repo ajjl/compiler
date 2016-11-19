@@ -25,4 +25,7 @@ private:
         //=BUG= blocks certainly have attributes in private section, they are missing here
 };
 
-#undef EXTERN
+//#undef EXTERN
+/* comment it out, the header file now defines extern which can be used in cpp file*/
+
+
