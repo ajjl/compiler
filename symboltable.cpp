@@ -21,7 +21,11 @@
 
 /* static unsigned char _symbol_table[SYMBOL_SIZE]; */
 /* declared in symboltable.h */
-
+void symbol_unsigned_char(){
+symbol_handel i;
+for (i=0, i<SYMBOL_SIZE; i++) _symbol_table[i] = STRING_NULL;
+/* this is tempoary, to be changed in other function*/
+}
 /* static symbol_handle _symbol_hash; */
 /* declared in symboltable.h */
 
