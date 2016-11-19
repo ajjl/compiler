@@ -10,7 +10,7 @@
  */
 
 #ifndef EXTERN
-	#define EXTERN extern
+#define EXTERN extern
 #endif
 
 /* Information from the command line */
@@ -20,5 +20,9 @@ EXTERN const char * main_infile;   /* input file name, NULL if stdin */
 EXTERN const char * main_outfile;  /* output file name, NULL if stdout */
 
 /* any additional command line option values go here */
+EXTERN const char * main_intermediate; /*intermediate file name, NULL if stdout */
+
+/*=BUG= why we have to keep #define and #undef the same EXTERN value in different files, this is a waste of memory or resources.*/
+
 
 #undef EXTERN
