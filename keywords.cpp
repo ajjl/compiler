@@ -26,7 +26,7 @@ const char * const key_names[] = {
 	"while",        "do",           "until",        "for",
 	"in",           "catch",        "raise",	"enum",
 	"printf",	"print",	"int",		"char",
-        "null"
+        "putstring",	"null"
 };
 /* IT IS CRUCIAL that the order of the strings listed in this table
  * exactly match the order of the keyword names declared in
@@ -55,14 +55,11 @@ key_handle key_lookup( symbol_handle s ) {
 	 */
 	
         /* =BUG= stupid version, uses a linear search */
-
         int i = KEY_NULL;
         while ((i >= KEY_INVALID + 1) && (key_table[i] != s)){
-        i--;
+		i--;
         }
-   /* I AM NOT SURE HOW THIS IS GONNA COMPILE, BUT SHOULD THE WHILE STRUCTURE BE INCLUDED A "{}" in the statement part? and semicolon should be in {}*/
-        return (key_handle(i));
+	
+	return (key_handle)i;
 }
-/* should this be return (key_handel(i));?, but if it compiles, maybe it is not a big problem, but looks wierd though*/
-/* Now I am certain, changed the structure*/
 
