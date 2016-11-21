@@ -13,7 +13,7 @@
 #include "errors.h"
 
 #define EXTERN
-#include "stringpool.h"/
+#include "stringpool.h"
 
 void string_put( string_handle h, FILE * f ) {
 	/* output the string to the human-readable file */
