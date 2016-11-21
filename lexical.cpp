@@ -208,8 +208,8 @@ void lex_advance() {
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
 		 /*This step is link lex_next to a unique number*/
-	key_init();
 	lex_next.value = symbol_lookup();
+	key_init();
 
 	/* Jones has this in a bracket block for seemingly no reason... */
 	//{ Start of Jones' erroneous block
