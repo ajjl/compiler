@@ -81,13 +81,13 @@ void string_done() {
 /* mark the end of the string */
 
 /* void string_accept(); */
-#ifndef string_accept()
+#ifndef string_accept
 #define string_accept() { _string_limit = _string_pos; }
 #endif
 /* accept the new string, it is permanently in the string pool */
 
 /* void string_reject(); */
-#ifndef string_reject()
+#ifndef string_reject
 #define string_reject()
 #endif
 /*should there be something else above to the string_reject?*/
