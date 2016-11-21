@@ -25,8 +25,8 @@ const char * const key_names[] = {
 	"then",         "else",         "select",       "case",
 	"while",        "do",           "until",        "for",
 	"in",           "catch",        "raise",	"enum",
-	"null",         "printf",       "print",        "int",
-        "char"
+	"printf",	"print",	"int",		"char",
+        "null"
 };
 /* IT IS CRUCIAL that the order of the strings listed in this table
  * exactly match the order of the keyword names declared in
