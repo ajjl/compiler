@@ -23,6 +23,7 @@ typedef enum {
         KEY_THEN,       KEY_ELSE,       KEY_SELECT,     KEY_CASE,
         KEY_WHILE,      KEY_DO,         KEY_UNTIL,      KEY_FOR,
         KEY_IN,         KEY_CATCH,      KEY_RAISE,      KEY_ENUM,
+	KEY_PRINTF,	KEY_PRINT,	KEY_INT,	KEY_CHAR,
 	KEY_NULL
 } key_handle;
 /* the range of valid key_handle values is KEY_INVALID + 1 to KEY_NULL
