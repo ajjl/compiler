@@ -75,10 +75,10 @@ static const int char_class[256] = {
 
 #define ISCLASS(ch,class) (char_class[ch]&(class))
 int getCharType(char myChar) {
-  if (myChar > 0) {
-    return char_class[(int)myChar];
-  }
-  return OTHER;
+	if (myChar > 0) {
+		return char_class[(int)myChar];
+	}
+	return OTHER;
 }
 
 /******
@@ -183,16 +183,16 @@ void lex_advance() {
 	int base = 10;
 	/* slide the lexical analysis window forward */
 	lex_this = lex_next;
-  lex_this.line = line_number;
+	lex_this.line = line_number;
 
 	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
-#if DEBUGGING
-        std::cout << "in lex_advance() loop" << std::endl;
-#endif
+		#if DEBUGGING
+			std::cout << "in lex_advance() loop" << std::endl;
+		#endif
 		/* skip whitespace */
 		if (ch == '\n') line_number = line_number + 1;
 		ch = getc( infile );
-    /* =BUG= how do we handle comments? */
+		/* =BUG= how do we handle comments? */
 	}
 	if (ch == EOF) {
 		lex_next.type = ENDFILE;
@@ -208,27 +208,27 @@ void lex_advance() {
 			ch = getc( infile );
 		} while ((ch != EOF) && ISCLASS(ch,LETTER|DIGIT));
 		 /*This step is link lex_next to a unique number*/
-    lex_next.value = symbol_lookup();
+	lex_next.value = symbol_lookup();
 
-    /* Jones has this in a bracket block for seemingly no reason... */
-    //{ Start of Jones' erroneous block
-    key_handle key = key_lookup( lex_next.value );
-    if (key != KEY_INVALID) {
-      lex_next.type = KEYWORD;
-      lex_next.value = key;
-    }
-    //} End of Jones' erroneous block
+	/* Jones has this in a bracket block for seemingly no reason... */
+	//{ Start of Jones' erroneous block
+	key_handle key = key_lookup( lex_next.value );
+	if (key != KEY_INVALID) {
+		lex_next.type = KEYWORD;
+		lex_next.value = key;
+	}
+	//} End of Jones' erroneous block
 
 
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
-    #if DEBUGGING
-      std::cout << "in digit case of lexical.cpp" << std::endl;
-    #endif
+		#if DEBUGGING
+			std::cout << "in digit case of lexical.cpp" << std::endl;
+		#endif
 		lex_next.type = NUMBER;
 		lex_next.value = 0;
 		do {
-            //we might be getting wrong base and wrong number vals but at least we're parsing stuff
+			//we might be getting wrong base and wrong number vals but at least we're parsing stuff
 			//maybe numbers are all positive and then the negative thing is an extra lexime we should figure it out?? =BUG=
 			if ( lex_next.value > ((UINT32_MAX - (ch - '0'))/base) ) {
 				error_warn( ER_TOOBIG, line_number );
@@ -237,12 +237,12 @@ void lex_advance() {
 				lex_next.value = (lex_next.value*base)+(ch - '0');
 			}
 			ch = getc( infile );
-			if(ch == '#'){
 
+			if(ch == '#'){
 				std::cout << ch << "~" << std::endl;
 				std::cout << ISCLASS(ch,DIGIT) << std::endl;
 				std::cout << "got the # thing?" << std::endl;
-                base =  lex_next.value;
+				base =  lex_next.value;
 				lex_next.value = 0;
 
 				ch = getc( infile );
@@ -252,15 +252,15 @@ void lex_advance() {
 			}
 
 			/* get the next digit */
-#if DEBUGGING
-      std::cout << ch << "~" ;
-#endif
+			#if DEBUGGING
+			      std::cout << ch << "~" ;
+			#endif
 
 
 		} while ((ch != EOF) && ISCLASS(ch,DIGIT));
-    #if DEBUGGING
-    std::cout << "end of digit thing?? what about other stuff??" << std::endl;
-    #endif
+		#if DEBUGGING
+			std::cout << "end of digit thing? what about other stuff?" << std::endl;
+		#endif
 		/* =BUG= what if a # leads into an odd number base? */
 	} else if ((ch == '"') || (ch == '\'')) {
 		/* string */
@@ -288,10 +288,11 @@ void lex_advance() {
 			while ((ch != EOF) && (ch != '\n')) {
 				ch = getc( infile );
 			}
-            lex_advance();
+			lex_advance();
 		}
+
 		if ((lex_next.value == PT_GT || lex_next.value == PT_LT ||
-        lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
+		  lex_next.value == PT_DIV) && (punct_class[ch] == PT_EQUALS)) {
 			if (lex_next.value == PT_GT) {	/* greater than or equal */
 				lex_next.value = PT_GE;
 				ch = getc( infile );
@@ -313,10 +314,10 @@ void lex_put( lexeme * lex, FILE * f ) {
 	/* reconstruct the text of the lexeme */
 	switch (lex->type) {
 	case IDENT:
-    symbol_put( (symbol_handle) lex->value, f );
-    break;
+		symbol_put( (symbol_handle) lex->value, f );
+		break;
 	case KEYWORD:
-    key_put( (key_handle) lex->value, f );
+		key_put( (key_handle) lex->value, f );
 		break;
 	case NUMBER:
 		fprintf( f, "%" PRId32, lex->value );
