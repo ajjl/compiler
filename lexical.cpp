@@ -183,6 +183,7 @@ void lex_advance() {
 	int base = 10;
 	/* slide the lexical analysis window forward */
 	lex_this = lex_next;
+  lex_this.line = line_number;
 
 	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
 #if DEBUGGING
