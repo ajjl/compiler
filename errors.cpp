@@ -63,9 +63,7 @@ void error_fatal( error_message er, int line ) {
 
 void error_warnprefix( int line ) {
 	/* output the first half of a warning error for the given line */
-	fprintf( stderr, "%s: Error on line %d: ",
-		   main_progname,	   line
-	);
+	fprintf( stderr, "%s: Error on line %d: ", main_progname, line );
 }
 
 void error_warnsuffix( error_message er ) {
