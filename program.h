@@ -7,7 +7,7 @@
 // <kestrel program> :: <block> <end of file>
 
 #ifndef EXTERN
-	#define EXTERN extern
+#define EXTERN extern
 #endif
 
 class Program {
@@ -20,3 +20,5 @@ public:
 };
 
 #undef EXTERN
+
+
