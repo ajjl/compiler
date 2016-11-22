@@ -11,4 +11,48 @@
 
 /* GUIDELINE OF CODE GENERATOR CPP ENDS HERE*/
 
+/*THIS CODE DOES NOT COMPILE NOW*/
 
+#if 0
+
+
+/* first of all, need to divide different symbols and keywords into different sub parts*/
+
+/* AS AN ARRAY */
+
+newTable[]={
+{ "=", mathSymbol },
+{ "+". mathSymbol },
+{ "-", mathSymbol },
+/* * means multiple and pointer in c++, but in Kestrel? */
+{ "*", mathSymbol },
+{ "/", mathSymbol },
+{ "%", mathSymbol },
+{ "//", mathSymbol},
+/* HOW TO DIVIDE '//' AND '/' , SURELY '//' SHOULD BE IN HIGHER PRIORITY*/
+{"!", logicalSymbol},
+{"==", logicalSymbol},
+{"<", comparisonSymbol},
+{">", comparisonSymbol},
+{"<=", comparisonSymbol},
+{"=<", comparisonSymbol},
+{">=", comparisonSymbol},
+{"=<", comparisonSymbol},
+/* SURELY WE NEED TO DISTINGUISH SYMBOLS STUCK TOGETHER GENERAL SITUATION AND SPECIAL OCCASIONS*/
+
+/* there are still many things to fill in this table */
+
+
+
+}
+ 
+
+
+
+
+
+
+
+
+
+#endif
