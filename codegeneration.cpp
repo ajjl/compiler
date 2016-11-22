@@ -19,6 +19,7 @@
 /* first of all, need to divide different symbols and keywords into different sub parts*/
 
 /* AS AN ARRAY */
+/* tHE TABLE NAME IS GOING TO BE CHANGED*/
 
 newTable[]={
 { "=", mathSymbol },
@@ -38,6 +39,10 @@ newTable[]={
 {"=<", comparisonSymbol},
 {">=", comparisonSymbol},
 {"=<", comparisonSymbol},
+/* FOR EXAMPLE, case, statemnet maybe should be adding here*/
+
+
+
 /* SURELY WE NEED TO DISTINGUISH SYMBOLS STUCK TOGETHER GENERAL SITUATION AND SPECIAL OCCASIONS*/
 
 /* there are still many things to fill in this table */
@@ -46,6 +51,8 @@ newTable[]={
 
 }
  
+
+/* NEED TO ADD FUNCTION SWITCH BETWEEN CASES*/
 
 
 
