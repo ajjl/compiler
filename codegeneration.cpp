@@ -54,6 +54,10 @@ newTable[]={
 
 /* NEED TO ADD FUNCTION SWITCH BETWEEN CASES*/
 
+/* need to check structures of finding certain key words,
+add pointer on for example "while" w->h->i->l->e->recon"while" key word,
+just a reminder.*/
+
 
 
 
