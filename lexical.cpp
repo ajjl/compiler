@@ -331,7 +331,8 @@ void lex_put( lexeme * lex, FILE * f ) {
 		symbol_put( lex->value, f );
 		fputc( '"', f);
 		break;
-		/* =BUG= this sometimes uses the wrong type of quotes */
+/*=BUG= what if there are some strings include "" symbols, need to check that.*/		
+/* =BUG= this sometimes uses the wrong type of quotes */
 	case ENDFILE:
 		fputs( "EOF", f );
 		break;
