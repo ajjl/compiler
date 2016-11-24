@@ -146,4 +146,7 @@ I think It'd be cool to use a feature/branch workflow. Svn branches are complica
 
 /
 
+8. There is a difference between using .h file and .hpp file in our project, although most of our code is c code, there are still some cpp features in this project, I guess it is a point we need to be careful about, because sometimes we maybe need to include .hpp header file.
+
+
 
