@@ -58,6 +58,8 @@ newTable[]={
 add pointer on for example "while" w->h->i->l->e->recon"while" key word,
 just a reminder.*/
 
+/* should be differ from states, like state1 --w-->state2 etc*/
+
 
 
 
