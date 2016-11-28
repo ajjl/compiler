@@ -7,6 +7,7 @@
 
 ## Contributors
 ###	kntsn - Dan Knutson, kntsn@uiowa.edu
+###     hongxli - Hongxu Li, hongxu-li@uiowa.edu
 ###	aleinoff - Alexander Leinoff, alexander-leinoff@uiowa.edu
 ###	bziolko - Brad Ziolko, bradley-ziolko@uiowa.edu
 ###	xzhu16 - Xi Zhu, xi-zhu-1@uiowa.edu
@@ -146,7 +147,6 @@ I think It'd be cool to use a feature/branch workflow. Svn branches are complica
 
 /
 
-8. There is a difference between using .h file and .hpp file in our project, although most of our code is c code, there are still some cpp features in this project, I guess it is a point we need to be careful about, because sometimes we maybe need to include .hpp header file.
-
+8. There is a difference between using .h file and .hpp file in our project, although most of our code is c code, there are still some cpp features in this project, I guess it is a point we need to be careful about, because sometimes we maybe need to include .hpp header file and yes, fix if breaks applied here.
 
 
