@@ -55,8 +55,21 @@ key_handle key_lookup( symbol_handle s ) {
 	 */
 	
         /* =BUG= stupid version, uses a linear search */
-        int i = KEY_NULL;
-        while ((i >= KEY_INVALID + 1) && (key_table[i] != s)){
+       /*BELOW COMMENT PART IS TRYING TO FIX THE LINEAR SEARCH BUG CODE ATTEMPTION*/
+          int i = KEY_NULL;
+       /* 
+          while 0{
+          if( key_table[i]!= s){
+          i= KEY_INVALID;
+          if( ket_table[i] !=s){
+          break}
+          else {
+          i = KEY_NULL; 
+          break;}
+          else{ break;}}
+                
+        */
+         while ((i >= KEY_INVALID + 1) && (key_table[i] != s)){
 		i--;
         }
 	
