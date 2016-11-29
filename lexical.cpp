@@ -184,7 +184,12 @@ void lex_advance() {
 	/* slide the lexical analysis window forward */
 	lex_this = lex_next;
 	lex_this.line = line_number;
-
+        /*we also need to recognize the comment type in Kestrel to wipe comments out in the program, guess that part was missing */
+        /*
+        while((ch == (whatever comment symbol is)&& (ch != EOF){
+        // DETECT THE ENTIRE PART AS STRING_COMMENT
+        DELETE STRING_COMMENT IN THE SCANNER COPY      
+        */
 	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
 		#if DEBUGGING
 			std::cout << "in lex_advance() loop" << std::endl;
