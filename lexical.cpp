@@ -198,6 +198,7 @@ void lex_advance() {
 		if (ch == '\n') line_number = line_number + 1;
 		ch = getc( infile );
 		/* =BUG= how do we handle comments? */
+                /* Base function are moved up this while loop, now I am considering recognize it and just delete it out when compiling, should work, the problem is recognize it though, anyone knows the rules in Kestrel of comments?*/
 	}
 	if (ch == EOF) {
 		lex_next.type = ENDFILE;
