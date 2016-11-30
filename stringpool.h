@@ -88,7 +88,7 @@ void string_done() {
 
 /* void string_reject(); */
 #ifndef string_reject
-#define string_reject() {_string_limit = 0;}
+#define string_reject()/* {_string_limit = 0;}*/
 #endif
 /*should there be something else above to the string_reject?*/
 
