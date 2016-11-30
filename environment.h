@@ -45,6 +45,10 @@ public:
 		return newEnv;
 	}
 
+	void print(){
+		std::cout << "name (handle) is: " << name << std::endl;
+		std::cout << "value (int only for now) is:" << value << std::endl;
+	}
 
 private:
 
