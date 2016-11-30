@@ -147,7 +147,7 @@ static const char * punct_name[] = {
     /* "PT_LT     */ "<", /* PT_LE     */ "<=", /*PT_PLUS   */ "+",
     /* "PT_MINUS  */ "-", /* PT_TIMES  */ "*", /* PT_DIV    */ "/",
     /* "PT_MOD    */ "%", /* PT_AND    */ "&", /* PT_OR     */ "|",
-    /* "PT_NOT    */ "~", /* PT_DOT    */ "."
+    /* "PT_NOT    */ "~", /* PT_DOT    */ ".", /* PT_DD     */ ".."
 };
 
 /******
@@ -191,7 +191,7 @@ void lex_advance() {
         DELETE STRING_COMMENT IN THE SCANNER COPY      
         */
 	while ((ch != EOF) && ISCLASS(ch,WHITESPACE)) {
-		#if DEBUGGING
+		#if DEBUGGING_lexical_c
 			std::cout << "in lex_advance() loop" << std::endl;
 		#endif
 		/* skip whitespace */
@@ -229,7 +229,7 @@ void lex_advance() {
 
 	} else if (ISCLASS(ch,DIGIT)) {
 		/* decimal digit */
-		#if DEBUGGING
+		#if DEBUGGING_lexical_c
 			std::cout << "in digit case of lexical.cpp" << std::endl;
 		#endif
 		lex_next.type = NUMBER;
@@ -246,9 +246,11 @@ void lex_advance() {
 			ch = getc( infile );
 
 			if(ch == '#'){
+				#if DEBUGGING_lexical_c
 				std::cout << ch << "~" << std::endl;
 				std::cout << ISCLASS(ch,DIGIT) << std::endl;
 				std::cout << "got the # thing?" << std::endl;
+				#endif
 				base =  lex_next.value;
 				lex_next.value = 0;
 
@@ -259,13 +261,13 @@ void lex_advance() {
 			}
 
 			/* get the next digit */
-			#if DEBUGGING
+			#if DEBUGGING_lexical_c
 			      std::cout << ch << "~" ;
 			#endif
 
 
 		} while ((ch != EOF) && ISCLASS(ch,DIGIT));
-		#if DEBUGGING
+		#if DEBUGGING_lexical_c
 			std::cout << "end of digit thing? what about other stuff?" << std::endl;
 		#endif
 		/* =BUG= what if a # leads into an odd number base? */
@@ -279,8 +281,8 @@ void lex_advance() {
 			symbol_append( ch );
 			/* get the next letter of the string */
 			ch = getc( infile );
-		}
-		lex_next.value = symbol_lookup();
+		
+}		lex_next.value = symbol_lookup();
 		if (ch == quote) {
 			/* get the next character after the closing quote */
 			ch = getc( infile );
@@ -296,6 +298,11 @@ void lex_advance() {
 				ch = getc( infile );
 			}
 			lex_advance();
+		}
+		// two dots are their own lexeme, used for subranges
+		if ((lex_next.value == PT_DOT) && (punct_class[ch] == PT_DOT)) {
+			lex_next.value = PT_DD;
+			ch = getc( infile );
 		}
 
 		if ((lex_next.value == PT_GT || lex_next.value == PT_LT ||

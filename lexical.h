@@ -40,7 +40,7 @@ typedef enum {
     PT_LT     /* < */,   PT_LE     /* <= */,  PT_PLUS   /* + */,
     PT_MINUS  /* - */,   PT_TIMES  /* * */,   PT_DIV    /* / */,
     PT_MOD    /* % */,   PT_AND    /* & */,   PT_OR     /* | */,
-    PT_NOT    /* ~ */,   PT_DOT    /* . */,   PT_CMNT   /* -- */
+    PT_NOT    /* ~ */,   PT_DOT    /* . */,   PT_DD     /* .. */
 } punct_type;
 
 typedef struct lexeme {
