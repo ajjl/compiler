@@ -163,6 +163,9 @@ static int line_number;/* the line number in infile */
  ******/
 
 void lex_open( const char * f ) {
+#if DEBUGGING_lexical_c
+    std::cout << "in lex_open" << std::endl;
+#endif
 	/* open file f for input, or use stdin if f is null */
 	if (f != NULL) {
 		infile = fopen( f, "r" );
@@ -176,10 +179,17 @@ void lex_open( const char * f ) {
 	line_number = 1;
 	lex_advance();
 	lex_advance();
+
+#if DEBUGGING_lexical_c
+    std::cout << "at end of lex_open" << std::endl;
+#endif
 }
 
 void lex_advance() {
 
+#if DEBUGGING_lexical_c
+	std::cout << "in lex_advance" << std::endl;
+#endif
 	int base = 10;
 	/* slide the lexical analysis window forward */
 	lex_this = lex_next;
@@ -322,9 +332,16 @@ void lex_advance() {
                 /*need some execution or return*/
 		/* =BUG= what about identifiers, strings */
 	}
+
+#if DEBUGGING_lexical_c
+	std::cout << "at end of lex_advance" << std::endl;
+#endif
 }
 
 void lex_put( lexeme * lex, FILE * f ) {
+#if DEBUGGING_lexical_c
+	std::cout << "in lex_put" << std::endl;
+#endif
 	/* reconstruct the text of the lexeme */
 	switch (lex->type) {
 	case IDENT:
@@ -350,4 +367,7 @@ void lex_put( lexeme * lex, FILE * f ) {
 		fputs( "EOF", f );
 		break;
 	}
+#if DEBUGGING_lexical_c
+	std::cout << "at end of lex_put" << std::endl;
+#endif
 }

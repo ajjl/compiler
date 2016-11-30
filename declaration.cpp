@@ -40,23 +40,29 @@
 #define FOLLOW_LEXS to_set32_2( ENDFILE, IDENT )
 
 Environment * Declaration::compile( Environment * e ) {
+	std::cout << "in Decleration::compile" << std::endl;
 
 	// lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_??? );
 	// the above is not needed because Block::compile() is the only caller
 	// and it only calls this code when it sees <identifier>:
 
 	// =BUG= we should put the identifier in the environment
+	lex_this.print_lex();
 	lex_advance(); // skip identifier
 
+	lex_this.print_lex();
 	lex_advance(); // skip colon
 
+	lex_this.print_lex();
 	// =BUG= we should do something about private and restricted keywords
 
 	lex_advance(); // skip whatever
+	lex_this.print_lex();
 	// =BUG= big kluge!  Stub to skip over the minimal declaration
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_BLOCK );
 
 	// =BUG= we should return a useful environment
+	std::cout << "end of Declaration::Compile" << std::endl;
 	return NULL;
 }

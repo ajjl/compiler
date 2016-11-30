@@ -19,6 +19,7 @@
 #ifndef EXTERN
 	#define EXTERN extern
 #endif
+#include <iostream>
 
 typedef enum {
          OTHER=0, WHITESPACE=1, LETTER=2, DIGIT=4, PUNCTUATION=8
@@ -43,11 +44,19 @@ typedef enum {
     PT_NOT    /* ~ */,   PT_DOT    /* . */,   PT_DD     /* .. */
 } punct_type;
 
-typedef struct lexeme {
+class lexeme {
+public:
 	lex_types type; /* type of this lexeme */
 	uint32_t value; /* value of this lexeme, meaning depends on type */
 	int line;	/* line number from which this lexeme came */
-} lexeme;
+	std::string debugVal;
+
+	void print_lex(){
+		std::cout << "lex_type is: " << this->type << std::endl;
+		std::cout << "lex_value is: " << static_cast<char>(this->value)<< std::endl;
+		std::cout << "lex_line is: " << this->line<< std::endl;
+	}
+} ;
 
 EXTERN lexeme lex_this; /* the current lexeme */
 EXTERN lexeme lex_next; /* the next lexeme */

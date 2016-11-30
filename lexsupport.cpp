@@ -59,8 +59,14 @@ void lex_gotbutwant( lexeme * lex, error_message e) {
 }
 
 void lex_wantinset( set32_t ps, set32_t ks, set32_t ls, error_message e ) {
+    // This is an error detector to see if the start/follow sets are what is expected
 	/* force lex_this to be in one of the sets or gotbutwant e */
 	/* typically used to force lex_this into start set or follow set */
+#if 0
+	std::cout << ps << std::endl;
+	std::cout << ks << std::endl;
+	std::cout << ls << std::endl;
+#endif
 
 	if (lex_isinset( ps, ks, ls )) return;
 	lex_gotbutwant( &lex_this, e);

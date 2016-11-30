@@ -30,13 +30,19 @@
 #define FOLLOW_KEYS to_set32_4( KEY_END, KEY_ELSE, KEY_CASE, KEY_UNTIL )
 #define FOLLOW_LEXS to_set32( ENDFILE )
 
+#include <iostream>
 // internal sets
 
 Block * Block::compile( Environment * e ) {
+    std::cout << "in Block::Compile" << std::endl;
+    std::cout << "Environment is : " << e << std::endl;
+    lex_this.print_lex();
 
 	lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_BLOCK );
 
 	while (lex_isinset( START_PUNCS, START_KEYS, START_LEXS )) {
+		std::cout << "in whileloop of Block::Compiler" << std::endl;
+		lex_this.print_lex();
 
 		if ( (lex_this.type == IDENT)
 		&&   lex_ispunc( lex_next, PT_COLON ) ) {
@@ -48,10 +54,12 @@ Block * Block::compile( Environment * e ) {
 		}
 		if (lex_ispunc( lex_this, PT_SEMI )) lex_advance();
 	}
+	std::cout << "after whileloop of Block::COmpile"<< std::endl;
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 
 	// =BUG= the following is almost certainly an error
+    std::cout << "End of Block::Compile" << std::endl;
 	return NULL;
 }
 

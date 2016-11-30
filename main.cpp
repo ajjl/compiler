@@ -15,6 +15,7 @@
 #include "errors.h"
 #include "lexical.h"
 #include "program.h"
+#include <iostream>
 
 #define EXTERN
 #include "main.h"
@@ -27,6 +28,7 @@ int main( int argc, char * argv[] ) {
 
   // first, deal with the program name
   main_progname = DEFAULT_NAME; // from config.h
+  const char * myMain = main_progname;
 
   if ((argc > 0)              // Unix/Linux shells guarantee this
   &&  (argv[0] != NULL)       // Unix/Linux implies this
@@ -35,6 +37,7 @@ int main( int argc, char * argv[] ) {
   }
   // assert: program name is now well defined
 
+  int testVar = 9;
   // set argument strings to indicate that they have not been set
   main_infile = NULL;  // this means read from stdin
   main_outfile = NULL; //            write to stdout
@@ -144,11 +147,15 @@ int main( int argc, char * argv[] ) {
   }
 
   // initialize all the subsystems
+  std::cout << "before lex_open in main" << std::endl;
   lex_open( main_infile );
+  std::cout << "after lex_open in main" << std::endl;
   // =BUG= must initialize code generator to use main_outfile
 
   // and finally, compile the program
+  std::cout << "before Program::compile()" << std::endl;
   Program * p = Program::compile();
+  std::cout << "after Program::compile()" << std::endl;
   return 0;
  /*since the int main, we better have return 0; if it does not break anything*/
   // =BUG= we don't seem to need the return value
