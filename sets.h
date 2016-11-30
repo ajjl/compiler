@@ -44,8 +44,8 @@ typedef uint32_t set32_t;
 /* set32_t to_set32_4( int i, int j, int k, int l ) */
 
 #define to_set32_4(i,j,k,l) (to_set32_2(i,j) | to_set32_2(k,l))
-
-
+/*2147483647*/
+#define to_set32_5(i,j,k,l,m) (to_set32_(i) | to_set_32_4(j,k,l,m))
 
 /* test set membership */
 
