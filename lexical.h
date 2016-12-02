@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <cstdio>
 
 #include "errors.h"
 #include "stringpool.h"
@@ -48,7 +49,7 @@ typedef enum {
 
 class lexeme {
 public:
-std::string typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "ENDFILE" };
+char * typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "ENDFILE" };
 	lex_types type; /* type of this lexeme */
 	uint32_t value; /* value of this lexeme, meaning depends on type */
 	int line;	/* line number from which this lexeme came */
@@ -56,7 +57,30 @@ std::string typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT
 
 	void print_lex(){
 		std::cout << "lex_type is: " << typesOfStrings[this->type] << std::endl;
-		std::cout << "lex_value is: " << (char)(this->value)<< std::endl;
+
+		std::cout << "lex_value is: " ;
+		FILE * f = stdout;
+		switch (this->type) {
+			case IDENT:
+				symbol_put((symbol_handle) this->value, f);
+				break;
+			case KEYWORD:
+				key_put((key_handle) this->value, f);
+				break;
+			case NUMBER:
+				fprintf(f, "%d", this->value);
+				break;
+			case PUNCT:
+				fputs(typesOfStrings[this->value], f);
+				break;
+			case STRING:
+				fputc('"', f);
+				symbol_put(this->value, f);
+				fputc('"', f);
+				break;
+		}
+
+		std::cout << std::endl;
 		//std::cout << "lex_value is: " << key_lookup(static_cast<string_handle >(this->value))<< std::endl;
 		std::cout << "lex_line is: " << this->line<< std::endl;
 	}
