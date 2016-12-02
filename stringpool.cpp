@@ -11,9 +11,9 @@
 
 #include "config.h"
 #include "errors.h"
-
-/*#define EXTERN*/
-/* Done in stringpool.h, no need to run it twice*/
+#ifndef EXTERN
+#define EXTERN extern
+#endif
 #include "stringpool.h"
 
 void string_put( string_handle h, FILE * f ) {
