@@ -1,3 +1,4 @@
 -- this is a simplified prologue for testing
 
 x: int;
+x = 4;
