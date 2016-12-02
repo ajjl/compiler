@@ -49,6 +49,22 @@ public:
 		std::cout << "name (handle) is: " << name << std::endl;
 		std::cout << "value (int only for now) is:" << value << std::endl;
 	}
+	
+	void printAll() {
+		if (this -> parent == NULL) {
+			std::cout << "parent is null" << std::endl;
+		}
+
+		if (this == NULL) {
+			std::cout << "this is null" << std::endl;
+		}
+
+		this -> print();
+		while (this -> parent != NULL) {
+			this -> print();
+			parent -> printAll();
+		}
+	}
 
 private:
 
