@@ -51,9 +51,11 @@ Block * Block::compile( Environment * e ) {
 		if ( (lex_this.type == IDENT)
 		&&   lex_ispunc( lex_next, PT_COLON ) ) { //checking to see if assignment/declaration
 			// all declarations begin with ident:
+			std::cout << " I think I'm a declaration." << std::endl;
 			e = Declaration::compile( e );
 		} else {
 			// if not a declaration must be a statement
+			std::cout << " I think I'm a statement." << std::endl;
 			Statement * s = Statement::compile( e );
 		}
 		if (lex_ispunc( lex_this, PT_SEMI )) lex_advance();
