@@ -109,6 +109,6 @@ void string_put( string_handle h, FILE * f );
 
 bool string_eq( string_handle h1, string_handle h2 );
 /* compare the strings h1 and h2 for textual equality */
+/* used to be a #undef EXTERN here, seems to fit the #define in stringpool.cpp, not needed now, hence we only need to define it once.*/
 
-#undef EXTERN
 #endif
