@@ -23,6 +23,8 @@
 #define EXTERN
 #include "declaration.h"
 
+#define Debugging_environment 0
+
 // =BUG= code to compile various kinds of declarations might
 // =   = go here as local classes, not in the header file
 // =   = but if they start getting big and unwieldy, they can each
@@ -50,8 +52,10 @@ Environment * Declaration::compile( Environment * e ) {
 	// =BUG= we should put the identifier in the environment
 	lex_this.print_lex();
 	std::cout << "PRINTING SHIT" << std::endl;
-	e -> add(lex_this.value, 0);
+	e = e -> add(lex_this.value, 0);
+	#if Debugging_environment
 	e -> printAll();
+	#endif
 
 	lex_advance(); // skip identifier
 
