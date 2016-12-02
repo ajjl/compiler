@@ -50,6 +50,19 @@ typedef enum {
 class lexeme {
 public:
 char * typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "ENDFILE" };
+
+	const char * punct_name[28] = {
+			/* PTX */ "?WHAT?", /* this should never happen */
+			/* "PT_SEMI   */ ";", /* PT_EQUALS */ "=", /* PT_COLON  */ ":",
+			/* "PT_LPAREN */ "(", /* PT_LBRAKT */ "[", /* PT_LBRACE */ "{",
+			/* "PT_RPAREN */ ")", /* PT_RBRAKT */ "]", /* PT_RBRACE */ "}",
+			/* "PT_COMMA  */ ",", /* PT_ATSIGN */ "@", /* PT_ELIPS  */ "..",
+			/* "PT_NOTEQL */ "/=", /*PT_GT     */ ">", /* PT_GE     */ ">=",
+			/* "PT_LT     */ "<", /* PT_LE     */ "<=", /*PT_PLUS   */ "+",
+			/* "PT_MINUS  */ "-", /* PT_TIMES  */ "*", /* PT_DIV    */ "/",
+			/* "PT_MOD    */ "%", /* PT_AND    */ "&", /* PT_OR     */ "|",
+			/* "PT_NOT    */ "~", /* PT_DOT    */ ".", /* PT_DD     */ ".."
+	};
 	lex_types type; /* type of this lexeme */
 	uint32_t value; /* value of this lexeme, meaning depends on type */
 	int line;	/* line number from which this lexeme came */
@@ -71,7 +84,7 @@ char * typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "E
 				fprintf(f, "%d", this->value);
 				break;
 			case PUNCT:
-				fputs(typesOfStrings[this->value], f);
+				fputs(punct_name[this->value], f);
 				break;
 			case STRING:
 				fputc('"', f);
