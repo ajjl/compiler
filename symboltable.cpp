@@ -51,7 +51,7 @@ symbol_handle symbol_lookup() {
 	/* mark the end of the symbol and return its handle */
 	string_done();
 	symbol_handle place = _symbol_hash;
-	for (;;) { /* loop exits by embedded returns */
+	while (true) { /* loop exits by embedded returns */
 		if (_symbol_table[place] == STRING_NULL ) {
 			/* add symbol to table */
 			_symbol_table[place] = _symbol_string;
