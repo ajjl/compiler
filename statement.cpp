@@ -33,11 +33,18 @@
 
 Statement * Statement::compile( Environment * e ) {
 
+	std::cout << "In statement compile." << std::endl;
+	std::cout << "First wantinset" << std::endl;
         lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_STATE );
-
         // =BUG= big kluge!! statement stub just eats one lexeme
-        lex_advance();
 
+	lex_this.print_lex();
+        lex_advance();
+	std::cout << "This should be a fucking '='" << std::endl;
+	
+	lex_this.print_lex();
+
+	std::cout << "Follow wantinset" << std::endl;
         lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_BLOCK );
 
         // =BUG= do statements need to return any attributes?
