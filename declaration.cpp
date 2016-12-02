@@ -8,6 +8,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "config.h"
 #include "sets.h"
 #include "errors.h"
@@ -48,6 +49,10 @@ Environment * Declaration::compile( Environment * e ) {
 
 	// =BUG= we should put the identifier in the environment
 	lex_this.print_lex();
+	std::cout << "PRINTING SHIT" << std::endl;
+	e -> add(lex_this.value, 0);
+	e -> printAll();
+
 	lex_advance(); // skip identifier
 
 	lex_this.print_lex();
