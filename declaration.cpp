@@ -23,7 +23,7 @@
 #define EXTERN
 #include "declaration.h"
 
-#define Debugging_environment 0
+#define Debugging_declaration 1
 
 // =BUG= code to compile various kinds of declarations might
 // =   = go here as local classes, not in the header file
@@ -50,36 +50,43 @@ Environment * Declaration::compile( Environment * e ) {
 	// and it only calls this code when it sees <identifier>:
 
 	// =BUG= we should put the identifier in the environment
-	lex_this.print_lex();
 	std::cout << "PRINTING SHIT" << std::endl;
 	e = e -> add(lex_this.value, 0);
-	#if Debugging_environment
+
+	#if Debugging_declaration
 	// e -> printAll();
 	#endif
 
+	#if Debugging_declaration
+	lex_this.print_lex();
+	#endif
 	lex_advance(); // skip identifier
-	#if Debugging_environment
+
+	#if Debugging_declaration
 	lex_this.print_lex();
 	#endif
 	lex_advance(); // skip colon
 
-	#if Debugging_environment
+	#if Debugging_declaration
 	lex_this.print_lex();
 	#endif
 	// =BUG= we should do something about private and restricted keywords
+	lex_advance(); // this one skips "var" or whatever
 
-	lex_advance(); // skip whatever
-	#if Debugging_environment
+	#if Debugging_declaration
 	lex_this.print_lex();
 	#endif
 	// =BUG= big kluge!  Stub to skip over the minimal declaration
+	lex_advance(); // this is skipping "int" or the type of the var
+	// skipping everything because the current version only supports ints
+
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_BLOCK );
 
 	// =BUG= we should return a useful environment
-	#if Debugging_environment
+	#if Debugging_declaration
 	std::cout << "end of Declaration::Compile" << std::endl;
 	#endif
-	
-	return NULL;
+
+	return e;
 }

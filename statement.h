@@ -8,7 +8,7 @@
 
 class Statement {
 public:
-        static Statement * compile( Environment * e );
+        static Statement * compile( Environment ** e );
         // factory method
 
         // =BUG= do statements have any attributes?  they are missing here

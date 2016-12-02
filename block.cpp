@@ -20,6 +20,9 @@
 
 #include "block.h"
 
+#define Debugging_block 1
+
+
 // start sets
 #define START_PUNCS SET32_EMPTY
 #define START_KEYS ( to_set32_4( KEY_DO, KEY_IF, KEY_SELECT, KEY_CATCH ) \
@@ -55,12 +58,24 @@ Block * Block::compile( Environment * e ) {
 			e = Declaration::compile( e );
 		} else {
 			// if not a declaration must be a statement
+
+			#if Debugging_block
 			std::cout << " I think I'm a statement." << std::endl;
-			Statement * s = Statement::compile( e );
+			std::cout << " Environment before: " << std::endl;
+			e->print();
+			#endif
+
+			Statement * s = Statement::compile( &e );
+
+			#if Debugging_block
+			std::cout << " Environment after: " << std::endl;
+			e->print();
+			#endif
+
 		}
 		if (lex_ispunc( lex_this, PT_SEMI )) lex_advance();
 	}
-	std::cout << "after whileloop of Block::COmpile"<< std::endl;
+	std::cout << "after whileloop of Block::Compile"<< std::endl;
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 

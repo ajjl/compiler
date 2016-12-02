@@ -1,4 +1,4 @@
 -- this is a simplified prologue for testing
 
-x: int;
+x: var int;
 x = 4;
