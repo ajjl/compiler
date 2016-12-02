@@ -27,7 +27,7 @@
 
 Program * Program::compile() {
 
-	Environment * e = NULL;
+	Environment * e = new Environment();
 	// =BUG= must create standard environment e
 
 	// =BUG= must call code generator to putput standard prefix
