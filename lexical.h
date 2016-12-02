@@ -45,15 +45,17 @@ typedef enum {
     PT_NOT    /* ~ */,   PT_DOT    /* . */,   PT_DD     /* .. */
 } punct_type;
 
+
 class lexeme {
 public:
+std::string typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "ENDFILE" };
 	lex_types type; /* type of this lexeme */
 	uint32_t value; /* value of this lexeme, meaning depends on type */
 	int line;	/* line number from which this lexeme came */
 	std::string debugVal;
 
 	void print_lex(){
-		std::cout << "lex_type is: " << this->type << std::endl;
+		std::cout << "lex_type is: " << typesOfStrings[this->type] << std::endl;
 		std::cout << "lex_value is: " << key_lookup(static_cast<string_handle >(this->value))<< std::endl;
 		std::cout << "lex_line is: " << this->line<< std::endl;
 	}

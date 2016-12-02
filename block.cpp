@@ -49,7 +49,7 @@ Block * Block::compile( Environment * e ) {
 		lex_this.print_lex();
 
 		if ( (lex_this.type == IDENT)
-		&&   lex_ispunc( lex_next, PT_COLON ) ) {
+		&&   lex_ispunc( lex_next, PT_COLON ) ) { //checking to see if assignment/declaration
 			// all declarations begin with ident:
 			e = Declaration::compile( e );
 		} else {
