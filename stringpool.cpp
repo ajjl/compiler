@@ -12,7 +12,8 @@
 #include "config.h"
 #include "errors.h"
 
-#define EXTERN
+/*#define EXTERN*/
+/* Done in stringpool.h, no need to run it twice*/
 #include "stringpool.h"
 
 void string_put( string_handle h, FILE * f ) {
