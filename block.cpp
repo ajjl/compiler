@@ -11,6 +11,8 @@
 
 #include "environment.h"
 #include "declaration.h"
+#include <iostream>
+#include <cstdio>
 #include "statement.h"
 
 //#define EXTERN8
@@ -36,7 +38,9 @@
 Block * Block::compile( Environment * e ) {
     std::cout << "in Block::Compile" << std::endl;
     std::cout << "Environment is : " << e << std::endl;
-    lex_this.print_lex();
+	char message[300] ;
+	std::sprintf(message, "value of lexeme in, %s: %d",__FILE__,  __LINE__);
+    lex_this.print_lex(message);
 
 	lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_BLOCK );
 

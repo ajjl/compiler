@@ -14,6 +14,9 @@
  */
 //New Comment
 /* list of all the keywords in the language */
+#ifndef KEYWORDS_H
+#define KEYWORDS_H
+
 typedef enum {
         KEY_INVALID, /* the null keyword handle */
         KEY_END,        KEY_CONST,      KEY_FINAL,      KEY_TYPE,
@@ -42,3 +45,4 @@ key_handle key_lookup( symbol_handle s );
  */
 
 #undef EXTERN
+#endif

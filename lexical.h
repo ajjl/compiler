@@ -14,6 +14,7 @@
 #include "stringpool.h"
 #include "config.h"
 #include "symboltable.h"
+#include "keywords.h" //=BUG= keywords needs to be declared before the ifdef extern thing??
 
 
 #ifndef EXTERN
@@ -53,8 +54,12 @@ public:
 
 	void print_lex(){
 		std::cout << "lex_type is: " << this->type << std::endl;
-		std::cout << "lex_value is: " << static_cast<char>(this->value)<< std::endl;
+		std::cout << "lex_value is: " << key_lookup(static_cast<string_handle >(this->value))<< std::endl;
 		std::cout << "lex_line is: " << this->line<< std::endl;
+	}
+	void print_lex(std::string message){
+		print_lex();
+		std::cout << message << std::endl;
 	}
 } ;
 
