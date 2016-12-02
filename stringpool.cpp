@@ -11,9 +11,8 @@
 
 #include "config.h"
 #include "errors.h"
-#ifndef EXTERN
-#define EXTERN extern
-#endif
+
+#define EXTERN
 #include "stringpool.h"
 
 void string_put( string_handle h, FILE * f ) {

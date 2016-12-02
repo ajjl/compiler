@@ -57,7 +57,7 @@ Statement * Statement::compile( Environment ** e ) {
     lex_advance();
 
     #if Debugging_statement
-	std::cout << "This should be a fucking '='" << std::endl;
+	std::cout << "This should be a '='" << std::endl;
 	lex_this.print_lex();
 	std::cout << "Follow wantinset" << std::endl;
     #endif
