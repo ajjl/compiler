@@ -7,8 +7,7 @@
 
 #include "environment.h"
 
-/*#define EXTERN*/
-/*defined in statement.h*/
+#define EXTERN
 #include "statement.h"
 /*statement.cpp is the file copied from jones, maybe borrow the idea from professor and delete the file*/
 // =BUG= code to compile <if> <case> <for loop> <while loop> <do loop>
@@ -19,8 +18,7 @@
 // =   = be put in ther own files
 
 
-/*#define Debugging_statement 1*/
-/*defined in statement.h*/
+#define Debugging_statement 1
 
 
 
@@ -32,13 +30,12 @@
 #define START_LEXS to_set32( IDENT )
 
 // follow sets
-/* #define FOLLOW_PUNCS to_set32( PT_SEMI )
+#define FOLLOW_PUNCS to_set32( PT_SEMI )
 #define FOLLOW_KEYS ( START_KEYS                                           \
                     | to_set32_4( KEY_END, KEY_ELSE, KEY_CASE, KEY_UNTIL ) \
                     )
 #define FOLLOW_LEXS to_set32_2( ENDFILE, IDENT )
-*/
-/*defined in statement.h*/
+
 Statement * Statement::compile( Environment ** e ) {
 
     #if Debugging_statement
