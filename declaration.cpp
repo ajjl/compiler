@@ -54,24 +54,32 @@ Environment * Declaration::compile( Environment * e ) {
 	std::cout << "PRINTING SHIT" << std::endl;
 	e = e -> add(lex_this.value, 0);
 	#if Debugging_environment
-	e -> printAll();
+	// e -> printAll();
 	#endif
 
 	lex_advance(); // skip identifier
-
+	#if Debugging_environment
 	lex_this.print_lex();
+	#endif
 	lex_advance(); // skip colon
 
+	#if Debugging_environment
 	lex_this.print_lex();
+	#endif
 	// =BUG= we should do something about private and restricted keywords
 
 	lex_advance(); // skip whatever
+	#if Debugging_environment
 	lex_this.print_lex();
+	#endif
 	// =BUG= big kluge!  Stub to skip over the minimal declaration
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_BLOCK );
 
 	// =BUG= we should return a useful environment
+	#if Debugging_environment
 	std::cout << "end of Declaration::Compile" << std::endl;
+	#endif
+	
 	return NULL;
 }
