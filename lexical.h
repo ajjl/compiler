@@ -56,7 +56,8 @@ std::string typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT
 
 	void print_lex(){
 		std::cout << "lex_type is: " << typesOfStrings[this->type] << std::endl;
-		std::cout << "lex_value is: " << key_lookup(static_cast<string_handle >(this->value))<< std::endl;
+		std::cout << "lex_value is: " << (char)(this->value)<< std::endl;
+		//std::cout << "lex_value is: " << key_lookup(static_cast<string_handle >(this->value))<< std::endl;
 		std::cout << "lex_line is: " << this->line<< std::endl;
 	}
 	void print_lex(std::string message){
