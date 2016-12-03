@@ -54,13 +54,16 @@ Block * Block::compile( Environment * e ) {
 		if ( (lex_this.type == IDENT)
 		&&   lex_ispunc( lex_next, PT_COLON ) ) {
                 //checking to see if assignment/declaration
-		// all declarations begin with ident:
+		// all declarations begin with identifier followed with COLON:
 		std::cout << " I think I'm a declaration." << std::endl;
 		e = Declaration::compile( e );
-		} else {
+		} 
+                #if Debugging_block
+                else if (//this is a statement case)  
+                {
 		// if not a declaration must be a statement
+                // it could also be error, take into consideration
 
-		#if Debugging_block
 			std::cout << " I think I'm a statement." << std::endl;
 			std::cout << " Environment before: " << std::endl;
 			e->print();
@@ -71,9 +74,12 @@ Block * Block::compile( Environment * e ) {
 		#if Debugging_block
 			std::cout << " Environment after: " << std::endl;
 			e->print();
-		#endif
+		
 
 		}
+                else{//this is the error case
+                    }
+                #endif
 		if (lex_ispunc( lex_this, PT_SEMI ))
    std::cout << "this is the end of the current block::Compile"<< std::endl;
                   lex_advance();
