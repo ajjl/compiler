@@ -21,3 +21,7 @@ tags
 # add folder for builds to git
 build
 build/*
+
+# precompiled headerfiles
+*.h.gch
+*.hpp.gch

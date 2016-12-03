@@ -15,6 +15,7 @@
 #include <climits>
 
 //this is a hashmap
+#include <iostream>
 #include <unordered_map>
 
 
@@ -29,6 +30,8 @@ public:
 	Environment* parent = NULL;
 
 	//For now values only of type int
+
+	typedef int32_t string_handle;
 	typedef std::unordered_map<string_handle , int> MapType;
 	MapType scope;
 
