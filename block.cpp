@@ -14,9 +14,9 @@
 #include <iostream>
 #include <cstdio>
 #include "statement.h"
-
-//#define EXTERN8
-/*Why do we need to define EXTERN in this part, which has already defined in the header file*/
+#ifndef EXTERN 
+#define EXTERN extern
+#endif
 
 #include "block.h"
 
@@ -51,12 +51,16 @@ Block * Block::compile( Environment * e ) {
 		std::cout << "in whileloop of Block::Compiler" << std::endl;
 		lex_this.print_lex();
 
-		if ( (lex_this.type == IDENT)
-		&&   lex_ispunc( lex_next, PT_COLON ) ) { //checking to see if assignment/declaration
+		if ( (lex_this.type == IDENT) && lex_ispunc( lex_next, PT_COLON ) ) 
+               { //checking to see if assignment/declaration
 			// all declarations begin with ident:
 			std::cout << " I think I'm a declaration." << std::endl;
-			e = Declaration::compile( e );
-		} else {
+			
+                        e = Declaration::compile( e );
+		} 
+                       
+ 
+                 else  {
 			// if not a declaration must be a statement
 
 			#if Debugging_block
@@ -70,11 +74,12 @@ Block * Block::compile( Environment * e ) {
 			#if Debugging_block
 			std::cout << " Environment after: " << std::endl;
 			e->print();
-			#endif
+			
 
 		}
 		if (lex_ispunc( lex_this, PT_SEMI )) lex_advance();
 	}
+                       #endif
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
