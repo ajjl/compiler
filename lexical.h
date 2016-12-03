@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <cstdio>
+#include <iostream>
 
 #include "errors.h"
 #include "stringpool.h"
@@ -21,7 +22,6 @@
 #ifndef EXTERN
 	#define EXTERN extern
 #endif
-#include <iostream>
 
 typedef enum {
          OTHER=0, WHITESPACE=1, LETTER=2, DIGIT=4, PUNCTUATION=8
@@ -49,7 +49,7 @@ typedef enum {
 
 class lexeme {
 public:
-char * typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "ENDFILE" };
+	const char * typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "ENDFILE" };
 
 	const char * punct_name[28] = {
 			/* PTX */ "?WHAT?", /* this should never happen */
@@ -90,6 +90,12 @@ char * typesOfStrings[6] = { "IDENT", "KEYWORD", "NUMBER", "STRING", "PUNCT", "E
 				fputc('"', f);
 				symbol_put(this->value, f);
 				fputc('"', f);
+				break;
+			case ENDFILE:
+				fputs( "EOF", f );
+				break;
+			default:
+				std::cerr << "ERROR, reached default case in: "<< __FILE__ << ":"<< __LINE__ << std::endl;
 				break;
 		}
 
