@@ -19,7 +19,8 @@ public:
 	// factory method?
 
 	// =BUG= do declarations have any attributes?  they are missing here
-       
+      //=BUG= we need to add attributes about declarator, six of them.
+      //The above could also be in other files, depends on the structure we are taking 
 
 private:
        //=BUG= nothing lives here yet
