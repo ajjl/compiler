@@ -52,25 +52,26 @@ Block * Block::compile( Environment * e ) {
 		lex_this.print_lex();
 
 		if ( (lex_this.type == IDENT)
-		&&   lex_ispunc( lex_next, PT_COLON ) ) { //checking to see if assignment/declaration
-			// all declarations begin with ident:
-			std::cout << " I think I'm a declaration." << std::endl;
-			e = Declaration::compile( e );
+		&&   lex_ispunc( lex_next, PT_COLON ) ) {
+                //checking to see if assignment/declaration
+		// all declarations begin with ident:
+		std::cout << " I think I'm a declaration." << std::endl;
+		e = Declaration::compile( e );
 		} else {
-			// if not a declaration must be a statement
+		// if not a declaration must be a statement
 
-			#if Debugging_block
+		#if Debugging_block
 			std::cout << " I think I'm a statement." << std::endl;
 			std::cout << " Environment before: " << std::endl;
 			e->print();
-			#endif
+		#endif
 
-			Statement * s = Statement::compile( e );
+		Statement * s = Statement::compile( e );
 
-			#if Debugging_block
+		#if Debugging_block
 			std::cout << " Environment after: " << std::endl;
 			e->print();
-			#endif
+		#endif
 
 		}
 		if (lex_ispunc( lex_this, PT_SEMI ))
@@ -80,10 +81,10 @@ Block * Block::compile( Environment * e ) {
    
 }
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
+	
+        lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 
-	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
-
-    std::cout << "End of Block::Compile" << std::endl;
+        std::cout << "End of Block::Compile" << std::endl;
 	return NULL;
 }
 
