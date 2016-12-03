@@ -4,7 +4,7 @@
 // Date 10/11/2016 -- framework established
 
 // BNF
-// <kestrel program> :: <block> <end of file>
+// <kestrel program> ::=  <block> <end of file>
 
 #include <stdint.h>
 #include <stdio.h>
@@ -23,16 +23,15 @@
 #define FOLLOW_PUNCS SET32_EMPTY
 #define FOLLOW_KEYS SET32_EMPTY
 #define FOLLOW_LEXS to_set32( ENDFILE )
-
 Program * Program::compile() {
 
 	Environment * e = new Environment(NULL);  //The first environment has no parent
 
-	// =BUG= must call code generator to putput standard prefix
+	// =BUG= standard prefix for code generator needed
 
 	Block * b = Block::compile( e );
 
-	// =BUG= must call code generator to output standard suffix
+	// =BUG= standard suffix for code generator needed
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDFILE);
 
