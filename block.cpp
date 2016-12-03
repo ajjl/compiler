@@ -65,7 +65,7 @@ Block * Block::compile( Environment * e ) {
 			e->print();
 			#endif
 
-			Statement * s = Statement::compile( &e );
+			Statement * s = Statement::compile( e );
 
 			#if Debugging_block
 			std::cout << " Environment after: " << std::endl;

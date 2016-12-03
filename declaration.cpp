@@ -51,7 +51,7 @@ Environment * Declaration::compile( Environment * e ) {
 
 	// =BUG= we should put the identifier in the environment
 	std::cout << "PRINTING SHIT" << std::endl;
-	e = e -> add(lex_this.value, 0);
+	e->addElement(lex_this.value, 0);
 
 	#if Debugging_declaration
 	// e -> printAll();

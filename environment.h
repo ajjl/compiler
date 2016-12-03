@@ -14,6 +14,9 @@
 
 #include <climits>
 
+//this is a hashmap
+#include <unordered_map>
+
 
 
 
@@ -23,47 +26,65 @@
 
 class Environment {
 public:
-	// =BUG= nothing lives here yet
 	Environment* parent = NULL;
-	//std::shared_ptr<Environment> parent = NULL;
-	string_handle name;
-	int value;
+
+	//For now values only of type int
+	typedef std::unordered_map<string_handle , int> MapType;
+	MapType scope;
+
+
+    Environment (Environment * parentEnv) {
+		this->parent = parentEnv;
+	}
 
 	//int will be our only type for now
 	int lookup(string_handle varHandle){
-		if(varHandle == this->name) return value;
-		if(this->parent == NULL) return INT_MAX;
-		return this->parent->lookup(varHandle);
+	//Try to find var in this environment's scope, if its not there, then try the parent scope
+		if(this->scope.count(varHandle) < 1) {
+			if(this->parent != NULL) {
+				return this->parent->lookup(varHandle);
+			}
+			else {
+				//didn't find the thing
+				return INT_MAX; //Hack shouldn't do this probly
+			}
+		}
+		else {
+			// It's in this scope, so return
+			return this->scope.find(varHandle)->second;
+		}
+
 	}
 
-	Environment * add(string_handle new_name, int new_value){
-		//std::shared_ptr<Environment> newEnv = new Environment();
-		Environment* newEnv = new Environment();
-		newEnv->name = new_name;
-		newEnv->value = new_value;
-		newEnv->parent = this;
-		return newEnv;
+	void addElement(string_handle new_name, int new_value) {
+		bool isThere = this->scope.count(new_name);
+		if (isThere) {
+			this->scope.erase(new_name);
+		}
+		this->scope.emplace(new_name, new_value);
 	}
 
 	void print(){
-		std::cout << "name (handle) is: " << name << std::endl;
-		std::cout << "value (int only for now) is:" << value << std::endl;
+		//print out the entire scope
+		MapType::const_iterator iter = this->scope.begin();
+		while(iter != this->scope.end() ){
+			std::cout << "name (handle) is: " << iter->first << std::endl;
+			std::cout << "value (int only for now) is:" << iter->second << std::endl;
+			iter++;
+		}
 	}
 	
 	void printAll() {
+		if (this == NULL) {
+			std::cout << "this is null WTF!! WTF!!!" << std::endl;
+		}
+		this -> print();
 		if (this -> parent == NULL) {
 			std::cout << "parent is null" << std::endl;
+			return;
 		}
-
-		if (this == NULL) {
-			std::cout << "this is null" << std::endl;
-		}
-
 		this -> print();
-		while (this -> parent != NULL) {
-			this -> print();
-			parent -> printAll();
-		}
+		parent -> printAll();
 	}
 
 private:

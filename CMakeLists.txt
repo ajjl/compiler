@@ -18,7 +18,7 @@ enable_testing()
 
 # set compiler flags
 set(CFLAGS "${CFLAGS} -g -Wall -Wextra -Wparentheses -Wshadow -Wdouble-promotion -Winline")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CFLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ${CFLAGS}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CFLAGS}")
 
 # make and build the google-test framework
