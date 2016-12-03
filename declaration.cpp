@@ -55,21 +55,16 @@ Environment * Declaration::compile( Environment * e ) {
 
 	#if Debugging_declaration
 	// e -> printAll();
-	#endif
-
-	#if Debugging_declaration
+	
 	lex_this.print_lex();
         if (lex_this.type == IDENT){
-	#endif
 	lex_advance(); // skip identifier, but first needs to recognize identifier
 
-	#if Debugging_declaration
         lex_this.print_lex();
         if (lex_this.type == PT_COLON){
-	#endif
+	
 	lex_advance(); // skip colon, but first needs to recognize colon
 
-	#if Debugging_declaration
 	}
         // AS OF THIS PART, WE DETERMINED AND SKIPPED IDENTIFIER AND COLON
         // BUT WE STILL MISSING ELSE CASE, AND THE FOLOWING CASE
@@ -94,4 +89,6 @@ Environment * Declaration::compile( Environment * e ) {
 	#if Debugging_declaration
 	std::cout << "end of Declaration::Compile" << std::endl;
 	return e;
-}
+}       
+        #endif
+
