@@ -62,7 +62,7 @@ Block * Block::compile( Environment * e )
 		} 
                 #if Debugging_block
                 else if (//this is a statement case
-                   lex_this.type == STATEMENT      )  
+                   lex_this.type != IDENT      )  
                 {
 		// if not a declaration must be a statement
                 // it could also be error, take into consideration
