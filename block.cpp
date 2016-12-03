@@ -70,11 +70,11 @@ Block * Block::compile( Environment * e )
 			std::cout << " I think I'm a statement." << std::endl;
 			std::cout << " Environment before: " << std::endl;
 			e->print();
-		#endif
+		
 
 		Statement * s = Statement::compile( e );
 
-		#if Debugging_block
+		
 			std::cout << " Environment after: " << std::endl;
 			e->print();
 		
