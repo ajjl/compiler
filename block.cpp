@@ -73,8 +73,12 @@ Block * Block::compile( Environment * e ) {
 			#endif
 
 		}
-		if (lex_ispunc( lex_this, PT_SEMI )) lex_advance();
-	}
+		if (lex_ispunc( lex_this, PT_SEMI ))
+   std::cout << "this is the end of the current block::Compile"<< std::endl;
+                  lex_advance();
+	/* if lex_this is a SEMI, this is the end of block.*/
+   
+}
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
