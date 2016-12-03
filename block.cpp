@@ -61,7 +61,8 @@ Block * Block::compile( Environment * e )
 		e = Declaration::compile( e );
 		} 
                 #if Debugging_block
-                else if (//this is a statement case)  
+                else if (//this is a statement case
+                         )  
                 {
 		// if not a declaration must be a statement
                 // it could also be error, take into consideration
@@ -80,7 +81,7 @@ Block * Block::compile( Environment * e )
 
 		}
                 else{//this is the error case
-                    }
+                  break ; }
                 #endif
 		if (lex_ispunc( lex_this, PT_SEMI ))
    std::cout << "this is the end of the current block::Compile"<< std::endl;
