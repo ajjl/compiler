@@ -83,7 +83,6 @@ Block * Block::compile( Environment * e ) {
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 
-	// =BUG= the following is almost certainly an error
     std::cout << "End of Block::Compile" << std::endl;
 	return NULL;
 }
