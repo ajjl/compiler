@@ -79,7 +79,7 @@ public:
 	
 	void printAll() {
 		if (this == NULL) {
-			std::cout << "this is null WTF!! WTF!!!" << std::endl;
+			std::cout << "this is null, check parent " << std::endl;
 		}
 		this -> print();
 		if (this -> parent == NULL) {
