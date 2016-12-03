@@ -38,7 +38,8 @@
 #include <iostream>
 // internal sets
 
-Block * Block::compile( Environment * e ) {
+Block * Block::compile( Environment * e ) 
+{
     std::cout << "in Block::Compile" << std::endl;
     std::cout << "Environment is : " << e << std::endl;
 	char message[300] ;
@@ -47,7 +48,8 @@ Block * Block::compile( Environment * e ) {
 
 	lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_BLOCK );
 
-	while (lex_isinset( START_PUNCS, START_KEYS, START_LEXS )) {
+	while (lex_isinset( START_PUNCS, START_KEYS, START_LEXS )) 
+ { 
 		std::cout << "in whileloop of Block::Compiler" << std::endl;
 		lex_this.print_lex();
 
@@ -84,8 +86,7 @@ Block * Block::compile( Environment * e ) {
    std::cout << "this is the end of the current block::Compile"<< std::endl;
                   lex_advance();
 	/* if lex_this is a SEMI, this is the end of block.*/
-   
-}
+ }  
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
 	
         lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
@@ -93,4 +94,3 @@ Block * Block::compile( Environment * e ) {
         std::cout << "End of Block::Compile" << std::endl;
 	return NULL;
 }
-
