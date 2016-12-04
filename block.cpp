@@ -62,7 +62,9 @@ Block * Block::compile( Environment * e )
 		} 
                 #if Debugging_block
                 else if (//this is a statement case
-                   lex_this.type != IDENT      )  
+                   lex_this.type != IDENT
+                  /*and should recognize statement here*/
+                          )  
                 {
 		// if not a declaration must be a statement
                 // it could also be error, take into consideration
@@ -81,7 +83,9 @@ Block * Block::compile( Environment * e )
 
 		}
                 else{//this is the error case
-                  break ; }
+                  break ;
+                /*also should lead to some error messages*/ 
+                 }
                 #endif
 		if (lex_ispunc( lex_this, PT_SEMI ))
    std::cout << "this is the end of the current block::Compile"<< std::endl;
