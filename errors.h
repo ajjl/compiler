@@ -7,7 +7,7 @@
 #ifndef ERRORS_H
 #define ERRORS_H
 #endif
-#ifndef
+#ifndef EXTERN
 #define EXTERN extern
 
 typedef enum {
