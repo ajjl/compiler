@@ -38,8 +38,7 @@
 #include <iostream>
 // internal sets
 
-Block * Block::compile( Environment * e ) 
-{
+Block * Block::compile( Environment * e ) {
     std::cout << "in Block::Compile" << std::endl;
     std::cout << "Environment is : " << e << std::endl;
 	char message[300] ;
@@ -48,54 +47,45 @@ Block * Block::compile( Environment * e )
 
 	lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_BLOCK );
 
-	while (lex_isinset( START_PUNCS, START_KEYS, START_LEXS )) 
- { 
+	while (lex_isinset( START_PUNCS, START_KEYS, START_LEXS )) {
 		std::cout << "in whileloop of Block::Compiler" << std::endl;
 		lex_this.print_lex();
 
 		if ( (lex_this.type == IDENT)
-		&&   lex_ispunc( lex_next, PT_COLON ) ) {
-                //checking to see if assignment/declaration
-		// all declarations begin with identifier followed with COLON:
-		std::cout << " I think I'm a declaration." << std::endl;
-		e = Declaration::compile( e );
-		} 
-                #if Debugging_block
-                else if (//this is a statement case
-                   lex_this.type != IDENT
-                  /*and should recognize statement here*/
-                          )  
-                {
-		// if not a declaration must be a statement
-                // it could also be error, take into consideration
+		&&   lex_ispunc( lex_next, PT_COLON ) ) { //checking to see if assignment/declaration
+			// all declarations begin with ident:
+			std::cout << " I think I'm a declaration." << std::endl;
+			e = Declaration::compile( e );
+		} else {
+			// if not a declaration must be a statement
 
+			#if Debugging_block
 			std::cout << " I think I'm a statement." << std::endl;
 			std::cout << " Environment before: " << std::endl;
 			e->print();
-		
+			#endif
 
-		Statement * s = Statement::compile( e );
+			Statement * s = Statement::compile( e );
 
-		
+			#if Debugging_block
 			std::cout << " Environment after: " << std::endl;
 			e->print();
-		
+			#endif
 
 		}
-                else{//this is the error case
-                  break ;
-                /*also should lead to some error messages*/ 
-                 }
-                #endif
-		if (lex_ispunc( lex_this, PT_SEMI ))
-   std::cout << "this is the end of the current block::Compile"<< std::endl;
-                  lex_advance();
+		if (lex_ispunc( lex_this, PT_SEMI )){
+   			std::cout << "this is the end of the current block::Compile"<< std::endl;
+                	lex_advance();
+		}
 	/* if lex_this is a SEMI, this is the end of block.*/
- }  
+   
+}
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
-	
-        lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 
-        std::cout << "End of Block::Compile" << std::endl;
+	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
+
+	// =BUG= the following is almost certainly an error
+    std::cout << "End of Block::Compile" << std::endl;
 	return NULL;
 }
+

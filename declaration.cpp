@@ -55,22 +55,20 @@ Environment * Declaration::compile( Environment * e ) {
 
 	#if Debugging_declaration
 	// e -> printAll();
-	
+	#endif
+
+	#if Debugging_declaration
 	lex_this.print_lex();
-        if (lex_this.type == IDENT){
-	lex_advance(); // skip identifier, but first needs to recognize identifier
+	#endif
+	lex_advance(); // skip identifier
 
-        lex_this.print_lex();
-        if (lex_this.type == PT_COLON){
-	
-	lex_advance(); // skip colon, but first needs to recognize colon
+	#if Debugging_declaration
+	lex_this.print_lex();
+	#endif
+	lex_advance(); // skip colon
 
-	}
-        // AS OF THIS PART, WE DETERMINED AND SKIPPED IDENTIFIER AND COLON
-        // BUT WE STILL MISSING ELSE CASE, AND THE FOLOWING CASE
-        // FOR THE ELSE CASE
-        }
-        lex_this.print_lex();
+	#if Debugging_declaration
+	lex_this.print_lex();
 	#endif
 	// =BUG= we should do something about private and restricted keywords
 	lex_advance(); // this one skips "var" or whatever
@@ -88,7 +86,7 @@ Environment * Declaration::compile( Environment * e ) {
 	// =BUG= we should return a useful environment
 	#if Debugging_declaration
 	std::cout << "end of Declaration::Compile" << std::endl;
-	return e;
-}       
-        #endif
+	#endif
 
+	return e;
+}

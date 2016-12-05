@@ -6,9 +6,10 @@
  */
 #ifndef ERRORS_H
 #define ERRORS_H
-//#endif
-//#ifndef EXTERN
-#define EXTERN extern 
+
+#ifndef EXTERN
+	#define EXTERN extern
+#endif
 
 typedef enum {
 	/* intended for use in calls to error_fatal */
@@ -27,7 +28,7 @@ typedef enum {
 	ER_WANT_ENDFILE,
 	ER_WANT_BLOCK,
 	ER_WANT_ENDBLOK,
-	ER_WANT_STATE,
+	ER_WANT_STATE
 } error_message;
 
 EXTERN int error_count;
@@ -50,7 +51,7 @@ void error_warn( error_message er, int line );
  * these may be split to create "error x found but y expected" messages
  */
 
-//#undef EXTERN
+#undef EXTERN
 
 /*how to detect an error once a error loop inside another, and which one comes first. */
 void error_order_check(error_message er, int line);
