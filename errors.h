@@ -9,7 +9,7 @@
 #endif
 #ifndef EXTERN
 	#define EXTERN extern
-
+#endif
 typedef enum {
 	/* intended for use in calls to error_fatal */
 	ER_BADARG,
@@ -58,4 +58,4 @@ void error_order_check(error_message er, int line);
 /*how to detect error message once fixed but still error*/
 void error_re_check(error_message er, int line);
 
-#endif
+//#endif
