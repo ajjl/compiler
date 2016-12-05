@@ -175,7 +175,7 @@ public:
   Stack2();
   Stack2(int size);
   
-  ~Stack();
+  ~Stack2();
   
   void push(float a);
   int pop();
@@ -277,4 +277,3 @@ default size 1000;
 
 /*thorw the generated assembly code into another stack, then pop the second stack to print out the assembly code in the right order. */
 
- 
