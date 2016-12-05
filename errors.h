@@ -6,6 +6,8 @@
  */
 #ifndef ERRORS_H
 #define ERRORS_H
+#endif
+#ifndef
 #define EXTERN extern
 
 typedef enum {
