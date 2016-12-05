@@ -168,6 +168,102 @@ void Stack:: display() {
 }
 }
 
+class Stack2 {
+  float *arr;
+  int tos, capacity;
+public:
+  Stack2();
+  Stack2(int size);
+  
+  ~Stack();
+  
+  void push(float a);
+  int pop();
+  int get_size();
+  bool is_empty();
+  bool is_full();
+  void display();
+  float get_top();
+
+};
+
+Stack2::Stack2() {
+  arr = new float[DEFAULT_SIZE];
+  tos = 0;
+  capacity = DEFAULT_SIZE;
+}
+
+Stack2::Stack2(int size){
+  arr = new float [size];
+  tos = 0;
+  capacity = size;
+}
+
+Stack2::~Stack2(){
+delete[] arr;
+}
+
+void Stack2::push(float a) {
+  if (!is_full()){
+    arr[tos++] = a;
+    cout<<"pushing"<<endl;
+}
+else
+  cout<<"sorry, the stack is full, push failed"<<endl;
+
+}
+
+int Stack2::pop(){
+  if (!is_empty()){
+   return arr[--tos];
+}else {
+ cout<<"sorry, the stack is empty, pop failed"<<endl;
+ return -1;
+}
+}
+
+float Stack2::get_top(){
+ if(!is_empty())
+  return arr[tos-1];
+ else{
+  cout<<"sorry, the stack is empty"<<endl;
+   return 1;
+}
+}
+
+
+int Stack2::get_size() {
+return tos;
+
+}
+
+bool Stack2::is_empty() {
+ if(tos == 0)
+     return true;
+ else
+     return false;
+
+}
+
+bool Stack2::is_full() {
+  if(tos == capacity)
+     return true;
+   else
+      return false;
+
+}
+
+void Stack2::display() {
+ if (tos == 0)
+  cout<<"the stack is empty"<<endl;
+else{
+  for(int i=0; i<tos; i++)
+      cout<< arr[i] << " ";
+    cout<<endl;
+}
+}
+
+
 /* when using
 stack_push
 stack_pop
