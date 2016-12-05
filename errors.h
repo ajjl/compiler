@@ -8,7 +8,7 @@
 #define ERRORS_H
 #endif
 #ifndef EXTERN
-#define EXTERN extern
+	#define EXTERN extern
 
 typedef enum {
 	/* intended for use in calls to error_fatal */
