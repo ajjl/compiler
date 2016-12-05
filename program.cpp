@@ -2,7 +2,7 @@
 
 // Author: Douglas W. Jones
 // Date 10/11/2016 -- framework established
-
+//parsing starts here
 // BNF
 // <kestrel program> ::=  <block> <end of file>
 
