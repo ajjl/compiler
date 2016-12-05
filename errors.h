@@ -7,7 +7,7 @@
 #ifndef ERRORS_H
 #define ERRORS_H
 #define EXTERN extern
-#endif
+
 typedef enum {
 	/* intended for use in calls to error_fatal */
 	ER_BADARG,
@@ -48,7 +48,7 @@ void error_warn( error_message er, int line );
  * these may be split to create "error x found but y expected" messages
  */
 
-//#undef EXTERN
+#undef EXTERN
 
 /*how to detect an error once a error loop inside another, and which one comes first. */
 void error_order_check(error_message er, int line);
@@ -56,4 +56,4 @@ void error_order_check(error_message er, int line);
 /*how to detect error message once fixed but still error*/
 void error_re_check(error_message er, int line);
 
-//#endif
+#endif
