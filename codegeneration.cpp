@@ -174,3 +174,11 @@ stack_pop
 default size 1000;
 */
 /* teamates can use or copy my stack class  in other files of this compiler project if needed--Hongxu Li*/
+
+
+
+/* throw everything from the parse tree into this code generation stack and then translate into machine code by likely one-to-one*/
+
+/*thorw the generated assembly code into another stack, then pop the second stack to print out the assembly code in the right order. */
+
+ 
