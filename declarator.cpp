@@ -22,7 +22,7 @@
 #include "environment.h"
 
 #define EXTERN
-#include "declaration.h"
+#include "declarator.h"
 // start sets
 #define START_PUNCS SET32_EMPTY
 #define START_KEYS SET32_EMPTY
