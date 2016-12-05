@@ -6,10 +6,10 @@
  */
 #ifndef ERRORS_H
 #define ERRORS_H
-#endif
-#ifndef EXTERN
+
+//#ifndef EXTERN
 	#define EXTERN extern
-#endif
+
 typedef enum {
 	/* intended for use in calls to error_fatal */
 	ER_BADARG,
@@ -29,8 +29,7 @@ typedef enum {
 	ER_WANT_ENDBLOK,
 	ER_WANT_STATE
 } error_message;
-
-EXTERN int error_count;
+extern int error_count;
 
 void er_help();
 /* output the help message and exit the program */
@@ -58,4 +57,4 @@ void error_order_check(error_message er, int line);
 /*how to detect error message once fixed but still error*/
 void error_re_check(error_message er, int line);
 
-//#endif
+#endif
