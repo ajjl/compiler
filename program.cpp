@@ -23,12 +23,15 @@
 #define FOLLOW_PUNCS SET32_EMPTY
 #define FOLLOW_KEYS SET32_EMPTY
 #define FOLLOW_LEXS to_set32( ENDFILE )
+//need to check if it is a valid program to compile
+//check for if the first element is a block element or not
+//and if the final contains the end-of-file sign if applicable
 Program * Program::compile() {
 
 	Environment * e = new Environment(NULL);  //The first environment has no parent
 
 	// =BUG= standard prefix for code generator needed
-
+         
 	Block * b = Block::compile( e );
 
 	// =BUG= standard suffix for code generator needed
