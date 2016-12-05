@@ -56,8 +56,9 @@ Block * Block::compile( Environment * e ) {
 			// all declarations begin with ident:
 			std::cout << " I think I'm a declaration." << std::endl;
 			e = Declaration::compile( e );
-		} else {
-			// if not a declaration must be a statement
+		} else/*=bug=this should be else if*/  {
+			// if it is a statement
+                 //=bug= need to check, because there could be error
 
 			#if Debugging_block
 			std::cout << " I think I'm a statement." << std::endl;
@@ -73,10 +74,13 @@ Block * Block::compile( Environment * e ) {
 			#endif
 
 		}
+        //=bug=, here should be a else statement handles error
 		if (lex_ispunc( lex_this, PT_SEMI )){
    			std::cout << "this is the end of the current block::Compile"<< std::endl;
                 	lex_advance();
 		}
+
+            
 	/* if lex_this is a SEMI, this is the end of block.*/
    
 }
@@ -84,7 +88,6 @@ Block * Block::compile( Environment * e ) {
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 
-	// =BUG= the following is almost certainly an error
     std::cout << "End of Block::Compile" << std::endl;
 	return NULL;
 }
