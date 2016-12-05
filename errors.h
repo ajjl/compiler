@@ -6,8 +6,8 @@
  */
 #ifndef ERRORS_H
 #define ERRORS_H
-
-//#ifndef EXTERN
+#endif
+#ifndef EXTERN
 	#define EXTERN extern
 
 typedef enum {
@@ -29,7 +29,8 @@ typedef enum {
 	ER_WANT_ENDBLOK,
 	ER_WANT_STATE
 } error_message;
-extern int error_count;
+
+EXTERN int error_count;
 
 void er_help();
 /* output the help message and exit the program */
