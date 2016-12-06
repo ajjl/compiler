@@ -1,0 +1,45 @@
+# ReducedKestrekEBNF.gr the ebnf grammar for ReducedKestrek (not as bad-ass as kestrel)
+# Auhor: Douglas W. Jones/ Alexander Leinoff
+# Date: Whatever the commit log says 
+# Taken from http://www.cs.uiowa.edu/~jones/compiler/kestrel/definition.shtml, and reduced alot
+
+# For starters, if we implement this grammer, it will allow us to  succesfully
+# parse a program that declares and then assigns a value. Once we are able to
+# do that, and then genereate code for it, we can start expanding this grammer
+# to do more things
+
+> <kestrel program>
+/ <empty>
+
+<kestrel program> ::= <block> <end of file>
+
+<block> ::= { <block element> [ ";" ] }
+
+<block element> ::= <declaration>
+                 |  <statement>
+
+# Declarations
+<declaration> ::= <identifier> ":"  <declarator>
+
+<declarator> ::= <variable declarator>
+
+<variable declarator> ::= "var" <type>
+
+<type> ::= <reference>
+
+<reference> ::= <identifier>
+
+# Statements
+<statement> ::= <assignment>
+
+<assignment> ::= <reference> "=" <expression>
+
+<expression> ::= <comparand> 
+
+<comparand> ::= <term> 
+
+<term> ::= <factor> 
+
+<factor> ::=  <value>
+
+<value> ::= <number>
