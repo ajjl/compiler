@@ -7,9 +7,9 @@
 #define EXTERN extern
 #endif
 
-class Block {
+class variableDeclarator {
 public:
-        static Block * compile( Environment * e );
+        static variableDeclarator * compile( Environment * e );
 
 
 private:
