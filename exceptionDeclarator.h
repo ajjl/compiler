@@ -7,9 +7,9 @@
 #define EXTERN extern
 #endif
 
-lass Block {
+lass exceptionDeclarator {
 public:
-        static Block * compile( Environment * e );
+        static exceptionDeclarator * compile( Environment * e );
 
 private:
 
