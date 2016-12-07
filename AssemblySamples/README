@@ -1,0 +1,34 @@
+Compilation intructions:
+Must be done on ARM machine
+
+assemble and thien link.
+taken from: http://thinkingeek.com/2013/01/09/arm-assembler-raspberry-pi-chapter-1/
+
+ex. for first.s:
+```
+as -o first.o first.s
+gcc -o first first.o
+```
+now we should be able to run
+```
+./first
+```
+
+to output the returnvalue when running:
+```
+./first; echo $?
+```
+
+looks like return value is stored in r0
+
+
+
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
+REMEMBER TO DELETE BUILD ARTIFACTS AND DONT COMMIT THEM TO THE REPO!!!!!!!!!!!
