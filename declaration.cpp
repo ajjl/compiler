@@ -20,6 +20,9 @@
 
 #include "environment.h"
 
+
+#include "ExplodingTeeth.h"
+
 #define EXTERN
 #include "declaration.h"
 
@@ -87,6 +90,7 @@ Environment * Declaration::compile( Environment * e ) {
 	#if Debugging_declaration
 	std::cout << "end of Declaration::Compile" << std::endl;
 	#endif
+	AssemblyProclamationOfTheWorkersParadise::PUSHL();
 
 	return e;
 }
