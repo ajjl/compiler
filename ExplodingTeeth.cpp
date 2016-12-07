@@ -1,7 +1,7 @@
 #define EXTERN
 #include "ExplodingTeeth.h"
 
-sp = STACKBOTTOM;
+ int sp = STACKBOTTOM;
     // File * output; //Right now we'll just use std::out
 
    void incStack(){
@@ -20,16 +20,16 @@ sp = STACKBOTTOM;
         }
     }
 
-   void PUSHL(/*int x*/){ // Only use 1 word (4byte) size vars
-	incStack();
+    void PUSHL(/*int x*/){ // Only use 1 word (4byte) size vars
+        incStack();
     };
     void POPL(int x){
-	dncStack();
+        dncStack();
     };
     void PUSHI( int c){
-	// change to stack later
-	std::cout << "add r" << sp << " #0 " << c << std::endl;
-	incStack();
+        // change to stack later
+        std::cout << "add r" << sp << " #0 " << c << std::endl;
+        incStack();
     };
 /*
 ~
@@ -342,6 +342,5 @@ sp = STACKBOTTOM;
 ~
 ~
 ~
-~
-~
 */
+// SUPRISE !!!

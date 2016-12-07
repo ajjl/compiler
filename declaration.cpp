@@ -26,7 +26,7 @@
 #define EXTERN
 #include "declaration.h"
 
-#define Debugging_declaration 1
+#define Debugging_declaration 0
 
 // =BUG= code to compile various kinds of declarations might
 // =   = go here as local classes, not in the header file
@@ -46,14 +46,18 @@
 #define FOLLOW_LEXS to_set32_2( ENDFILE, IDENT )
 
 Environment * Declaration::compile( Environment * e ) {
+#if Debugging_declaration
 	std::cout << "in Decleration::compile" << std::endl;
+#endif
 
 	// lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_??? );
 	// the above is not needed because Block::compile() is the only caller
 	// and it only calls this code when it sees <identifier>:
 
 	// =BUG= we should put the identifier in the environment
+#if Debugging_declaration
 	std::cout << "PRINTING ELEMENTS" << std::endl;
+#endif
 	e->addElement(lex_this.value, 0);
 
 	#if Debugging_declaration
@@ -91,7 +95,6 @@ Environment * Declaration::compile( Environment * e ) {
 	std::cout << "end of Declaration::Compile" << std::endl;
 	#endif
 	//AssemblyProclamationOfTheWorkersParadise::PUSHL();
-	incStack();
-
+	PUSHL();
 	return e;
 }

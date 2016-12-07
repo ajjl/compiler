@@ -25,6 +25,8 @@
 	#define EXTERN extern
 #endif
 
+
+
 class Environment {
 public:
 	Environment* parent = NULL;
@@ -71,6 +73,7 @@ public:
 		//print out the entire scope
 		MapType::const_iterator iter = this->scope.begin();
 		while(iter != this->scope.end() ){
+
 			std::cout << "name (handle) is: " << iter->first << std::endl;
 			std::cout << "value (int only for now) is:" << iter->second << std::endl;
 			iter++;

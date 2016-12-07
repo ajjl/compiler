@@ -20,7 +20,7 @@
 
 #include "block.h"
 
-#define Debugging_block 1
+#define Debugging_block 0
 
 
 // start sets
@@ -39,22 +39,28 @@
 // internal sets
 
 Block * Block::compile( Environment * e ) {
+#if Debugging_block
     std::cout << "in Block::Compile" << std::endl;
     std::cout << "Environment is : " << e << std::endl;
 	char message[300] ;
 	std::sprintf(message, "value of lexeme in, %s: %d",__FILE__,  __LINE__);
     lex_this.print_lex(message);
+#endif
 
 	lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_BLOCK );
 
 	while (lex_isinset( START_PUNCS, START_KEYS, START_LEXS )) {
+#if Debugging_block
 		std::cout << "in whileloop of Block::Compiler" << std::endl;
 		lex_this.print_lex();
+#endif
 
 		if ( (lex_this.type == IDENT)
 		&&   lex_ispunc( lex_next, PT_COLON ) ) { //checking to see if assignment/declaration
 			// all declarations begin with ident:
+#if Debugging_block
 			std::cout << " I think I'm a declaration." << std::endl;
+#endif
 			e = Declaration::compile( e );
 		} else/*=bug=this should be else if*/  {
 			// if it is a statement
@@ -76,7 +82,9 @@ Block * Block::compile( Environment * e ) {
 		}
         //=bug=, here should be a else statement handles error
 		if (lex_ispunc( lex_this, PT_SEMI )){
+#if Debugging_block
    			std::cout << "this is the end of the current block::Compile"<< std::endl;
+#endif
                 	lex_advance();
 		}
 
@@ -84,11 +92,15 @@ Block * Block::compile( Environment * e ) {
 	/* if lex_this is a SEMI, this is the end of block.*/
    
 }
+#if Debugging_block
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
+#endif
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 
+#if Debugging_block
     std::cout << "End of Block::Compile" << std::endl;
+#endif
 	return NULL;
 }
 

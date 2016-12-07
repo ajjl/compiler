@@ -1,7 +1,7 @@
 // declarator.h file
 
 
-ifndef EXTERN
+#ifndef EXTERN
 #define EXTERN extern
 #endif
 

@@ -20,6 +20,9 @@
 #define EXTERN
 #include "main.h"
 
+
+#define Debugging_main 0
+
 int main( int argc, char * argv[] ) {
 
   bool isinfile = false;  // has the input file been specified?
@@ -147,15 +150,21 @@ int main( int argc, char * argv[] ) {
   }
 
   // initialize all the subsystems
+#if Debugging_main
   std::cout << "before lex_open in main" << std::endl;
+#endif
   lex_open( main_infile );
+#if Debugging_main
   std::cout << "after lex_open in main" << std::endl;
   // =BUG= must initialize code generator to use main_outfile
 
   // and finally, compile the program
   std::cout << "before Program::compile()" << std::endl;
+#endif
   Program * p = Program::compile();
+#if Debugging_main
   std::cout << "after Program::compile()" << std::endl;
+#endif
   return 0;
  /*since the int main, we better have return 0; if it does not break anything*/
   // =BUG= we don't seem to need the return value

@@ -17,7 +17,7 @@
 // =   = but if they start getting big and unwieldy, they can each
 // =   = be put in ther own files
 
-#define Debugging_statement 1
+#define Debugging_statement 0
 
 // start sets
 #define START_PUNCS SET32_EMPTY
@@ -63,7 +63,9 @@ Statement * Statement::compile( Environment * e ) {
         (e)->printAll();
         #endif
     } else {
+#if Debugging_statement
         std::cout << "gimme an equals sign" << std::endl;
+#endif
     }
 
     lex_advance();

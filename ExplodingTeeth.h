@@ -8,9 +8,8 @@
 #define EXTERN extern
 #endif
 
-    EXTERN unsigned int sp;
+    extern int sp;
 
-#undef EXTERN
 
     // File * output; //Right now we'll just use std::out
 
@@ -22,3 +21,4 @@
     void POPL(int x);
     void PUSHI( int c);
 
+#undef EXTERN
