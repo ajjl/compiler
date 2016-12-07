@@ -90,7 +90,8 @@ Environment * Declaration::compile( Environment * e ) {
 	#if Debugging_declaration
 	std::cout << "end of Declaration::Compile" << std::endl;
 	#endif
-	AssemblyProclamationOfTheWorkersParadise::PUSHL();
+	//AssemblyProclamationOfTheWorkersParadise::PUSHL();
+	incStack();
 
 	return e;
 }
