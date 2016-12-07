@@ -42,6 +42,10 @@ public:
 		this->parent = parentEnv;
 	}
 
+	int getBigOffset(){
+		return (this->scope.size()+1)*4+8;
+	}
+
 	//int will be our only type for now
 	int lookup(string_handle varHandle){
 	//Try to find var in this environment's scope, if its not there, then try the parent scope
@@ -61,12 +65,12 @@ public:
 
 	}
 
-	void addElement(string_handle new_name, int new_value) {
+	void addElement(string_handle new_name) {
 		bool isThere = this->scope.count(new_name);
 		if (isThere) {
-			this->scope.erase(new_name);
+			return;
 		}
-		this->scope.emplace(new_name, new_value);
+		this->scope.emplace(new_name, (this->scope.size()+1)*4);
 	}
 
 	void print(){
@@ -75,7 +79,7 @@ public:
 		while(iter != this->scope.end() ){
 
 			std::cout << "name (handle) is: " << iter->first << std::endl;
-			std::cout << "value (int only for now) is:" << iter->second << std::endl;
+			std::cout << "offset (int only for now) is:" << iter->second << std::endl;
 			iter++;
 		}
 	}

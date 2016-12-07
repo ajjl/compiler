@@ -58,7 +58,7 @@ Environment * Declaration::compile( Environment * e ) {
 #if Debugging_declaration
 	std::cout << "PRINTING ELEMENTS" << std::endl;
 #endif
-	e->addElement(lex_this.value, 0);
+	e->addElement(lex_this.value);
 
 	#if Debugging_declaration
 	// e -> printAll();
@@ -95,6 +95,6 @@ Environment * Declaration::compile( Environment * e ) {
 	std::cout << "end of Declaration::Compile" << std::endl;
 	#endif
 	//AssemblyProclamationOfTheWorkersParadise::PUSHL();
-	PUSHL();
+	//PUSHL();
 	return e;
 }

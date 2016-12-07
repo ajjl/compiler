@@ -1,4 +1,4 @@
 -- this is a simplified prologue for testing
 
 xnameVar: var int;
-xnameVar = 4;
+xnameVar = 122;

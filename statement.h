@@ -1,3 +1,4 @@
+
 #ifndef EXTERN
 	#define EXTERN extern
 #endif

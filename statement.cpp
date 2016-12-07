@@ -6,6 +6,7 @@
 #include "lexsupport.h"
 
 #include "environment.h"
+#include "ExplodingTeeth.h"
 
 #define EXTERN
 #include "statement.h"
@@ -53,11 +54,14 @@ Statement * Statement::compile( Environment * e ) {
     lex_advance();
 
 
-    // see if it's equals
+    // see if the lexeme is an equals
     if (lex_this.type == 4 && lex_this.value == 2) {
         // it's an assignment statement
         lex_advance();
-        (e)->addElement(first.value, lex_this.value);
+        //(e)->addElement(first.value);
+        int offset = e->lookup(first.value);
+        declare_and_assign(offset, lex_this.value);
+
 
         #if Debugging_statement
         (e)->printAll();

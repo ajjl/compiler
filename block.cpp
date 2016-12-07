@@ -8,6 +8,7 @@
 #include "keywords.h"
 #include "lexical.h"
 #include "lexsupport.h"
+#include "ExplodingTeeth.h"
 
 #include "environment.h"
 #include "declaration.h"
@@ -92,6 +93,12 @@ Block * Block::compile( Environment * e ) {
 	/* if lex_this is a SEMI, this is the end of block.*/
    
 }
+
+int bigOffset = e->getBigOffset();
+std::cout << "Proloug" << std::endl;
+generate_prolog(bigOffset);
+std::cout << "Epilog " << std::endl;
+generate_epilog(bigOffset);
 #if Debugging_block
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
 #endif
