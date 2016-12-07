@@ -8,6 +8,7 @@
 
 // BNF
 // <declaration> ::= <identifier> : [ <private> | <restricted> ] <declarator>
+#include "ExplodingTeeth.h"
 
 #ifndef EXTERN
 #define EXTERN extern
