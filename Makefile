@@ -78,6 +78,9 @@ statement.o: statement.cpp
 declaration.o: declaration.cpp
 	$(COMPILER) $(CFLAGS) -c declaration.cpp
 
+ExplodingTeeth.o: ExplodingTeeth.cpp
+	$(COMPILER) $(CFLAGS) -c ExplodingTeeth.cpp
+
 
 
 #######
