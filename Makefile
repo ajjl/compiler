@@ -36,10 +36,10 @@ all: kestrel testlex
 
 kestrel: main.o lexical.o lexsupport.o keywords.o symboltable.o stringpool.o \
 	 errors.o \
-	 environment.o program.o block.o declaration.o statement.o
+	 environment.o program.o block.o declaration.o statement.o ExplodingTeeth.o
 	$(COMPILER) $(CFLAGS) -o kestrel main.o lexical.o lexsupport.o keywords.o \
 				symboltable.o stringpool.o errors.o \
-				program.o block.o declaration.o statement.o
+				program.o block.o declaration.o statement.o ExplodingTeeth.o
 
 main.o: main.cpp main.h lexical.h  errors.h program.h config.h
 	$(COMPILER) $(CFLAGS)  -c main.cpp
