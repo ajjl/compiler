@@ -34,10 +34,11 @@ if(1)
             )
     list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/testlex.cpp" )
     list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/main.cpp" )
-    list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/declarator.h" ) # this file was causing problems
-    list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/declarator.cpp" ) # this file was causing problems
-    list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/constantDeclarator.h" ) # this file was causing problems
-    list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/constantDeclarator.cpp" ) # this file was causing problems
+    #list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/declarator.h" ) # this file was causing problems
+    #list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/declarator.cpp" ) # this file was causing problems
+    #list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/constantDeclarator.h" ) # this file was causing problems
+    #list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/constantDeclarator.cpp" ) # this file was causing problems
+   
 
     #message(WARNING "SOURCES: ${SOURCES}")
 endif()
