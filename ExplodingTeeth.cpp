@@ -1,8 +1,11 @@
 #include "program.h"
+
+
 #define EXTERN
 #include "ExplodingTeeth.h"
+#include "lexical.h"
 
- int sp = STACKBOTTOM;
+int sp = STACKBOTTOM;
  int jumpLabel = 2;
     // File * output; //Right now we'll just use std::out
 
@@ -66,9 +69,19 @@
         }
     }
 
-    int make_conditional_jump_label(){
+    int make_conditional_jump_label(int comparisonType){
         if(silent == 1) {
-            std::cout << "bne .L" << jumpLabel << std::endl;
+            switch(comparisonType) {
+                case PT_EQUALS:
+                    std::cout << "bne .L";
+                    break;
+                case PT_NOTEQL:
+                    std::cout << "beq .L";
+                    break;
+
+
+            }
+            std::cout << jumpLabel << std::endl;
         }
        return jumpLabel++; //return the jump label, then increment for the next jump
     }
