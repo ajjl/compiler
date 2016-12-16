@@ -81,6 +81,12 @@ int sp = STACKBOTTOM;
             std::cout << "str r3, [r7, #" << offset << "]" << std::endl;
         }
     }
+    int make_unconditional_jump_label(){
+        if(silent == 1) {
+            std::cout << "b .L" << jumpLabel << std::endl;
+        }
+        return jumpLabel++; //return the jump label, then increment for the next jump
+    }
 
     int make_conditional_jump_label(int comparisonType){
         if(silent == 1) {
@@ -104,6 +110,26 @@ int sp = STACKBOTTOM;
             std::cout << ".L" << label << ":" << std::endl;
         }
 
+    }
+    void make_conditional_jump_label_backwards_for_while(int comparisonType, int label){
+        if(silent == 1){
+            switch(comparisonType) {
+                case PT_EQUALS:
+                    std::cout << "beq .L";
+                    break;
+                case PT_NOTEQL:
+                    std::cout << "bne .L";
+                    break;
+            }
+            std::cout << label << std::endl;
+        }
+    }
+
+    int print_closing_jump_label_backwards(){
+        if(silent == 1) {
+            std::cout << ".L" << jumpLabel << ":" << std::endl;
+        }
+        return jumpLabel++;
     }
 
     void generate_prolog(int bigOffset) {

@@ -50,7 +50,50 @@ Statement * Statement::compile( Environment * e ) {
 	//lex_this.print_lex();
     #endif
     if(lex_this.type != IDENT){ // not an identifier so it is an if statement
-        if(lex_this.value == KEY_IF){ // we got an if
+
+
+        if(lex_this.value == KEY_WHILE ){ // we got an if
+            lexeme branchingLex = lex_this;
+
+            lex_advance(); // eat the if
+            lexeme firstCompartor = lex_this;
+            lex_advance(); //advance the window
+            lexeme comparisonOperator = lex_this;
+            lex_advance(); //advance the window
+            lexeme secondComparator = lex_this;
+            lex_advance();
+
+            int firstLabel = make_unconditional_jump_label();
+            //comparisonOperators currently supported -> "="
+            int secondLabel = print_closing_jump_label_backwards();
+            Block::compile(e);
+            print_closing_jump_label(firstLabel);
+
+            if(comparisonOperator.value == PT_EQUALS ||  comparisonOperator.value == PT_NOTEQL){ //we got an equals !!
+
+                //first comparator must be reference ( a variable??)
+                //load and compare it
+                //get offset of var
+                int offset = e->lookup(firstCompartor.value);
+                load_value_into_working_register(offset);
+
+                compare_working_register_with_constant(secondComparator.value);
+                //compile statement(assignment)
+                // print the closing jump label
+                make_conditional_jump_label_backwards_for_while(comparisonOperator.value, secondLabel);
+
+                //std::cout << "lex after if?? " << std::endl;
+                //lex_this.print_lex();
+
+                return NULL; //done with comparison
+
+
+            }
+
+        }
+
+        if(lex_this.value == KEY_IF ){ // we got an if
+            lexeme branchingLex = lex_this;
 
             lex_advance(); // eat the if
             lexeme firstCompartor = lex_this;
@@ -69,6 +112,7 @@ Statement * Statement::compile( Environment * e ) {
                 //get offset of var
                 int offset = e->lookup(firstCompartor.value);
                 load_value_into_working_register(offset);
+
                 compare_working_register_with_constant(secondComparator.value);
                 int label = make_conditional_jump_label((comparisonOperator.value) );
                 //compile statement(assignment)
