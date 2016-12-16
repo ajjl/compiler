@@ -97,11 +97,28 @@ Statement * Statement::compile( Environment * e ) {
     if (lex_this.type == 4 && lex_this.value == 2) {
         // it's an assignment statement
         lex_advance();
+
+        int offsetAssignee = e->lookup(first.value);
         //(e)->addElement(first.value);
-        int offset = e->lookup(first.value);
-        declare_and_assign(offset, lex_this.value);
+        //lex_this.print_lex();
+        if(lex_next.value == PT_SEMI && lex_this.type == NUMBER) { // then assign a constant
+            declare_and_assign(offsetAssignee, lex_this.value);
+        }
+        else if(lex_this.type == IDENT && lex_next.value == PT_PLUS){ // assign result of adding to var; ie. x = y + 1;
+            int offsetOtherAssign = e->lookup(lex_this.value); //look up y
+
+            load_value_into_working_register(offsetOtherAssign);
+            lex_advance(); //eat the second ident
+            lex_advance(); //eat the plus sign
+            int value = lex_this.value; //the value of the number constant
+            add_constant_to_working_register(value);
+            store_working_register_into_memory(offsetAssignee);
 
 
+
+
+
+        }
         #if Debugging_statement
         (e)->printAll();
         #endif
