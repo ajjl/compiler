@@ -149,24 +149,31 @@ Statement * Statement::compile( Environment * e ) {
             declare_and_assign(offsetAssignee, lex_this.value);
         }
         else if(lex_this.type == IDENT && (lex_next.value == PT_PLUS || lex_next.value == PT_MINUS)){ // assign result of adding to var; ie. x = y + 1;
-            int offsetOtherAssign = e->lookup(lex_this.value); //look up y
+            int offsetRVal_ONE = e->lookup(lex_this.value); //look up y
 
             lexeme mathmaticalOperator = lex_next;
-            load_value_into_working_register(offsetOtherAssign);
+            load_value_into_working_register(offsetRVal_ONE);
             lex_advance(); //eat the second ident
             lex_advance(); //eat the plus sign
-            int value = lex_this.value; //the value of the number constant
-            if(mathmaticalOperator.value == PT_PLUS) {
-                add_constant_to_working_register(value);
+            if(lex_this.type == NUMBER) {  // var +- constant
+                int value = lex_this.value; //the value of the number constant
+                if (mathmaticalOperator.value == PT_PLUS) {
+                    add_constant_to_working_register(value);
+                } else if (mathmaticalOperator.value == PT_MINUS) {
+                    sub_constant_from_working_register(value);
+                }
             }
-            else if( mathmaticalOperator.value == PT_MINUS) {
-                sub_constant_from_working_register(value);
+            if(lex_this.type == IDENT) { //var +- var
+                int offsetRVal_TWO = e->lookup(lex_this.value);
+                load_value_into_second_working_register(offsetRVal_TWO);
+                if (mathmaticalOperator.value == PT_PLUS) {
+                    add_two_registers();
+                } else if (mathmaticalOperator.value == PT_MINUS) {
+                    sub_two_registers();
+                }
+
             }
             store_working_register_into_memory(offsetAssignee);
-
-
-
-
 
         }
         #if Debugging_statement
