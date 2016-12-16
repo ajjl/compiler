@@ -4,6 +4,7 @@
 #include "keywords.h"
 #include "lexical.h"
 #include "lexsupport.h"
+#include "block.h"
 
 #include "environment.h"
 #include "ExplodingTeeth.h"
@@ -70,15 +71,12 @@ Statement * Statement::compile( Environment * e ) {
                 compare_working_register_with_constant(secondComparator.value);
                 int label = make_conditional_jump_label();
                 //compile statement(assignment)
-                Statement::compile(e);
+                Block::compile(e);
                 // print the closing jump label
                 print_closing_jump_label(label);
 
-                lex_advance(); //eat the end?
                 //std::cout << "lex after if?? " << std::endl;
                 //lex_this.print_lex();
-                lex_advance(); //eat the end again? why do we need 2
-
 
                 return NULL; //done with comparison
 

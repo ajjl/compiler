@@ -1,5 +1,10 @@
 x: var int;
+y: var int;
 x = 0;
+y = 3;
 if x = 0
+  if y = 3
+    x = 2;
+  end
   x = 3;
 end
