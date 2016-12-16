@@ -7,7 +7,7 @@
 #include "block.h"
 
 #include "environment.h"
-#include "ExplodingTeeth.h"
+#include "AssemblyGen.h"
 
 #define EXTERN
 #include "statement.h"

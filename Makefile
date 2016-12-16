@@ -36,10 +36,10 @@ all: kestrel testlex
 
 kestrel: main.o lexical.o lexsupport.o keywords.o symboltable.o stringpool.o \
 	 errors.o \
-	 environment.o program.o block.o declaration.o statement.o ExplodingTeeth.o
+	 environment.o program.o block.o declaration.o statement.o AssemblyGen.o
 	$(COMPILER) $(CFLAGS) -o kestrel main.o lexical.o lexsupport.o keywords.o \
 				symboltable.o stringpool.o errors.o \
-				program.o block.o declaration.o statement.o ExplodingTeeth.o
+				program.o block.o declaration.o statement.o AssemblyGen.o
 
 main.o: main.cpp main.h lexical.h  errors.h program.h config.h
 	$(COMPILER) $(CFLAGS)  -c main.cpp
@@ -78,8 +78,8 @@ statement.o: statement.cpp
 declaration.o: declaration.cpp
 	$(COMPILER) $(CFLAGS) -c declaration.cpp
 
-ExplodingTeeth.o: ExplodingTeeth.cpp
-	$(COMPILER) $(CFLAGS) -c ExplodingTeeth.cpp
+AssemblyGen.o: AssemblyGen.cpp
+	$(COMPILER) $(CFLAGS) -c AssemblyGen.cpp
 
 
 

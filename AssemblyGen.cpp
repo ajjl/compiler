@@ -2,48 +2,13 @@
 
 
 #define EXTERN
-#include "ExplodingTeeth.h"
+#include "AssemblyGen.h"
 #include "lexical.h"
 
 int sp = STACKBOTTOM;
  int jumpLabel = 2;
     // File * output; //Right now we'll just use std::out
 
-   void incStack(){
-        sp++;
-        if(sp >= STACKTOP){
-            std::cerr << "stack overflow!!!!!" << std::endl;
-            exit(-2);
-        }
-    }
-
-   void dncStack(){
-        sp--;
-        if(sp <= STACKBOTTOM){
-            std::cerr << "stack underflow!!!!!" << std::endl;
-            exit(-2);
-        }
-    }
-
-    void PUSHL(/*int x*/){ // Only use 1 word (4byte) size vars
-        incStack();
-    }
-
-    void POPL(int x){
-        dncStack();
-    }
-
-    void PUSHI( int c){
-        // change to stack later
-        std::cout << "add r" << sp << " #0 " << c << std::endl;
-        incStack();
-    }
-
-    void POPS(){
-
-		//temp = M[sp++];
-		//M[M[sp++]] = temp;
-    }
 
     // alternate method
 
