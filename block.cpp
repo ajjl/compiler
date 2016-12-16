@@ -93,9 +93,9 @@ Block * Block::compile( Environment * e ) {
 }
 
 int bigOffset = e->getBigOffset();
-std::cout << "Proloug" << std::endl;
+std::cout << "#Proloug" << std::endl;
 generate_prolog(bigOffset);
-std::cout << "Epilog " << std::endl;
+std::cout << "#Epilog " << std::endl;
 generate_epilog(bigOffset);
 #if Debugging_block
 	std::cout << "after whileloop of Block::Compile"<< std::endl;

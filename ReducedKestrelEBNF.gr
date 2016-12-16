@@ -31,7 +31,20 @@
 
 # Statements
 <statement> ::= <assignment>
+<statement> ::= <if>
 
+### Assign constant to variable
+<assignment> ::= <reference> "=" <number>
+
+### if statement no else no nested
+<if> ::= "if" <expression> 
+		<assignment>
+	 "end"
+
+### only existing expression if comparison
+<expression> ::= <reference> "=" <number>
+
+### long form of assign constant to variable
 <assignment> ::= <reference> "=" <expression>
 
 <expression> ::= <comparand> 
@@ -43,3 +56,4 @@
 <factor> ::=  <value>
 
 <value> ::= <number>
+### end long form

@@ -2,6 +2,7 @@
 #include "ExplodingTeeth.h"
 
  int sp = STACKBOTTOM;
+ int jumpLabel = 2;
     // File * output; //Right now we'll just use std::out
 
    void incStack(){
@@ -47,6 +48,24 @@
     	// r7 must be initialized as a something (frame?) pointer
     	std::cout << "mov r3, #" << value << std::endl;
     	std::cout << "str r3, [r7, #" << offset << "]" << std::endl;
+    }
+
+    void load_value_into_working_register(int offset) {
+        std::cout << "ldr r3, [r7, #" <<offset<< "]" <<std::endl;
+
+    }
+
+    void compare_working_register_with_constant(int constant) {
+        std::cout <<"cmp r3, #" << constant << std::endl;
+    }
+
+    int make_conditional_jump_label(){
+        std::cout << "bne .L" << jumpLabel << std::endl;
+       return jumpLabel++; //return the jump label, then increment for the next jump
+    }
+    void print_closing_jump_label(int label){
+        std::cout << ".L" << label <<":" << std::endl;
+
     }
 
     void generate_prolog(int bigOffset) {
