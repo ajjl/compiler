@@ -1,3 +1,4 @@
+#include "program.h"
 #define EXTERN
 #include "ExplodingTeeth.h"
 
@@ -46,43 +47,58 @@
     void declare_and_assign(int offset, int value) {
     	// caller must do environment lookup to get offset
     	// r7 must be initialized as a something (frame?) pointer
-    	std::cout << "mov r3, #" << value << std::endl;
-    	std::cout << "str r3, [r7, #" << offset << "]" << std::endl;
+        if(silent == 1) {
+            std::cout << "mov r3, #" << value << std::endl;
+            std::cout << "str r3, [r7, #" << offset << "]" << std::endl;
+        }
     }
 
     void load_value_into_working_register(int offset) {
-        std::cout << "ldr r3, [r7, #" <<offset<< "]" <<std::endl;
+        if(silent == 1) {
+            std::cout << "ldr r3, [r7, #" << offset << "]" << std::endl;
+        }
 
     }
 
     void compare_working_register_with_constant(int constant) {
-        std::cout <<"cmp r3, #" << constant << std::endl;
+        if(silent == 1) {
+            std::cout << "cmp r3, #" << constant << std::endl;
+        }
     }
 
     int make_conditional_jump_label(){
-        std::cout << "bne .L" << jumpLabel << std::endl;
+        if(silent == 1) {
+            std::cout << "bne .L" << jumpLabel << std::endl;
+        }
        return jumpLabel++; //return the jump label, then increment for the next jump
     }
     void print_closing_jump_label(int label){
-        std::cout << ".L" << label <<":" << std::endl;
+
+        if(silent == 1) {
+            std::cout << ".L" << label << ":" << std::endl;
+        }
 
     }
 
     void generate_prolog(int bigOffset) {
-    	std::cout << ".global main" << std::endl;
-    	std::cout << "main:" << std::endl;
-    	std::cout << "push {r7}"<< std::endl;
-    	std::cout << "sub sp, sp, #" << bigOffset << std::endl;
-    	std::cout << "add r7, sp, #0" << std::endl;
+        if(silent == 1) {
+            std::cout << ".global main" << std::endl;
+            std::cout << "main:" << std::endl;
+            std::cout << "push {r7}" << std::endl;
+            std::cout << "sub sp, sp, #" << bigOffset << std::endl;
+            std::cout << "add r7, sp, #0" << std::endl;
+        }
 
     }
 
     void generate_epilog(int bigOffset) {
-    	std::cout << "mov r0, r3" << std::endl; //return last used var
-    	std::cout << "add r7, r7, #" << bigOffset << std::endl;
-    	std::cout << "mov sp, r7" << std::endl;
-    	std::cout << "pop {r7}" << std::endl;
-    	std::cout << "bx lr" << std::endl;
+        if(silent == 1) {
+            std::cout << "mov r0, r3" << std::endl; //return last used var
+            std::cout << "add r7, r7, #" << bigOffset << std::endl;
+            std::cout << "mov sp, r7" << std::endl;
+            std::cout << "pop {r7}" << std::endl;
+            std::cout << "bx lr" << std::endl;
+        }
   
     }
 
