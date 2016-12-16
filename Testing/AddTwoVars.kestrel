@@ -1,0 +1,6 @@
+x: var int;
+y: var int;
+
+x = 2;
+y = 3;
+x = x + y;

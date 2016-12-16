@@ -63,6 +63,12 @@ int sp = STACKBOTTOM;
 
     }
 
+    void load_value_into_second_working_register(int offset) {
+        if(silent == 1) {
+            std::cout << "ldr r4, [r7, #" << offset << "]" << std::endl;
+        }
+
+    }
 
     void compare_working_register_with_constant(int constant) {
         if(silent == 1) {
@@ -160,7 +166,16 @@ int sp = STACKBOTTOM;
   
     }
 
-
+    void add_two_registers(){
+        if(silent == 1) {
+            std::cout << "adds r3, r3, r4" << std::endl; // adds updates flags, not that we use them at the moment
+        }
+    }
+    void sub_two_registers(){
+        if(silent == 1) {
+            std::cout << "subs r3, r3, r4" << std::endl; // subs updates flags, not that we use them at the moment
+        }
+    }
 /*
 ~
 ~

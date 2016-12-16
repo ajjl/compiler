@@ -25,6 +25,7 @@
     void PUSHI( int c);
     void declare_and_assign(int offset, int value);
     void load_value_into_working_register(int offset);
+    void load_value_into_second_working_register(int offset) ;
     void compare_working_register_with_constant(int constant);
     void add_constant_to_working_register(int value);
     void sub_constant_from_working_register(int value);
@@ -37,5 +38,7 @@
 
     void generate_prolog(int bigOffset);
     void generate_epilog(int bigOffset);
+    void add_two_registers();
+    void sub_two_registers();
 
 #undef EXTERN
