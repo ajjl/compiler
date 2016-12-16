@@ -19,6 +19,7 @@
 
 #define EXTERN
 #include "program.h"
+#include "main.h"
 
 /* follow set for programs */
 #define FOLLOW_PUNCS SET32_EMPTY
@@ -30,19 +31,31 @@ Program * Program::compile() {
 
 	// =BUG= standard prefix for code generator needed
 
-    std::cout << "#Start" << std::endl;
-	Block * b = Block::compile( e );
+    silent = 0;
+
+    //first pass of compile to see how big program is:
+	Block::compile( e );
 
 
     // Print proloug and epilog
     int bigOffset = e->getBigOffset();
+    silent = 1;
     std::cout << "#Proloug" << std::endl;
     generate_prolog(bigOffset);
+    //e->delete();
+
+    e = new Environment(NULL);  //The first environment has no parent
+
+    // =BUG= standard prefix for code generator needed
+    lex_open(main_infile);
+
+    std::cout << "#Start" << std::endl;
+    Block::compile( e );
+
     std::cout << "#Epilog " << std::endl;
     generate_epilog(bigOffset);
 	// =BUG= standard suffix for code generator needed
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDFILE);
-
 	return NULL;
 }

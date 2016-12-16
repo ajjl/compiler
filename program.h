@@ -5,10 +5,15 @@
 
 // BNF
 // <kestrel program> :: <block> <end of file>
+#ifndef PROGRAM_H
+#define PROGRAM_H
+
 
 #ifndef EXTERN
 #define EXTERN extern
 #endif
+
+EXTERN int silent;
 
 class Program {
 public:
@@ -21,4 +26,4 @@ public:
 
 #undef EXTERN
 
-
+#endif
