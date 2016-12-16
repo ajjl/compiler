@@ -4,6 +4,8 @@
 ### Travis build status:
 [![Build Status](https://travis-ci.org/ajjl/compiler.svg?branch=master)](https://travis-ci.org/ajjl/compiler)
 
+### Github repo at: `https://github.com/ajjl/compiler`
+
 ### Jones Instructions
 
 First you need to make the kestrel program:
