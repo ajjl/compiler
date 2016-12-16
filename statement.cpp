@@ -104,7 +104,7 @@ Statement * Statement::compile( Environment * e ) {
             lex_advance();
 
 
-            //comparisonOperators currently supported -> "="
+            //comparisonOperators currently supported -> "=" "/="
             if(comparisonOperator.value == PT_EQUALS ||  comparisonOperator.value == PT_NOTEQL){ //we got an equals !!
 
                 //first comparator must be reference ( a variable??)
@@ -148,14 +148,20 @@ Statement * Statement::compile( Environment * e ) {
         if(lex_next.value == PT_SEMI && lex_this.type == NUMBER) { // then assign a constant
             declare_and_assign(offsetAssignee, lex_this.value);
         }
-        else if(lex_this.type == IDENT && lex_next.value == PT_PLUS){ // assign result of adding to var; ie. x = y + 1;
+        else if(lex_this.type == IDENT && (lex_next.value == PT_PLUS || lex_next.value == PT_MINUS)){ // assign result of adding to var; ie. x = y + 1;
             int offsetOtherAssign = e->lookup(lex_this.value); //look up y
 
+            lexeme mathmaticalOperator = lex_next;
             load_value_into_working_register(offsetOtherAssign);
             lex_advance(); //eat the second ident
             lex_advance(); //eat the plus sign
             int value = lex_this.value; //the value of the number constant
-            add_constant_to_working_register(value);
+            if(mathmaticalOperator.value == PT_PLUS) {
+                add_constant_to_working_register(value);
+            }
+            else if( mathmaticalOperator.value == PT_MINUS) {
+                sub_constant_from_working_register(value);
+            }
             store_working_register_into_memory(offsetAssignee);
 
 

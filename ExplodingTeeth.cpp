@@ -76,6 +76,12 @@ int sp = STACKBOTTOM;
         }
     }
 
+    void sub_constant_from_working_register(int value){
+        if(silent == 1){
+            std::cout << "sub r3, r3, #" << value << std::endl;
+        }
+    }
+
     void store_working_register_into_memory(int offset){
         if(silent == 1) {
             std::cout << "str r3, [r7, #" << offset << "]" << std::endl;
