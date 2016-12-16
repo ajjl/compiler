@@ -93,7 +93,6 @@ Block * Block::compile( Environment * e ) {
 		}
 
             
-	/* if lex_this is a SEMI, this is the end of block.*/
    
     }
 
