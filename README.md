@@ -43,7 +43,17 @@ From: http://thinkingeek.com/2013/01/09/arm-assembler-raspberry-pi-chapter-1/
 2. ./kestrel /Testing/XDeclareTestFile.kestrel > test.s | as -o test.o test.s | gcc -o test test.o
 3. ./test; echo $?
 
+### Files to try to compile:
+Unfortunatly there is no `make test` target. Here is a list of files you can try
+out with the above procedure that demnstrate our compiler's abilities:
+A EBNF of our reduced/modified kestrel grammar can be found in the file: `ReducedKestrelEBNF.gr`
 
+##### `Testing/AddTwoVars.kestrel`
+##### `Testing/whileTest.kestrel`
+##### `Testing/AddTest.kestrel`
+##### `Testing/IfTest.kestrel`
+##### `Testing/Subtrack.kestrel`
+##### `Testing/XDeclareTestFile.kestrel`
 
 
 ## Contributors
