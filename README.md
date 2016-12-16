@@ -3,6 +3,34 @@
 
 ### Jones Instructions
 
+First you need to make the kestrel program:
+`make clean` and then `make`
+
+To turn a reduced kestrel instruction set file into assembly, run
+the kestrel executable on a kestrel (reduced set) file. The assembly output is
+sent to stdout, so you will have to redirect the output to a file:
+
+```./kestrel Testing/whileTest.kestrel > whileTest.s```
+
+From there, you can run the CompileAssembly.sh script on the .s file:
+
+```./CompileAssembly.sh whileTest.s```
+
+The result will be a .s.bin file (whileTest.s.bin in this exeample) which can
+then be run from the command line:
+
+```./whileTest.s.bin```
+
+You can see the result of the last executed operation of the program (aka the
+return value) by running:
+
+```echo $?```
+
+after running the program, or you can combine this step with the previous one into one step:
+
+```./whileTest.s.bin; echo $?```
+
+Another method:
 From: http://thinkingeek.com/2013/01/09/arm-assembler-raspberry-pi-chapter-1/
 
 0. Be on a raspberry pi in the repo, and execute the following:
