@@ -12,6 +12,7 @@
 #include "errors.h"
 #include "lexical.h"
 #include "lexsupport.h"
+#include "ExplodingTeeth.h"
 
 #include "environment.h"
 #include "block.h"
@@ -29,8 +30,16 @@ Program * Program::compile() {
 
 	// =BUG= standard prefix for code generator needed
 
+    std::cout << "#Start" << std::endl;
 	Block * b = Block::compile( e );
 
+
+    // Print proloug and epilog
+    int bigOffset = e->getBigOffset();
+    std::cout << "#Proloug" << std::endl;
+    generate_prolog(bigOffset);
+    std::cout << "#Epilog " << std::endl;
+    generate_epilog(bigOffset);
 	// =BUG= standard suffix for code generator needed
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDFILE);

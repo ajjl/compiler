@@ -70,4 +70,5 @@ void lex_wantinset( set32_t ps, set32_t ks, set32_t ls, error_message e ) {
 
 	if (lex_isinset( ps, ks, ls )) return;
 	lex_gotbutwant( &lex_this, e);
+	exit(-1); //dont compile if bad program
 }

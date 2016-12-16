@@ -10,6 +10,7 @@
 // BNF
 // <block> ::= { <block element> [ ; ] }
 // <block element> ::= <declaration> | <statement>
+#include "environment.h"
 
 #ifndef EXTERN 
 #define EXTERN extern

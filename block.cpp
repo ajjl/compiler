@@ -22,6 +22,7 @@
 #include "block.h"
 
 #define Debugging_block 0
+#define Debugging_block2 0
 
 
 // start sets
@@ -86,24 +87,25 @@ Block * Block::compile( Environment * e ) {
 #endif
                 	lex_advance();
 		}
+		else if(lex_this.value == KEY_END){
+			//eat the end
+			lex_advance();
+		}
 
             
 	/* if lex_this is a SEMI, this is the end of block.*/
    
-}
+    }
 
-int bigOffset = e->getBigOffset();
-std::cout << "#Proloug" << std::endl;
-generate_prolog(bigOffset);
-std::cout << "#Epilog " << std::endl;
-generate_epilog(bigOffset);
-#if Debugging_block
+
+#if Debugging_block2
 	std::cout << "after whileloop of Block::Compile"<< std::endl;
 #endif
+    //lex_this.print_lex();
 
 	lex_wantinset( FOLLOW_PUNCS, FOLLOW_KEYS, FOLLOW_LEXS, ER_WANT_ENDBLOK);
 
-#if Debugging_block
+#if Debugging_block2
     std::cout << "End of Block::Compile" << std::endl;
 #endif
 	return NULL;
