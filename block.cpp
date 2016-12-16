@@ -8,7 +8,7 @@
 #include "keywords.h"
 #include "lexical.h"
 #include "lexsupport.h"
-#include "ExplodingTeeth.h"
+#include "AssemblyGen.h"
 
 #include "environment.h"
 #include "declaration.h"

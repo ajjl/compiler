@@ -12,7 +12,7 @@
 #include "errors.h"
 #include "lexical.h"
 #include "lexsupport.h"
-#include "ExplodingTeeth.h"
+#include "AssemblyGen.h"
 
 #include "environment.h"
 #include "block.h"
