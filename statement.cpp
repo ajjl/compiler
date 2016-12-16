@@ -44,14 +44,54 @@ Statement * Statement::compile( Environment * e ) {
     #endif
 
     lex_wantinset( START_PUNCS, START_KEYS, START_LEXS, ER_WANT_STATE );
-    // =BUG= big kluge!! statement stub just eats one lexeme
 
     #if Debugging_statement
 	//lex_this.print_lex();
     #endif
-    lexeme first = lex_this; // should be our identifier
+    if(lex_this.type != IDENT){ // not an identifier so it is an if statement
+        if(lex_this.value == KEY_IF){ // we got an if
+
+            lex_advance(); // eat the if
+            lexeme firstCompartor = lex_this;
+            lex_advance(); //advance the window
+            lexeme comparisonOperator = lex_this;
+            lex_advance(); //advance the window
+            lexeme secondComparator = lex_this;
+            lex_advance();
+
+            //comparisonOperators currently supported -> "="
+            if(comparisonOperator.value == PT_EQUALS){ //we got an equals !!
+
+                //first comparator must be reference ( a variable??)
+                //load and compare it
+                //get offset of var
+                int offset = e->lookup(firstCompartor.value);
+                load_value_into_working_register(offset);
+                compare_working_register_with_constant(secondComparator.value);
+                int label = make_conditional_jump_label();
+                //compile statement(assignment)
+                Statement::compile(e);
+                // print the closing jump label
+                print_closing_jump_label(label);
+
+                lex_advance(); //eat the end?
+                //std::cout << "lex after if?? " << std::endl;
+                //lex_this.print_lex();
+                lex_advance(); //eat the end again? why do we need 2
+
+
+                return NULL; //done with comparison
+
+
+            }
+
+        }
+
+    }
+    lexeme first = lex_this; // should be our identifier if this is an assignement
 
     lex_advance();
+
 
 
     // see if the lexeme is an equals
