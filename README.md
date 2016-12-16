@@ -1,6 +1,20 @@
 # Kestrel Compiler
 ## Group C
 
+### Jones Instructions
+
+From: http://thinkingeek.com/2013/01/09/arm-assembler-raspberry-pi-chapter-1/
+
+0. Be on a raspberry pi in the repo, and execute the following:
+1. make
+2. ./kestrel /Testing/XDeclareTestFile.kestrel > test.s | as -o test.o test.s | gcc -o test test.o
+3. ./test; echo $?
+
+This
+
+
+
+
 ### Travis build status:
 [![Build Status](https://travis-ci.org/ajjl/compiler.svg?branch=master)](https://travis-ci.org/ajjl/compiler)
 
