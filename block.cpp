@@ -63,9 +63,8 @@ Block * Block::compile( Environment * e ) {
 			std::cout << " I think I'm a declaration." << std::endl;
 #endif
 			e = Declaration::compile( e );
-		} else/*=bug=this should be else if*/  {
+		} else  {
 			// if it is a statement
-                 //=bug= need to check, because there could be error
 
 			#if Debugging_block
 			std::cout << " I think I'm a statement." << std::endl;
@@ -81,7 +80,6 @@ Block * Block::compile( Environment * e ) {
 			#endif
 
 		}
-        //=bug=, here should be a else statement handles error
 		if (lex_ispunc( lex_this, PT_SEMI )){
 #if Debugging_block
    			std::cout << "this is the end of the current block::Compile"<< std::endl;
