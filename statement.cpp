@@ -60,8 +60,9 @@ Statement * Statement::compile( Environment * e ) {
             lexeme secondComparator = lex_this;
             lex_advance();
 
+
             //comparisonOperators currently supported -> "="
-            if(comparisonOperator.value == PT_EQUALS){ //we got an equals !!
+            if(comparisonOperator.value == PT_EQUALS ||  comparisonOperator.value == PT_NOTEQL){ //we got an equals !!
 
                 //first comparator must be reference ( a variable??)
                 //load and compare it
@@ -69,7 +70,7 @@ Statement * Statement::compile( Environment * e ) {
                 int offset = e->lookup(firstCompartor.value);
                 load_value_into_working_register(offset);
                 compare_working_register_with_constant(secondComparator.value);
-                int label = make_conditional_jump_label();
+                int label = make_conditional_jump_label((comparisonOperator.value) );
                 //compile statement(assignment)
                 Block::compile(e);
                 // print the closing jump label

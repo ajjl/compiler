@@ -1,5 +1,6 @@
 
 #include <iostream>
+//#include "lexical.h"
 
 #define STACKBOTTOM 4
 #define STACKTOP 13
@@ -25,7 +26,7 @@
     void declare_and_assign(int offset, int value);
     void load_value_into_working_register(int offset);
     void compare_working_register_with_constant(int constant);
-    int make_conditional_jump_label();
+    int make_conditional_jump_label(int comparisonType);
     void print_closing_jump_label(int label);
 
     void generate_prolog(int bigOffset);

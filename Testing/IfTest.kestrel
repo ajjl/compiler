@@ -2,7 +2,8 @@ x: var int;
 y: var int;
 x = 0;
 y = 3;
-if x = 0
+x = 12
+if y /= 12
   if y = 3
     x = 2;
   end
