@@ -3,10 +3,10 @@
 # Date: Whatever the commit log says 
 # Taken from http://www.cs.uiowa.edu/~jones/compiler/kestrel/definition.shtml, and reduced alot
 
-# For starters, if we implement this grammer, it will allow us to  succesfully
-# parse a program that declares and then assigns a value. Once we are able to
-# do that, and then genereate code for it, we can start expanding this grammer
-# to do more things
+# I think we are turing complete? we have assignment of ints to unlimited
+# variables. +- addition between variables and constants and variables and
+# eachother. while loops and if statements that use equals and not equals
+# comaprison. that should be everything for T-Completeness
 
 > <kestrel program>
 / <empty>
@@ -23,37 +23,38 @@
 
 <declarator> ::= <variable declarator>
 
-<variable declarator> ::= "var" <type>
-
-<type> ::= <reference>
-
+<variable declarator> ::= "var" "int"
+# only refrences (variable types) are just pure identifyers (for now ints)
 <reference> ::= <identifier>
+
 
 # Statements
 <statement> ::= <assignment>
-<statement> ::= <if>
+	      | <if>
+	      | <while>
 
 ### Assign constant to variable
 <assignment> ::= <reference> "=" <number>
+               | <reference> "=" <arithmetic_expression> # Assign result of arithmetic expression to variable
 
-### if statement no else no nested
-<if> ::= "if" <expression> 
-		<assignment>
+### if statement no else statements
+<if> ::= "if" <comparison_expression> 
+	         <block>
+	 "end"
+<while> ::= "while" <comparison_expression> 
+		<block>
 	 "end"
 
-### only existing expression if comparison
-<expression> ::= <reference> "=" <number>
+## arithmetic, you can do x +6, or x + y, but not 4 + x, variable must come first
+<arithmetic_expression> ::= <reference> <arithmetic_operator> <number>
+                          | <reference> <arithmetic_operator> <reference>
 
-### long form of assign constant to variable
-<assignment> ::= <reference> "=" <expression>
+<arithmetic_operator> ::= "+"
+                        | "-"
 
-<expression> ::= <comparand> 
 
-<comparand> ::= <term> 
+### only existing expression if comparisons ( equals or not equals)
+<comparison_expression> ::= <reference> <comparison_operator> <number>
 
-<term> ::= <factor> 
-
-<factor> ::=  <value>
-
-<value> ::= <number>
-### end long form
+<comparison_operator> ::= "="
+                        | "/="
