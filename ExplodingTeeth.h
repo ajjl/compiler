@@ -26,6 +26,8 @@
     void declare_and_assign(int offset, int value);
     void load_value_into_working_register(int offset);
     void compare_working_register_with_constant(int constant);
+    void add_constant_to_working_register(int value);
+    void store_working_register_into_memory(int offset);
     int make_conditional_jump_label(int comparisonType);
     void print_closing_jump_label(int label);
 

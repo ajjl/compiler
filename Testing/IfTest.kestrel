@@ -2,10 +2,12 @@ x: var int;
 y: var int;
 x = 0;
 y = 3;
-x = 12
+x = 4;
+x = x + 4;
+y = y+ 54;
 if y /= 12
   if y = 3
     x = 2;
   end
-  x = 3;
+  x = x + 3;
 end

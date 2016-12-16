@@ -63,9 +63,22 @@ int sp = STACKBOTTOM;
 
     }
 
+
     void compare_working_register_with_constant(int constant) {
         if(silent == 1) {
             std::cout << "cmp r3, #" << constant << std::endl;
+        }
+    }
+
+    void add_constant_to_working_register(int value){
+        if(silent == 1){
+            std::cout << "add r3, r3, #" << value << std::endl;
+        }
+    }
+
+    void store_working_register_into_memory(int offset){
+        if(silent == 1) {
+            std::cout << "str r3, [r7, #" << offset << "]" << std::endl;
         }
     }
 
